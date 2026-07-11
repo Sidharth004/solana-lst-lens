@@ -7,6 +7,7 @@ import type { Lst } from "@shared/schema";
 import { LST_TYPE_LABELS } from "@shared/schema";
 import type { SortKey, SortState } from "../lib/sort";
 import { fmtPct, fmtInt, fmtSol } from "../lib/format";
+import { deriveRiskFlags, highestSeverity, seriesFor, type HistoryData } from "../lib/history";
 import { ApyGap } from "./ApyGap";
 import { YieldBar, YieldLegend } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
@@ -38,6 +39,7 @@ interface Props {
   lsts: Lst[];
   sort: SortState;
   onSort: (key: SortKey) => void;
+  history: HistoryData;
 }
 
 function SortIndicator({ active, dir }: { active: boolean; dir: "asc" | "desc" }) {
@@ -54,7 +56,7 @@ function initialExpanded(): string | null {
   return m?.[1] ? decodeURIComponent(m[1]) : null;
 }
 
-export function Table({ lsts, sort, onSort }: Props) {
+export function Table({ lsts, sort, onSort, history }: Props) {
   // The Yield-split and Score columns aren't independently sortable; they share
   // a sort key with a numeric column but render custom cells.
   // Expansion is keyed by symbol so a row is deep-linkable via #lst=SYMBOL.
@@ -64,7 +66,7 @@ export function Table({ lsts, sort, onSort }: Props) {
     setExpanded((cur) => {
       const next = cur === symbol ? null : symbol;
       if (typeof window !== "undefined") {
-        history.replaceState(null, "", next ? `#lst=${encodeURIComponent(next)}` : " ");
+        window.history.replaceState(null, "", next ? `#lst=${encodeURIComponent(next)}` : " ");
       }
       return next;
     });
@@ -96,6 +98,9 @@ export function Table({ lsts, sort, onSort }: Props) {
           <tbody>
             {lsts.map((lst) => {
               const isOpen = expanded === lst.symbol;
+              const risk = highestSeverity(
+                deriveRiskFlags(lst, seriesFor(history.exchangeRates, lst.symbol)),
+              );
               return (
                 <Fragment key={lst.mint}>
                   <tr
@@ -108,6 +113,14 @@ export function Table({ lsts, sort, onSort }: Props) {
                         <span className="lst-symbol">
                           <span className={`caret${isOpen ? " open" : ""}`}>›</span>
                           {lst.symbol}
+                          {risk && (
+                            <span
+                              className={`risk-dot risk-${risk}`}
+                              title={risk === "high" ? "Has a high-severity risk flag" : "Has a risk flag"}
+                            >
+                              ⚠
+                            </span>
+                          )}
                         </span>
                         <span className="lst-name">{lst.name}</span>
                       </div>
@@ -143,7 +156,7 @@ export function Table({ lsts, sort, onSort }: Props) {
                   {isOpen && (
                     <tr className="detail-row">
                       <td colSpan={COLUMNS.length}>
-                        <RowDetail lst={lst} />
+                        <RowDetail lst={lst} history={history} />
                       </td>
                     </tr>
                   )}

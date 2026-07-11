@@ -1,9 +1,9 @@
 # PROGRESS
 
 ## Current status
-- Phase: 5 — DeFi deployment + exit cost, **complete (sources live-tested end-to-end)**. Phase 6 (intent router + history + risk flags) next — the final phase.
-- Last session ended: 2026-07-11, built DeFiLlama deployment + Jupiter exit-cost sources (both keyless, live-tested: jitoSOL ~1.18M SOL deployed real, exit impact 0.016%), wired into run.ts, added Deployed + Exit columns (+ double-count footnote) and the DeFi/exit detail section. "Cheapest exit" intent is now live. Pipeline runs gracefully (meta.sources per-source health). Still pending a `SANCTUM_API_KEY` only for the LST list itself.
-- Next action: Phase 6 — wire remaining intent pills to real behavior, history charts in RowDetail from `data/history/`, risk flags (audits, depeg from exchange-rate history, delinquency from stakewiz). Then report completion.
+- Phase: 6 — Intent router + history + risk flags, **complete**. ALL SIX PHASES BUILT. The only remaining work is operational, not code: supply `SANCTUM_API_KEY` and connect the GitHub remote + host (see "Next action to unblock v1").
+- Last session ended: 2026-07-11, wired all four intent pills to live sorts, added hand-rolled SVG history sparklines (exchange rate + realized APY) and risk flags (APY-overstated, stake-concentrated, depeg from rate history, unaudited) with a row-level ⚠ marker. Verified on mock (vSOL depeg flag + charts render). Full workspace typechecks; web builds.
+- Next action: Operational only — provide `SANCTUM_API_KEY`, run `pnpm pipeline` for the live Phase-1 data verification, push to GitHub (cron), connect Cloudflare Pages (`pnpm build:site` / `web/dist`). Optional future: wire the pool→validator-set resolver (RPC) to light up decentralization on real data.
 
 ## Next action to unblock v1 (needs user)
 1. Create free key at ironforge.network → put in `.env` as `SANCTUM_API_KEY=...`.
@@ -19,7 +19,7 @@
 - [~] Phase 3 — Deploy + daily cron (commit: `ci: daily data refresh + static deploy config`): `.github/workflows/update-data.yml` (daily cron + dispatch, commits only `data/**`, no delete/force-push), `scripts/prepare-web-data.mjs` + `pnpm build:site`, README deploy docs. `build:site` verified locally. **Live cron + Pages deploy pending GitHub remote + `SANCTUM_API_KEY`.**
 - [~] Phase 4 — Yield split + decentralization (commit: `feat: yield split + decentralization score`): `sources/stakewiz.ts` (live), `derive/yieldSplit.ts` + `derive/decentralization.ts` (pure, 22/22 unit tests), wired into `run.ts`; UI `YieldBar`+legend, `ScoreBadge`, expandable `RowDetail`, `#lst=` deep-link. Yield split live-ready. **Decentralization data source (pool→validator set) deferred — needs RPC; degrades to null now.**
 - [x] Phase 5 — DeFi deployment + exit cost (commit: `feat: defi deployment + exit-cost`): `sources/defillama.ts` + `derive/deployment.ts` (SOL-denominated, double-count note), `sources/jupiter.ts` exit quotes (keyless), wired into `run.ts` (bounded concurrency). Both sources live-tested end-to-end. UI: Deployed + Exit columns, footnote, detail section; "Cheapest exit" intent now live.
-- [ ] Phase 6 — Intent router, history charts, risk flags
+- [x] Phase 6 — Intent router + history + risk flags (commit: `feat: intent router, history charts, risk flags`): all four intent pills live (max yield / most decentralized by grade / cheapest exit / newest); `components/Sparkline.tsx` hand-rolled SVG charts in RowDetail (exchange rate + realized APY from `data/history/`); `lib/history.ts` risk flags (APY overstated, stake concentrated, depeg, unaudited) + row ⚠ marker; `data.ts` loads history; `prepare-web-data.mjs` copies history into the build.
 - [ ] Phase 6 — Intent router, history charts, risk flags
 
 ## What works right now

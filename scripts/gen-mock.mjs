@@ -87,8 +87,46 @@ function lst(r) {
   };
 }
 
-const dataset = { updatedAt: new Date().toISOString(), epoch: 812, lsts: rows.map(lst) };
+const lsts = rows.map(lst);
+const dataset = { updatedAt: new Date().toISOString(), epoch: 812, lsts };
 
 mkdirSync(OUT_DIR, { recursive: true });
 writeFileSync(path.join(OUT_DIR, "latest.json"), JSON.stringify(dataset, null, 2) + "\n");
-console.log(`wrote ${dataset.lsts.length} mock LSTs -> web/public/data/latest.json`);
+
+// --- mock history: 30 daily snapshots so RowDetail charts + depeg flag render.
+const DAYS = 30;
+function isoDaysAgo(n) {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() - n);
+  return d.toISOString().slice(0, 10);
+}
+const rateHist = [];
+const apyHist = [];
+const tvlHist = [];
+for (let i = DAYS - 1; i >= 0; i--) {
+  const date = isoDaysAgo(i);
+  const t = (DAYS - 1 - i) / (DAYS - 1); // 0..1 progress
+  const rateBy = {};
+  const apyBy = {};
+  const tvlBy = {};
+  for (const l of lsts) {
+    // Exchange rate accrues gently toward its current value.
+    const startRate = l.exchangeRate - (l.realizedApy / 100) * (DAYS / 365) * l.exchangeRate;
+    let rate = startRate + (l.exchangeRate - startRate) * t;
+    // Inject a single depeg dip for vSOL mid-series to exercise the risk flag.
+    if (l.symbol === "vSOL" && i === 12) rate *= 0.985;
+    rateBy[l.symbol] = Math.round(rate * 1e6) / 1e6;
+    apyBy[l.symbol] = Math.round((l.realizedApy + (Math.sin(i) * 0.15)) * 1000) / 1000;
+    tvlBy[l.symbol] = Math.round(l.tvlSol * (0.85 + 0.15 * t) * 100) / 100;
+  }
+  rateHist.push({ date, epoch: 783 + (DAYS - 1 - i), bySymbol: rateBy });
+  apyHist.push({ date, epoch: 783 + (DAYS - 1 - i), bySymbol: apyBy });
+  tvlHist.push({ date, bySymbol: tvlBy });
+}
+const HIST_DIR = path.join(OUT_DIR, "history");
+mkdirSync(HIST_DIR, { recursive: true });
+writeFileSync(path.join(HIST_DIR, "exchange-rates.json"), JSON.stringify(rateHist, null, 2) + "\n");
+writeFileSync(path.join(HIST_DIR, "apy.json"), JSON.stringify(apyHist, null, 2) + "\n");
+writeFileSync(path.join(HIST_DIR, "tvl.json"), JSON.stringify(tvlHist, null, 2) + "\n");
+
+console.log(`wrote ${dataset.lsts.length} mock LSTs + ${DAYS}d history -> web/public/data/`);

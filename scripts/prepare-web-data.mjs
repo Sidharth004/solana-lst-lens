@@ -21,3 +21,14 @@ for (const file of ["latest.json", "meta.json"]) {
   copyFileSync(src, path.join(OUT_DIR, file));
   console.log(`[prepare-web-data] copied ${file} -> web/public/data/${file}`);
 }
+
+// History series power the RowDetail charts + depeg risk flag.
+const HIST_SRC = path.join(SRC_DIR, "history");
+const HIST_OUT = path.join(OUT_DIR, "history");
+mkdirSync(HIST_OUT, { recursive: true });
+for (const file of ["exchange-rates.json", "apy.json", "tvl.json"]) {
+  const src = path.join(HIST_SRC, file);
+  if (!existsSync(src)) continue;
+  copyFileSync(src, path.join(HIST_OUT, file));
+  console.log(`[prepare-web-data] copied history/${file}`);
+}

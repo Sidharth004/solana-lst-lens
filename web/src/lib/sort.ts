@@ -14,7 +14,8 @@ export type SortKey =
   | "feePct"
   | "launchDate"
   | "deployment"
-  | "exitCost";
+  | "exitCost"
+  | "decentralization";
 
 export type SortDir = "asc" | "desc";
 
@@ -35,6 +36,14 @@ function value(lst: Lst, key: SortKey): number | string | null {
       return lst.deployment?.totalDeployed ?? null;
     case "exitCost":
       return lst.exitCost?.priceImpactPct ?? null;
+    case "decentralization": {
+      // Grade (A best) as the primary rank, low concentration as the tiebreak.
+      const grade = lst.decentralization.grade;
+      if (grade === null) return null;
+      const rank = { A: 5, B: 4, C: 3, D: 2, F: 1 }[grade];
+      const conc = lst.decentralization.stakeConcentration ?? 0.5;
+      return rank * 10 + (1 - conc);
+    }
     default:
       return lst[key];
   }
@@ -94,9 +103,9 @@ export const INTENTS: Intent[] = [
   {
     id: "mostDecentralized",
     label: "Most decentralized",
-    hint: "Decentralization score — full ranking in Phase 4",
-    sort: { key: "type", dir: "asc" },
-    live: false,
+    hint: "Best decentralization grade first, then least stake-concentrated",
+    sort: { key: "decentralization", dir: "desc" },
+    live: true,
   },
   {
     id: "cheapestExit",

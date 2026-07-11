@@ -210,3 +210,35 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   price impact, net-after-exit). Row-detail grid is now 2-col.
 - New sort keys `deployment` / `exitCost`; "Cheapest exit" intent upgraded to
   live (`exitCost asc`), which also removes the earlier default-sort pill collision.
+
+## Phase 6 — Intent router + history + risk flags
+
+### Decisions
+- **All four intent pills live.** Added a `decentralization` sort key that ranks
+  by grade (A=5…F=1) with `(1 − concentration)` as the tiebreak; "Most
+  decentralized" uses it (`desc`). Nulls sink, so on real data (grades null until
+  the RPC resolver lands) the ranking is inert but harmless.
+- **History charts are hand-rolled SVG** (`components/Sparkline.tsx`) — no
+  charting dependency. Autoscaled line + area + last-point marker, min/max and
+  endpoint date labels. RowDetail shows exchange-rate and realized-APY series
+  pulled from `data/history/` for the row's symbol.
+- **Risk flags** (`lib/history.ts#deriveRiskFlags`): APY overstated (gap > 1.5),
+  stake concentrated (Herfindahl > 0.5), depeg (any single-step exchange-rate
+  drop > 0.3% — the rate should only accrue), unaudited (auditCount === 0).
+  Severity high/medium/info; a ⚠ dot on the row shows the highest severity.
+  Delinquency exposure is intentionally omitted — it needs the pool validator
+  set (same deferred RPC dependency as decentralization).
+- **Web history loading** is graceful: missing files → empty → charts show
+  "Not enough history yet." `prepare-web-data.mjs` copies `data/history/*` into
+  `web/public/data/history/`; `gen-mock.mjs` fabricates 30 days (with a vSOL
+  depeg dip) so the charts + depeg flag are verifiable in dev.
+
+### Naming gotcha
+- The `history` prop shadowed the global `history`; use `window.history` for the
+  `replaceState` deep-link update in `Table.tsx`.
+
+### v1 status
+- All six phases are code-complete. Live data + deploy are operational steps
+  gated on `SANCTUM_API_KEY` + a GitHub remote/host. Decentralization + delinquency
+  are the only metrics still null on real data (need an RPC to read pool validator
+  lists); everything else runs on live sources today.

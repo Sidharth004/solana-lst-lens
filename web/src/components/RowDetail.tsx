@@ -5,8 +5,10 @@
 import type { ReactNode } from "react";
 import type { Lst } from "@shared/schema";
 import { fmtPct, fmtRate, fmtInt, fmtDate, fmtSol } from "../lib/format";
+import { deriveRiskFlags, seriesFor, type HistoryData } from "../lib/history";
 import { YieldBar } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
+import { Sparkline } from "./Sparkline";
 
 function Field({ label, value, hint }: { label: string; value: ReactNode; hint?: string }) {
   return (
@@ -19,8 +21,11 @@ function Field({ label, value, hint }: { label: string; value: ReactNode; hint?:
   );
 }
 
-export function RowDetail({ lst }: { lst: Lst }) {
+export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) {
   const { yieldSplit: y, decentralization: d } = lst;
+  const rateSeries = seriesFor(history.exchangeRates, lst.symbol);
+  const apySeries = seriesFor(history.apy, lst.symbol);
+  const risks = deriveRiskFlags(lst, rateSeries);
   return (
     <div className="row-detail">
       <section className="detail-section">
@@ -96,6 +101,30 @@ export function RowDetail({ lst }: { lst: Lst }) {
             hint="Realized APY minus the one-time exit haircut at the sample size"
           />
         </div>
+      </section>
+
+      <section className="detail-section">
+        <h4>History</h4>
+        <div className="spark-row">
+          <Sparkline points={rateSeries} label="Exchange rate (SOL)" format={(v) => fmtRate(v)} color="#6366f1" />
+          <Sparkline points={apySeries} label="Realized APY" format={(v) => fmtPct(v)} color="#0ea5e9" />
+        </div>
+      </section>
+
+      <section className="detail-section">
+        <h4>Risk flags</h4>
+        {risks.length === 0 ? (
+          <p className="detail-note">No risk flags raised.</p>
+        ) : (
+          <ul className="risk-list">
+            {risks.map((r) => (
+              <li key={r.label} className={`risk-item risk-${r.severity}`}>
+                <span className="risk-tag">{r.label}</span>
+                <span className="risk-detail">{r.detail}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section className="detail-section detail-meta">

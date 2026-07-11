@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Dataset } from "@shared/schema";
-import { loadDataset } from "./data";
+import { loadDataset, loadHistory } from "./data";
+import { EMPTY_HISTORY, type HistoryData } from "./lib/history";
 import { sortLsts, type Intent, type SortKey, type SortState } from "./lib/sort";
 import { fmtDate } from "./lib/format";
 import { MetricCards } from "./components/MetricCards";
@@ -12,6 +13,7 @@ const DEFAULT_SORT: SortState = { key: "tvlSol", dir: "desc" };
 
 export default function App() {
   const [dataset, setDataset] = useState<Dataset | null>(null);
+  const [history, setHistory] = useState<HistoryData>(EMPTY_HISTORY);
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<SortState>(DEFAULT_SORT);
 
@@ -19,6 +21,7 @@ export default function App() {
     loadDataset()
       .then(setDataset)
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
+    loadHistory().then(setHistory).catch(() => setHistory(EMPTY_HISTORY));
   }, []);
 
   const sorted = useMemo(
@@ -74,7 +77,7 @@ export default function App() {
           <>
             <MetricCards lsts={dataset.lsts} />
             <IntentRouter activeSort={sort} onPick={handleIntent} />
-            <Table lsts={sorted} sort={sort} onSort={handleSort} />
+            <Table lsts={sorted} sort={sort} onSort={handleSort} history={history} />
             <footer className="app-footer">
               <p>
                 Realized APY is measured from each LST’s on-chain exchange rate.
