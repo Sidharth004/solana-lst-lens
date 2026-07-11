@@ -1,12 +1,104 @@
-// Phase 0 placeholder. Phase 2 replaces this with the real dashboard
-// (MetricCards, IntentRouter, sortable Table) rendered from loadDataset().
+import { useEffect, useMemo, useState } from "react";
+import type { Dataset } from "@shared/schema";
+import { loadDataset } from "./data";
+import { sortLsts, type Intent, type SortKey, type SortState } from "./lib/sort";
+import { fmtDate } from "./lib/format";
+import { MetricCards } from "./components/MetricCards";
+import { IntentRouter } from "./components/IntentRouter";
+import { Table } from "./components/Table";
+
+// Neutral default: largest pools first. Sort — not a hard-coded pin — decides order.
+const DEFAULT_SORT: SortState = { key: "tvlSol", dir: "desc" };
+
 export default function App() {
-  return (
-    <main style={{ maxWidth: 720, margin: "80px auto", padding: "0 24px" }}>
-      <h1 style={{ fontSize: 22, fontWeight: 600 }}>Solana LST Comparison</h1>
-      <p style={{ color: "var(--text-secondary)" }}>
-        Scaffold in place. The dashboard UI lands in Phase 2.
-      </p>
-    </main>
+  const [dataset, setDataset] = useState<Dataset | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [sort, setSort] = useState<SortState>(DEFAULT_SORT);
+
+  useEffect(() => {
+    loadDataset()
+      .then(setDataset)
+      .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
+  }, []);
+
+  const sorted = useMemo(
+    () => (dataset ? sortLsts(dataset.lsts, sort) : []),
+    [dataset, sort],
   );
+
+  function handleSort(key: SortKey) {
+    setSort((prev) =>
+      prev.key === key
+        ? { key, dir: prev.dir === "asc" ? "desc" : "asc" }
+        : { key, dir: defaultDirFor(key) },
+    );
+  }
+
+  function handleIntent(intent: Intent) {
+    setSort(intent.sort);
+  }
+
+  return (
+    <div className="app">
+      <header className="app-header">
+        <div className="wrap">
+          <div className="brand">
+            <h1>Solana LST Comparison</h1>
+            <p className="tagline">
+              Advertised vs realized yield, decentralization, and DeFi deployment —
+              measured, not marketed.
+            </p>
+          </div>
+          {dataset && (
+            <div className="updated">
+              <span className="updated-dot" />
+              Updated {fmtDate(dataset.updatedAt)}
+              {dataset.epoch !== null && <> · epoch {dataset.epoch}</>}
+            </div>
+          )}
+        </div>
+      </header>
+
+      <main className="wrap app-main">
+        {error && (
+          <div className="notice error">
+            Couldn’t load data: {error}. Make sure{" "}
+            <code>web/public/data/latest.json</code> exists (run the pipeline and
+            copy it, or the mock generator).
+          </div>
+        )}
+
+        {!error && !dataset && <div className="notice">Loading…</div>}
+
+        {dataset && (
+          <>
+            <MetricCards lsts={dataset.lsts} />
+            <IntentRouter activeSort={sort} onPick={handleIntent} />
+            <Table lsts={sorted} sort={sort} onSort={handleSort} />
+            <footer className="app-footer">
+              <p>
+                Realized APY is measured from each LST’s on-chain exchange rate.
+                Advertised APY is the protocol’s marketed number (or its most
+                flattering recent epoch). Order is set by the active sort — no
+                token is pinned or promoted.
+              </p>
+            </footer>
+          </>
+        )}
+      </main>
+    </div>
+  );
+}
+
+// Sensible first-click direction per column (higher-is-first for magnitudes).
+function defaultDirFor(key: SortKey): "asc" | "desc" {
+  switch (key) {
+    case "symbol":
+    case "type":
+    case "feePct":
+    case "apyGap":
+      return "asc";
+    default:
+      return "desc";
+  }
 }

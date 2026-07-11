@@ -1,14 +1,14 @@
 # PROGRESS
 
 ## Current status
-- Phase: 1 — Sanctum pipeline, **code-complete (live verification deferred)**; Phase 2 UI in progress next.
-- Last session ended: 2026-07-11, built the full Phase 1 pipeline (sanctum source, realizedApy derive, run.ts orchestrator). Verified graceful degradation (no key → empty dataset, no crash, history untouched, exit 1). Live data verification is BLOCKED on `SANCTUM_API_KEY`. Per user decision, building Phase 2 UI against a mock dataset first.
-- Next action: Build Phase 2 web UI (white theme) against a mock `web/public/data/latest.json`. Then, once `SANCTUM_API_KEY` is provided, run `pnpm pipeline` to complete Phase 1 live verification (valid latest.json with real LSTs, history +1 entry, idempotent re-run).
+- Phase: 2 — Web app, **complete (verified against mock data)**. Phase 3 (deploy + cron) next.
+- Last session ended: 2026-07-11, built the full white-theme dashboard and verified it renders in wide (1200px) and narrow (680px) viewports via headless Chrome screenshots. Two things still pending a `SANCTUM_API_KEY`: Phase 1 live data run, and swapping the mock dataset for real data.
+- Next action: Phase 3 — GitHub Actions daily cron (`.github/workflows/update-data.yml`) + Cloudflare Pages/Vercel static build config + README deploy docs. (Phase 1 live verification also still open — run `pnpm pipeline` once a key exists.)
 
 ## Phases completed
 - [x] Phase 0 — Scaffold (commit: `chore: scaffold repo, schema, and manual data layer`): full file structure, `shared/schema.ts`, manual data layer seeded, append-only history helpers, fetchJson/merge libs, minimal Vite+React web shell. `tsc --noEmit` passes across workspace.
 - [~] Phase 1 — Sanctum pipeline (commit: `feat: sanctum pipeline producing iteration-1 dataset`): `sources/sanctum.ts` (fetch /lsts + per-LST /apys, normalized, bounded concurrency), `derive/realizedApy.ts` (advertised vs realized, section 6.1), `run.ts` orchestrator (writes latest.json/meta.json, appends history by date). Typechecks; degradation path verified. **Live data run still pending a key.**
-- [ ] Phase 2 — Web app (iteration-1 UI, white theme)
+- [x] Phase 2 — Web app (commit: `feat: white dashboard rendering iteration-1 columns`): white theme (`theme.css`), `data.ts` loader, `lib/format.ts` + `lib/sort.ts`, components `MetricCards`, `IntentRouter` (visual, applies a sort), `ApyGap` (amber >0.5 / red >1.5), sortable `Table`. Builds clean; verified rendering at 1200px + 680px against mock data.
 - [ ] Phase 3 — Deploy + daily cron (ship v1)
 - [ ] Phase 4 — Yield split + decentralization
 - [ ] Phase 5 — DeFi deployment + exit cost
@@ -17,8 +17,13 @@
 ## What works right now
 - `pnpm install` succeeds (root + web workspace).
 - `pnpm typecheck` passes (pipeline/shared via root tsconfig + web via its own tsconfig).
-- `pnpm pipeline` runs a no-op placeholder (real orchestration lands in Phase 1).
-- Web shell renders a placeholder page; real UI in Phase 2.
+- `pnpm pipeline` runs the full orchestrator (writes empty dataset without a key; real data once `SANCTUM_API_KEY` is set).
+- `pnpm --filter web build` builds clean. `web/dist` serves the dashboard; it fetches `/data/latest.json`.
+- Dashboard renders MetricCards + IntentRouter + sortable Table from `web/public/data/latest.json` (currently a mock). Verified wide + narrow.
+
+## How to see the dashboard locally
+- Generate/refresh the mock: `node <scratchpad>/gen-mock.mjs .` writes `web/public/data/latest.json` (gitignored). Or copy real data: `cp data/latest.json web/public/data/latest.json`.
+- `pnpm dev` (vite) → open the printed URL. Headless screenshot: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --screenshot=out.png --window-size=1200,1400 http://localhost:PORT/`.
 
 ## Key decisions made
 - Package manager: **pnpm 10.x** via corepack. Node **26.5.0** (see gotcha below).

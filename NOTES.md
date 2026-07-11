@@ -75,3 +75,36 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
 - Live verification needs `SANCTUM_API_KEY` (401 without it). Per user, Phase 2
   UI is being built first against a mock dataset; Phase 1 live run happens once a
   key is available.
+
+## Phase 2 — Web app (white theme)
+
+### Decisions
+- **Neutrality by construction.** `lib/sort.ts#sortLsts` is the only thing that
+  orders rows; nulls always sink to the bottom so missing data never reads as
+  best/worst. Default sort is `tvlSol desc` ("biggest first") — a neutral view,
+  not an editorial pin.
+- **Everything rounded at the edge.** `lib/format.ts` formats every displayed
+  number (pct 2dp, compact SOL like `14.83M`, thousands-grouped ints). Nulls
+  render as `—`.
+- **ApyGap thresholds:** amber > 0.5 points, red > 1.5 points. Metric-driven
+  only — no per-token styling anywhere.
+- **IntentRouter (iteration 1):** four goal pills. "Max yield" (realized desc)
+  and "Newest yield sources" (launchDate desc) are live now; "Most decentralized"
+  and "Cheapest exit" apply a defensible proxy and carry a "soon" tag until their
+  metrics land (Phase 4/5). Full routing = Phase 6.
+- **Schema import via `@shared` alias** works in both `vite build` and dev
+  (vite `resolve.alias` + `server.fs.allow: ['..']`). Single source of truth held.
+- Mock dataset lives at `web/public/data/latest.json` (gitignored). Generator:
+  `scratchpad/gen-mock.mjs` (13 realistic LSTs). Not committed — real data
+  replaces it once the pipeline runs.
+
+### Known cosmetic note
+- On first load the default `tvlSol desc` sort coincides with the "Cheapest exit"
+  proxy (also tvl desc), so that pill shows active. Harmless; resolves in Phase 5
+  when cheapest-exit becomes priceImpact-asc.
+
+### Verification
+- Headless Chrome (system `/Applications/Google Chrome.app`) screenshots at
+  1200×1400 and 680×1500 confirmed the table, cards, pills, badges, gap chips,
+  responsive stacking, and rounded numbers. No browser automation deps needed —
+  Chrome's `--headless=new --screenshot` is enough.
