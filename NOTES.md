@@ -37,3 +37,41 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
 ### Environment
 - Homebrew node was broken (linked against icu4c 74; only icu4c 78 installed).
   `brew reinstall node` rebuilt it → node 26.5.0, npm 11.17, pnpm 10.8 (corepack).
+
+## Phase 1 — Sanctum pipeline
+
+### Decisions
+- **realizedApy = Sanctum `avgApy`** (from /lsts), per section 6.1 — not recomputed
+  from exchange-rate history. Note: the plan's verify text says "a failing apys
+  call yields null realized APY"; here realized comes from `avgApy` (always in
+  /lsts), while the per-LST `/apys` call feeds the *advertised* best-epoch proxy.
+  A failing `/apys` call therefore degrades `advertisedApy` (→ latestApy), which
+  is the more defensible reading of section 6.1. Documented deviation.
+- **advertisedApy priority:** manual override → best epoch in trailing /apys →
+  latestApy. `apyGap = advertised - realized`.
+- **Bounded concurrency (5)** for the per-LST /apys calls via a small `mapLimit`
+  to avoid 429s. One call per LST.
+- **Defensive parsing.** `/lsts` and `/apys` responses are coerced whether they
+  come back as a bare array or wrapped (`{lsts|apys|data: [...]}`). Every field is
+  optional in the raw types.
+- **History append only when data exists.** A fully failed run (0 LSTs) skips the
+  history append entirely so we never write an empty snapshot into the series.
+- **Exit code:** partial runs exit 0 (some data is fine); only a total failure
+  (0 LSTs) sets exit 1 so CI surfaces it.
+
+### Unit/shape assumptions to confirm against a live payload
+- **APY normalization (`toPercent`):** magnitude < 1 ⇒ fraction (×100), else
+  already a percent. Ambiguous only for a genuine sub-1% APY (never realistic for
+  an LST), so safe in practice.
+- **Fee normalization (`feeToPercent`):** ≤ 1 ⇒ fraction (×100), else basis
+  points (÷100).
+- **`tvl` assumed already denominated in SOL** → stored as `tvlSol`. If Sanctum
+  returns USD or atomic lamports, adjust in `sources/sanctum.ts`.
+- **`solValue` = LST→SOL exchange rate** (ground truth for realized yield).
+- **Rounding:** apy 3dp, exchangeRate 6dp, tvl 2dp, fee 3dp — to kill float
+  artifacts in the committed JSON; the UI rounds again for display.
+
+### Blocked
+- Live verification needs `SANCTUM_API_KEY` (401 without it). Per user, Phase 2
+  UI is being built first against a mock dataset; Phase 1 live run happens once a
+  key is available.

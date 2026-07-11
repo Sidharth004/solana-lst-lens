@@ -1,13 +1,13 @@
 # PROGRESS
 
 ## Current status
-- Phase: 0 — Scaffold, **complete**
-- Last session ended: 2026-07-11, finished scaffold (structure, schema, manual layer, lib helpers, web shell) and verified typecheck.
-- Next action: Start Phase 1 — implement `pipeline/sources/sanctum.ts`, `pipeline/derive/realizedApy.ts`, and `pipeline/run.ts` to produce iteration-1 `data/latest.json`. Needs `SANCTUM_API_KEY` in `.env` to run against live data.
+- Phase: 1 — Sanctum pipeline, **code-complete (live verification deferred)**; Phase 2 UI in progress next.
+- Last session ended: 2026-07-11, built the full Phase 1 pipeline (sanctum source, realizedApy derive, run.ts orchestrator). Verified graceful degradation (no key → empty dataset, no crash, history untouched, exit 1). Live data verification is BLOCKED on `SANCTUM_API_KEY`. Per user decision, building Phase 2 UI against a mock dataset first.
+- Next action: Build Phase 2 web UI (white theme) against a mock `web/public/data/latest.json`. Then, once `SANCTUM_API_KEY` is provided, run `pnpm pipeline` to complete Phase 1 live verification (valid latest.json with real LSTs, history +1 entry, idempotent re-run).
 
 ## Phases completed
 - [x] Phase 0 — Scaffold (commit: `chore: scaffold repo, schema, and manual data layer`): full file structure, `shared/schema.ts`, manual data layer seeded, append-only history helpers, fetchJson/merge libs, minimal Vite+React web shell. `tsc --noEmit` passes across workspace.
-- [ ] Phase 1 — Sanctum pipeline (iteration-1 dataset)
+- [~] Phase 1 — Sanctum pipeline (commit: `feat: sanctum pipeline producing iteration-1 dataset`): `sources/sanctum.ts` (fetch /lsts + per-LST /apys, normalized, bounded concurrency), `derive/realizedApy.ts` (advertised vs realized, section 6.1), `run.ts` orchestrator (writes latest.json/meta.json, appends history by date). Typechecks; degradation path verified. **Live data run still pending a key.**
 - [ ] Phase 2 — Web app (iteration-1 UI, white theme)
 - [ ] Phase 3 — Deploy + daily cron (ship v1)
 - [ ] Phase 4 — Yield split + decentralization
@@ -33,7 +33,9 @@
 - Cron: not set up (Phase 3).
 
 ## Known issues / TODO / deferred
-- Phase 1 verification requires a live `SANCTUM_API_KEY`. Without it the pipeline still completes but writes an empty/partial dataset (by design).
+- **Phase 1 live verification pending a `SANCTUM_API_KEY`.** Code is complete and typechecks; with no key the pipeline writes an empty dataset + status=failed (verified). Once a key is in `.env`, run `pnpm pipeline` and confirm: real LSTs in latest.json, history +1 dated entry, re-run replaces (not duplicates) today's entry.
+- **API-shape assumptions to confirm against live data** (see NOTES Phase 1): APY fields normalized via `toPercent` (fraction vs percent heuristic); fee via `feeToPercent` (fraction vs bps); `tvl` assumed already in SOL; `solValue` = exchange rate. Adjust normalizers once the real payload is seen.
+- Phase 2 built against a **mock** `web/public/data/latest.json` (gitignored). Swap to real data by running the pipeline + copying `data/latest.json`.
 - `pipeline/sources/{stakewiz,defillama,jupiter}.ts` and `derive/{yieldSplit,decentralization,deployment}.ts` are valid empty stubs.
 
 ## Gotchas for next session

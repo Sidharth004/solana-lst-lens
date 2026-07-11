@@ -1,7 +1,12 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-07-11T16:49:51.149Z",
   "epoch": null,
   "lstCount": 0,
   "status": "failed",
-  "sources": {}
+  "sources": {
+    "sanctum": {
+      "ok": false,
+      "note": "SANCTUM_API_KEY not set"
+    }
+  }
 }
