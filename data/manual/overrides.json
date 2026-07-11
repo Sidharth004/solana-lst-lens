@@ -1,0 +1,5 @@
+{
+  "$schema": "Manual corrections + model constants. The pipeline reads this and MERGES it; it never writes here. networkBaseStakingApy (percent) feeds the Phase 4 yield-split model when the median-validator base rate is unavailable; update monthly. bySymbol holds arbitrary partial Lst overrides applied last (e.g. auditCount, corrected issuer).",
+  "networkBaseStakingApy": 6.5,
+  "bySymbol": {}
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "Protocols to track for DeFi deployment (Phase 5). slug is the DeFiLlama /protocol/{slug} slug; label is the display name; symbols optionally restricts which LST symbols to read from chainTvls.Solana.tokens (empty/omitted = all tracked LSTs). The pipeline never writes here. Verify each slug against https://api.llama.fi/protocols before relying on it.",
+  "protocols": [
+    { "slug": "kamino-lend", "label": "Kamino" },
+    { "slug": "drift", "label": "Drift" },
+    { "slug": "marginfi", "label": "MarginFi" },
+    { "slug": "save", "label": "Save" }
+  ]
+}

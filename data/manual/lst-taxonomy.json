@@ -1,0 +1,23 @@
+{
+  "$schema": "Human-authored LST type classifications. The pipeline reads this and MERGES it over the type it seeds from Sanctum pool.program. It never writes here. Keyed by LST symbol. type must be one of shared/schema.ts LstType. Optional: issuer, auditCount, notes.",
+  "bySymbol": {
+    "jitoSOL": {
+      "type": "multi-validator",
+      "issuer": "Jito",
+      "auditCount": null,
+      "notes": "Large multi-validator pool with MEV distribution."
+    },
+    "INF": {
+      "type": "lst-of-lsts",
+      "issuer": "Sanctum",
+      "auditCount": null,
+      "notes": "Sanctum Infinity — a pool of LSTs; yield includes fee-sharing over the underlying basket."
+    },
+    "rkuSOL": {
+      "type": "blockspace-yield",
+      "issuer": "Rakurai",
+      "auditCount": null,
+      "notes": "Blockspace-yield LST. blockspaceApy stays null until the marketplace is live — never render a fake number."
+    }
+  }
+}

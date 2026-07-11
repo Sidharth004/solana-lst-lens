@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# env / secrets
+.env
+.env.local
+*.local
+
+# web build output
+web/dist/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# NOTE: data/ is committed on purpose — git is the time-series database.
+# web/public/data/ is a build-time copy of data/latest.json and IS ignored.
+web/public/data/

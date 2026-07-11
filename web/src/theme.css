@@ -1,0 +1,75 @@
+/* White theme, data-dense, Stripe/Linear-like. No dark default, no neon, no glow.
+   Expanded in Phase 2; this is the base token set. */
+
+:root {
+  /* Surfaces */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-alt: #fafafa;
+  --surface-hover: #f5f6f7;
+
+  /* Borders — hairline */
+  --border: #ececed;
+  --border-strong: #dcdcde;
+
+  /* Text */
+  --text: #18181b;
+  --text-secondary: #52525b;
+  --text-muted: #8a8a92;
+
+  /* One restrained accent (not neon) */
+  --accent: #4f46e5;
+  --accent-soft: #eef0fe;
+
+  /* Semantic — used sparingly, e.g. the APY gap */
+  --amber: #b45309;
+  --amber-soft: #fef3e2;
+  --red: #b91c1c;
+  --red-soft: #fdeaea;
+  --green: #15803d;
+  --green-soft: #eaf6ee;
+
+  /* Type */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas,
+    monospace;
+
+  --radius: 8px;
+  --radius-sm: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Numeric cells use tabular figures so columns line up. */
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}

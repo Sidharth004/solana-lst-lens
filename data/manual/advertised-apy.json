@@ -1,0 +1,4 @@
+{
+  "$schema": "Optional advertised-APY overrides per LST symbol, as a percent number (e.g. 8.2 means 8.2%). Highest priority source for advertisedApy (see DEVELOPMENT_PLAN 6.1). Leave bySymbol empty to fall back to the best-epoch proxy, then latestApy. The pipeline never writes here.",
+  "bySymbol": {}
+}
