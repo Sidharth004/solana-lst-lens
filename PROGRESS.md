@@ -1,9 +1,9 @@
 # PROGRESS
 
 ## Current status
-- Phase: 3 — Deploy + daily cron, **config complete; live cron/deploy pending GitHub remote + key**. This is the shippable v1 (pending the key). Phase 4 (interpretive layer) next.
-- Last session ended: 2026-07-11, wrote the Actions cron workflow + static build pipeline (`build:site`) and deploy docs; verified `pnpm build:site` bundles the dataset into `web/dist`. Open items all need a `SANCTUM_API_KEY`: Phase 1 live data run, swap mock→real, and the first real cron run.
-- Next action: Either (a) provide `SANCTUM_API_KEY` + push to GitHub to light up the cron and do the live Phase 1/3 verification, or (b) proceed to Phase 4 (stakewiz source + decentralization + yield split) against mock data. See "Next action to unblock v1" below.
+- Phase: 4 — Interpretive layer, **complete against mock; decentralization data source deferred (needs RPC/key)**. Phase 5 (deployment + exit cost) next.
+- Last session ended: 2026-07-11, built yield-split + decentralization derives (pure fns unit-tested, 22/22), Stakewiz source (live-tested), and the interpretive UI (YieldBar+legend, ScoreBadge, expandable RowDetail, `#lst=` deep-link). Verified at 1240px + 680px. Yield split runs on real data once a key exists; decentralization stays null until the pool→validator-set resolver is wired (RPC).
+- Next action: Phase 5 — `defi-protocols.json` targets, `sources/defillama.ts`, `derive/deployment.ts`, `sources/jupiter.ts` exit quotes; UI deployment column (+ double-count caveat) and exit-cost column. DeFiLlama + Jupiter lite-api are keyless, so Phase 5 is largely live-verifiable.
 
 ## Next action to unblock v1 (needs user)
 1. Create free key at ironforge.network → put in `.env` as `SANCTUM_API_KEY=...`.
@@ -17,7 +17,7 @@
 - [~] Phase 1 — Sanctum pipeline (commit: `feat: sanctum pipeline producing iteration-1 dataset`): `sources/sanctum.ts` (fetch /lsts + per-LST /apys, normalized, bounded concurrency), `derive/realizedApy.ts` (advertised vs realized, section 6.1), `run.ts` orchestrator (writes latest.json/meta.json, appends history by date). Typechecks; degradation path verified. **Live data run still pending a key.**
 - [x] Phase 2 — Web app (commit: `feat: white dashboard rendering iteration-1 columns`): white theme (`theme.css`), `data.ts` loader, `lib/format.ts` + `lib/sort.ts`, components `MetricCards`, `IntentRouter` (visual, applies a sort), `ApyGap` (amber >0.5 / red >1.5), sortable `Table`. Builds clean; verified rendering at 1200px + 680px against mock data.
 - [~] Phase 3 — Deploy + daily cron (commit: `ci: daily data refresh + static deploy config`): `.github/workflows/update-data.yml` (daily cron + dispatch, commits only `data/**`, no delete/force-push), `scripts/prepare-web-data.mjs` + `pnpm build:site`, README deploy docs. `build:site` verified locally. **Live cron + Pages deploy pending GitHub remote + `SANCTUM_API_KEY`.**
-- [ ] Phase 4 — Yield split + decentralization
+- [~] Phase 4 — Yield split + decentralization (commit: `feat: yield split + decentralization score`): `sources/stakewiz.ts` (live), `derive/yieldSplit.ts` + `derive/decentralization.ts` (pure, 22/22 unit tests), wired into `run.ts`; UI `YieldBar`+legend, `ScoreBadge`, expandable `RowDetail`, `#lst=` deep-link. Yield split live-ready. **Decentralization data source (pool→validator set) deferred — needs RPC; degrades to null now.**
 - [ ] Phase 5 — DeFi deployment + exit cost
 - [ ] Phase 6 — Intent router, history charts, risk flags
 
@@ -29,7 +29,7 @@
 - Dashboard renders MetricCards + IntentRouter + sortable Table from `web/public/data/latest.json` (currently a mock). Verified wide + narrow.
 
 ## How to see the dashboard locally
-- Generate/refresh the mock: `node <scratchpad>/gen-mock.mjs .` writes `web/public/data/latest.json` (gitignored). Or copy real data: `cp data/latest.json web/public/data/latest.json`.
+- Generate/refresh the mock: `node scripts/gen-mock.mjs` writes `web/public/data/latest.json` (gitignored). Or use real data: `pnpm pipeline && pnpm prepare-web-data`.
 - `pnpm dev` (vite) → open the printed URL. Headless screenshot: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --screenshot=out.png --window-size=1200,1400 http://localhost:PORT/`.
 
 ## Key decisions made

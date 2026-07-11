@@ -373,6 +373,219 @@ td.empty {
   max-width: 78ch;
 }
 
+/* ------------------------------------------------------- yield bar/split -- */
+
+.yield-bar-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 150px;
+}
+.yield-bar {
+  display: flex;
+  height: 9px;
+  width: 92px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+}
+.yield-seg {
+  height: 100%;
+}
+.seg-base {
+  background: #6366f1;
+}
+.seg-mev {
+  background: #0ea5e9;
+}
+.seg-other {
+  background: #b8bcc8;
+}
+.seg-blockspace {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    #c9b8ef 3px,
+    #c9b8ef 6px
+  );
+  border-left: 1px dashed #a78bda;
+}
+.yield-total {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.est-mark {
+  color: var(--text-muted);
+  margin-left: 1px;
+  font-weight: 600;
+}
+
+.yield-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 0 2px;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.legend-swatch.seg-blockspace {
+  border: 1px dashed #a78bda;
+}
+
+/* ---------------------------------------------------------- score badge -- */
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  border: 1px solid transparent;
+}
+.score-A {
+  color: #146c43;
+  background: #e6f4ea;
+  border-color: #bfe3cb;
+}
+.score-B {
+  color: #1d6b5b;
+  background: #e4f5f0;
+  border-color: #bfe6da;
+}
+.score-C {
+  color: var(--amber);
+  background: var(--amber-soft);
+  border-color: #f2ddb8;
+}
+.score-D {
+  color: #b5560a;
+  background: #fde7d6;
+  border-color: #f2cfa6;
+}
+.score-F {
+  color: var(--red);
+  background: var(--red-soft);
+  border-color: #f2cccc;
+}
+.score-null {
+  color: var(--text-muted);
+  background: transparent;
+}
+
+/* -------------------------------------------------------------- caret ---- */
+
+.caret {
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--text-muted);
+  transition: transform 0.12s ease;
+  font-size: 13px;
+}
+.caret.open {
+  transform: rotate(90deg);
+}
+.data-row {
+  cursor: pointer;
+}
+.data-row.open td {
+  background: var(--surface-hover);
+}
+.yield-col {
+  min-width: 160px;
+}
+
+/* --------------------------------------------------------- row detail ---- */
+
+.detail-row td {
+  padding: 0 !important;
+  background: var(--surface-alt);
+}
+.row-detail {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 24px;
+  padding: 18px 16px 20px;
+  border-top: 1px solid var(--border);
+}
+.detail-section h4 {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.est-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-weight: 600;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-top: 10px;
+}
+.detail-section > .yield-bar-cell {
+  margin-bottom: 6px;
+}
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.detail-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.detail-value {
+  font-size: 13.5px;
+  font-weight: 550;
+}
+.detail-note {
+  margin: 12px 0 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+.detail-meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+.mint {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
 /* ------------------------------------------------------------ responsive -- */
 
 @media (max-width: 680px) {
@@ -387,5 +600,12 @@ td.empty {
   }
   .lst-name {
     display: none;
+  }
+  .row-detail {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .detail-meta {
+    grid-template-columns: 1fr 1fr;
   }
 }

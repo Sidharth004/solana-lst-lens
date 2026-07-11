@@ -134,3 +134,43 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   and a Pages/Vercel preview on live data) requires the repo on GitHub + the
   `SANCTUM_API_KEY` secret. Local proxy done: `pnpm build:site` bundles the
   dataset into `web/dist/data/`.
+
+## Phase 4 — Yield split + decentralization
+
+### Yield split (estimate)
+- `computeYieldSplit`: `base = clamp(networkBase − fee, 0, realized)`;
+  `other = realized − base`; `mev = null` (not separable here, folded into
+  other); `blockspace = null` for all (rkuSOL renders a hollow "coming" segment,
+  never a number). `isEstimate` always true. Parts always sum to realized.
+- `networkBase` from `overrides.networkBaseStakingApy` (6.5%). Could later be a
+  live median validator APY from Sanctum `/validators/apy`.
+
+### Decentralization index — DOCUMENTED WEIGHTING (plan 6.3 requires this here)
+- Editorial composite, labeled "our index" in the UI. Raw inputs stay visible in
+  RowDetail so it's auditable. Grade buckets: A ≥80, B ≥65, C ≥50, D ≥35, else F.
+- Weighting (renormalized over whichever components are present):
+  - **validatorCount 30%** — normalized log10(n)/log10(300), so 1→0, ~300+→1.
+  - **(1 − stakeConcentration) 40%** — Herfindahl of stake shares within the
+    pool's set; flatter distribution scores higher.
+  - **avgValidatorRank 30%** — normalized (avgRank−1)/(networkCount−1); delegating
+    to smaller/higher-ranked-number validators scores higher.
+- Pure functions unit-tested (22 assertions, all pass): even 4-way HHI = 0.25,
+  single = 1, empty = null; even large set → A/B, whale+top-rank → D/F.
+
+### KNOWN GAP — decentralization data source
+- The composite needs each pool's validator SET (which validators an LST
+  delegates to). That mapping comes from the pool's on-chain `validatorList`
+  account, which needs an RPC (`HELIUS_RPC_URL`) or a Sanctum endpoint exposing
+  members. Not wired yet → `resolvePoolValidators()` returns null →
+  decentralization degrades to null for every LST (graceful). Stakewiz is fetched
+  and indexed by vote_identity, ready to join once the set resolver lands.
+- Mock (`scripts/gen-mock.mjs`) supplies decentralization values so the UI
+  (ScoreBadge, RowDetail) is verifiable now; INF is intentionally left null to
+  exercise the graceful "—" path.
+
+### UI
+- `YieldBar` (stacked base/mev/other + hollow blockspace) + `YieldLegend`,
+  `ScoreBadge` (A–F colored / null = —), `RowDetail` (yield split, fee & rate,
+  decentralization raw inputs, meta). Rows are click-to-expand and deep-linkable
+  via `#lst=SYMBOL` (also how the detail panel was screenshot-verified).
+- Verified at 1240px (jitoSOL expanded) and 680px (responsive, detail stacks).

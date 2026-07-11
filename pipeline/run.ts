@@ -27,7 +27,13 @@ import type {
   TvlSnapshot,
 } from "../shared/schema.js";
 import { fetchSanctumLsts, type NormalizedSanctumLst } from "./sources/sanctum.js";
+import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz.js";
 import { deriveApy } from "./derive/realizedApy.js";
+import { computeYieldSplit } from "./derive/yieldSplit.js";
+import {
+  computeDecentralization,
+  type PoolValidator,
+} from "./derive/decentralization.js";
 import { deepMerge, readJson } from "./lib/merge.js";
 import { appendSnapshot } from "./lib/history.js";
 
@@ -94,22 +100,66 @@ function inferEpoch(lsts: NormalizedSanctumLst[]): number | null {
 
 // --- build ------------------------------------------------------------------
 
+interface BuildContext {
+  /** Network base staking APY (percent) for the yield-split model. */
+  networkBaseStakingApy: number | null;
+  stakewiz: StakewizResult;
+}
+
+/**
+ * Resolve the validator set a pool delegates to (for decentralization).
+ * The pool's `validatorList` is an on-chain SPL stake-pool account; reading it
+ * requires an RPC (HELIUS_RPC_URL) or a Sanctum endpoint that exposes members.
+ * Neither is wired yet, so this returns null and decentralization degrades to
+ * null for every LST (graceful) — see Phase 4 notes / TODO.
+ */
+function resolvePoolValidators(
+  _src: NormalizedSanctumLst,
+  _ctx: BuildContext,
+): PoolValidator[] | null {
+  return null;
+}
+
 function buildLst(
   src: NormalizedSanctumLst,
   taxonomy: Taxonomy,
   advertised: AdvertisedApyOverrides,
   overrides: Overrides,
+  ctx: BuildContext,
 ): Lst {
   const tax = taxonomy.bySymbol[src.symbol];
   const advOverride = advertised.bySymbol[src.symbol];
   const { advertisedApy, realizedApy, apyGap } = deriveApy(src, advOverride);
+
+  const type = tax?.type ?? typeFromProgram(src.poolProgram);
+
+  const yieldSplit = computeYieldSplit({
+    realizedApy,
+    feePct: src.feePct,
+    networkBaseStakingApy: ctx.networkBaseStakingApy,
+    type,
+  });
+
+  const poolValidators = resolvePoolValidators(src, ctx);
+  const decentralization = poolValidators
+    ? computeDecentralization({
+        validators: poolValidators,
+        networkValidatorCount: ctx.stakewiz.networkValidatorCount,
+      })
+    : {
+        validatorCount: null,
+        stakeConcentration: null,
+        avgValidatorRank: null,
+        grade: null,
+        isEstimate: true,
+      };
 
   const base: Lst = {
     symbol: src.symbol,
     mint: src.mint,
     name: src.name,
     logoUri: src.logoUri,
-    type: tax?.type ?? typeFromProgram(src.poolProgram),
+    type,
     issuer: tax?.issuer ?? null,
 
     tvlSol: round(src.tvlSol, 2),
@@ -121,20 +171,8 @@ function buildLst(
     realizedApy: round(realizedApy, 3),
     apyGap: round(apyGap, 3),
 
-    yieldSplit: {
-      baseStakingApy: null,
-      mevApy: null,
-      otherApy: null,
-      blockspaceApy: null,
-      isEstimate: true,
-    },
-    decentralization: {
-      validatorCount: null,
-      stakeConcentration: null,
-      avgValidatorRank: null,
-      grade: null,
-      isEstimate: true,
-    },
+    yieldSplit,
+    decentralization,
     deployment: null,
     exitCost: null,
 
@@ -163,11 +201,23 @@ async function main(): Promise<void> {
 
   const sources: Record<string, SourceStatus> = {};
 
-  const sanctum = await fetchSanctumLsts(apiKey);
+  const [sanctum, stakewiz] = await Promise.all([
+    fetchSanctumLsts(apiKey),
+    fetchStakewizValidators(),
+  ]);
   sources.sanctum = { ok: sanctum.ok, note: sanctum.note };
+  sources.stakewiz = {
+    ok: stakewiz.ok,
+    note: stakewiz.ok ? `${stakewiz.networkValidatorCount} validators` : stakewiz.note,
+  };
+
+  const ctx: BuildContext = {
+    networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,
+    stakewiz,
+  };
 
   const lsts = sanctum.lsts.map((s) =>
-    buildLst(s, taxonomy, advertised, overrides),
+    buildLst(s, taxonomy, advertised, overrides, ctx),
   );
 
   const epoch = inferEpoch(sanctum.lsts);
