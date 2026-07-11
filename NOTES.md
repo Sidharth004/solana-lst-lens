@@ -108,3 +108,29 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   1200×1400 and 680×1500 confirmed the table, cards, pills, badges, gap chips,
   responsive stacking, and rounded numbers. No browser automation deps needed —
   Chrome's `--headless=new --screenshot` is enough.
+
+## Phase 3 — Deploy + daily cron
+
+### Decisions
+- **Static build feeds from committed data.** `scripts/prepare-web-data.mjs`
+  copies `data/latest.json` + `meta.json` into `web/public/data/` before
+  `vite build`. Exposed as `pnpm build:site` (the host's build command) and
+  `pnpm prepare-web-data`. The app fetches `/data/latest.json` at runtime, so a
+  data-only commit re-triggers a host build without touching app code.
+- **Workflow commits only `data/`.** `git add data/` (never `-A`), guarded by
+  `git diff --cached --quiet` so an empty diff is a clean no-op. No delete, no
+  force-push. Bot identity `lst-data-bot`. `permissions: contents: write` +
+  repo "Read and write" Actions setting required to push.
+- **Cron `0 6 * * *`** (06:00 UTC) once daily, plus `workflow_dispatch`.
+  `concurrency: update-data` (no cancel) prevents overlapping refreshes.
+- **`packageManager: pnpm@10.8.0`** added so Cloudflare/Vercel select pnpm via
+  corepack automatically.
+- Pipeline exits 1 only on total failure, so a keyless/failed CI run fails the
+  job (visible) and commits nothing; partial runs (some sources down) still
+  commit what they got.
+
+### Pending (needs user / remote)
+- The plan's Phase 3 verify (a real `workflow_dispatch` run committing `data/`,
+  and a Pages/Vercel preview on live data) requires the repo on GitHub + the
+  `SANCTUM_API_KEY` secret. Local proxy done: `pnpm build:site` bundles the
+  dataset into `web/dist/data/`.

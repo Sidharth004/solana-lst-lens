@@ -1,15 +1,22 @@
 # PROGRESS
 
 ## Current status
-- Phase: 2 — Web app, **complete (verified against mock data)**. Phase 3 (deploy + cron) next.
-- Last session ended: 2026-07-11, built the full white-theme dashboard and verified it renders in wide (1200px) and narrow (680px) viewports via headless Chrome screenshots. Two things still pending a `SANCTUM_API_KEY`: Phase 1 live data run, and swapping the mock dataset for real data.
-- Next action: Phase 3 — GitHub Actions daily cron (`.github/workflows/update-data.yml`) + Cloudflare Pages/Vercel static build config + README deploy docs. (Phase 1 live verification also still open — run `pnpm pipeline` once a key exists.)
+- Phase: 3 — Deploy + daily cron, **config complete; live cron/deploy pending GitHub remote + key**. This is the shippable v1 (pending the key). Phase 4 (interpretive layer) next.
+- Last session ended: 2026-07-11, wrote the Actions cron workflow + static build pipeline (`build:site`) and deploy docs; verified `pnpm build:site` bundles the dataset into `web/dist`. Open items all need a `SANCTUM_API_KEY`: Phase 1 live data run, swap mock→real, and the first real cron run.
+- Next action: Either (a) provide `SANCTUM_API_KEY` + push to GitHub to light up the cron and do the live Phase 1/3 verification, or (b) proceed to Phase 4 (stakewiz source + decentralization + yield split) against mock data. See "Next action to unblock v1" below.
+
+## Next action to unblock v1 (needs user)
+1. Create free key at ironforge.network → put in `.env` as `SANCTUM_API_KEY=...`.
+2. `pnpm pipeline` → confirm real `data/latest.json`, history +1 entry, re-run replaces (not duplicates) today.
+3. `cp data/latest.json web/public/data/` → `pnpm dev` to see the dashboard on real data.
+4. Push repo to GitHub; add `SANCTUM_API_KEY` repo secret; enable Actions read/write; run the workflow once.
+5. Connect Cloudflare Pages: build `pnpm build:site`, output `web/dist`; attach domain.
 
 ## Phases completed
 - [x] Phase 0 — Scaffold (commit: `chore: scaffold repo, schema, and manual data layer`): full file structure, `shared/schema.ts`, manual data layer seeded, append-only history helpers, fetchJson/merge libs, minimal Vite+React web shell. `tsc --noEmit` passes across workspace.
 - [~] Phase 1 — Sanctum pipeline (commit: `feat: sanctum pipeline producing iteration-1 dataset`): `sources/sanctum.ts` (fetch /lsts + per-LST /apys, normalized, bounded concurrency), `derive/realizedApy.ts` (advertised vs realized, section 6.1), `run.ts` orchestrator (writes latest.json/meta.json, appends history by date). Typechecks; degradation path verified. **Live data run still pending a key.**
 - [x] Phase 2 — Web app (commit: `feat: white dashboard rendering iteration-1 columns`): white theme (`theme.css`), `data.ts` loader, `lib/format.ts` + `lib/sort.ts`, components `MetricCards`, `IntentRouter` (visual, applies a sort), `ApyGap` (amber >0.5 / red >1.5), sortable `Table`. Builds clean; verified rendering at 1200px + 680px against mock data.
-- [ ] Phase 3 — Deploy + daily cron (ship v1)
+- [~] Phase 3 — Deploy + daily cron (commit: `ci: daily data refresh + static deploy config`): `.github/workflows/update-data.yml` (daily cron + dispatch, commits only `data/**`, no delete/force-push), `scripts/prepare-web-data.mjs` + `pnpm build:site`, README deploy docs. `build:site` verified locally. **Live cron + Pages deploy pending GitHub remote + `SANCTUM_API_KEY`.**
 - [ ] Phase 4 — Yield split + decentralization
 - [ ] Phase 5 — DeFi deployment + exit cost
 - [ ] Phase 6 — Intent router, history charts, risk flags
@@ -34,8 +41,8 @@
 
 ## Environment / setup state
 - API keys configured: **SANCTUM_API_KEY not yet set** — needed to run the Phase 1 pipeline against live data. Store in `.env` locally (gitignored) and as a GitHub Actions secret for the cron (Phase 3).
-- Deploy: not set up (Phase 3).
-- Cron: not set up (Phase 3).
+- Deploy: config written (Cloudflare Pages: build `pnpm build:site`, output `web/dist`). Not yet connected to a host/domain.
+- Cron: workflow committed (`.github/workflows/update-data.yml`, daily 06:00 UTC + dispatch). Not yet run — needs the repo on GitHub + `SANCTUM_API_KEY` secret + Actions write permission.
 
 ## Known issues / TODO / deferred
 - **Phase 1 live verification pending a `SANCTUM_API_KEY`.** Code is complete and typechecks; with no key the pipeline writes an empty dataset + status=failed (verified). Once a key is in `.env`, run `pnpm pipeline` and confirm: real LSTs in latest.json, history +1 dated entry, re-run replaces (not duplicates) today's entry.

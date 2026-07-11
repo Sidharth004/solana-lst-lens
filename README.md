@@ -69,9 +69,46 @@ web/               Vite + React dashboard.
 
 ## Deploy
 
-Cloudflare Pages / Vercel config and the daily cron are documented here once
-Phase 3 lands. Build command: `pnpm --filter web build`, output: `web/dist`,
-with `data/latest.json` copied into `web/public/data/` at build time.
+Static output only — no runtime server. The single recurring cost is the domain.
+
+### Daily data refresh (GitHub Actions)
+
+`.github/workflows/update-data.yml` runs `pnpm pipeline` on a daily cron
+(`0 6 * * *` UTC) and on manual `workflow_dispatch`. It commits **only** `data/**`
+back to the repo with a bot identity — never deleting files, never force-pushing,
+and no-opping cleanly when there's no diff. Git history is the time series.
+
+Setup:
+
+1. Push this repo to GitHub.
+2. Add repo secret **`SANCTUM_API_KEY`** (Settings → Secrets and variables →
+   Actions). Optionally add `HELIUS_RPC_URL`.
+3. Ensure Actions can push: Settings → Actions → General → Workflow permissions →
+   "Read and write permissions".
+4. Trigger a first run from the Actions tab (Run workflow) to confirm it commits
+   updated `data/`.
+
+### Static site (Cloudflare Pages — recommended, or Vercel)
+
+The site is prerendered static assets that fetch `/data/latest.json` at runtime.
+
+- **Build command:** `pnpm build:site`
+  (copies `data/latest.json` + `meta.json` into `web/public/data/`, then
+  `vite build`).
+- **Output / build directory:** `web/dist`
+- **Node version:** 20+ (set `NODE_VERSION=20` env on Cloudflare if needed).
+- pnpm is auto-detected from `packageManager` in `package.json` +
+  `pnpm-lock.yaml`.
+
+Cloudflare Pages: connect the GitHub repo, set the build command and output
+directory above, deploy, then attach the custom domain. Each daily data commit
+from the workflow re-triggers a Pages build, so the live site tracks the latest
+snapshot.
+
+Vercel: same build command and output dir (`web/dist`); framework preset "Other".
+
+> Note: `web/public/data/` is gitignored — it's a build artifact reproduced by
+> `pnpm build:site`. The source of truth is `data/latest.json`.
 
 ## Ground rules
 

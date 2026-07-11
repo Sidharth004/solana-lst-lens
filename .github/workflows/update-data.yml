@@ -1,0 +1,62 @@
+name: Update data
+
+# Daily refresh of the committed dataset. Git is the time-series database:
+# each run appends today's snapshot to data/history/* and updates data/latest.json,
+# then commits ONLY data/** back to the repo. It never deletes files and never
+# force-pushes. A no-diff run is a clean no-op.
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC daily
+  workflow_dispatch: {}
+
+# Allow the job to push the data commit back to the default branch.
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so the append-only data commit lands cleanly.
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run pipeline
+        env:
+          SANCTUM_API_KEY: ${{ secrets.SANCTUM_API_KEY }}
+          HELIUS_RPC_URL: ${{ secrets.HELIUS_RPC_URL }}
+        run: pnpm pipeline
+
+      - name: Commit data changes
+        run: |
+          git config user.name "lst-data-bot"
+          git config user.email "lst-data-bot@users.noreply.github.com"
+          # Stage ONLY data/ — never touch source files, never delete anything.
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "data: daily refresh ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git push
+          fi

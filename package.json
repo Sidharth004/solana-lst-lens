@@ -7,7 +7,9 @@
   "scripts": {
     "pipeline": "tsx pipeline/run.ts",
     "dev": "pnpm --filter web dev",
+    "prepare-web-data": "node scripts/prepare-web-data.mjs",
     "build": "pnpm --filter web build",
+    "build:site": "node scripts/prepare-web-data.mjs && pnpm --filter web build",
     "typecheck": "tsc -p tsconfig.json --noEmit && pnpm --filter web typecheck"
   },
   "devDependencies": {
@@ -15,6 +17,7 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
+  "packageManager": "pnpm@10.8.0",
   "engines": {
     "node": ">=20"
   },
