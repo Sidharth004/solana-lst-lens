@@ -12,7 +12,9 @@ export type SortKey =
   | "tvlSol"
   | "holders"
   | "feePct"
-  | "launchDate";
+  | "launchDate"
+  | "deployment"
+  | "exitCost";
 
 export type SortDir = "asc" | "desc";
 
@@ -29,6 +31,10 @@ function value(lst: Lst, key: SortKey): number | string | null {
       return lst.type;
     case "launchDate":
       return lst.launchDate ?? null;
+    case "deployment":
+      return lst.deployment?.totalDeployed ?? null;
+    case "exitCost":
+      return lst.exitCost?.priceImpactPct ?? null;
     default:
       return lst[key];
   }
@@ -95,9 +101,9 @@ export const INTENTS: Intent[] = [
   {
     id: "cheapestExit",
     label: "Cheapest exit",
-    hint: "Exit cost — proxied by depth (TVL) until Phase 5",
-    sort: { key: "tvlSol", dir: "desc" },
-    live: false,
+    hint: "Lowest price impact to swap out to SOL (1000-SOL sample)",
+    sort: { key: "exitCost", dir: "asc" },
+    live: true,
   },
   {
     id: "newest",

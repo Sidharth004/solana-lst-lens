@@ -520,8 +520,8 @@ td.empty {
 }
 .row-detail {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1.2fr;
-  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 28px;
   padding: 18px 16px 20px;
   border-top: 1px solid var(--border);
 }
@@ -584,6 +584,12 @@ td.empty {
   font-size: 10.5px;
   color: var(--text-secondary);
   word-break: break-all;
+}
+.table-footnote {
+  margin: 8px 2px 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  max-width: 90ch;
 }
 
 /* ------------------------------------------------------------ responsive -- */

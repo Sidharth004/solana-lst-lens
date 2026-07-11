@@ -54,6 +54,25 @@ function decentralization(dec) {
   return { validatorCount, stakeConcentration, avgValidatorRank, grade, isEstimate: true };
 }
 
+const DOUBLE_COUNT_NOTE =
+  "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound.";
+
+function deployment(tvlSol) {
+  // Small pools: no meaningful DeFi footprint -> null (exercises the "—" path).
+  if (tvlSol < 150000) return null;
+  const total = Math.round(tvlSol * 0.24 * 100) / 100;
+  const kamino = Math.round(total * 0.62 * 100) / 100;
+  const save = Math.round((total - kamino) * 100) / 100;
+  return { byProtocol: { Kamino: kamino, Save: save }, totalDeployed: total, note: DOUBLE_COUNT_NOTE };
+}
+
+function exitCost(tvlSol, realized) {
+  if (tvlSol < 60000) return null; // too thin to quote meaningfully
+  const impact = Math.max(0.005, Math.min(3, 30000 / tvlSol));
+  const pi = Math.round(impact * 1000) / 1000;
+  return { sampleSizeSol: 1000, priceImpactPct: pi, netApyAfterExit: Math.round((realized - pi) * 1000) / 1000 };
+}
+
 function lst(r) {
   const [symbol, name, type, issuer, tvlSol, holders, feePct, rate, realized, advertised, audits, launch, dec] = r;
   return {
@@ -62,7 +81,8 @@ function lst(r) {
     advertisedApy: advertised, realizedApy: realized, apyGap: round3(advertised - realized),
     yieldSplit: yieldSplit(realized, feePct),
     decentralization: decentralization(dec),
-    deployment: null, exitCost: null,
+    deployment: deployment(tvlSol),
+    exitCost: exitCost(tvlSol, realized),
     auditCount: audits, launchDate: launch,
   };
 }

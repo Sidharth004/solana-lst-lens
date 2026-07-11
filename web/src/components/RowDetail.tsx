@@ -4,7 +4,7 @@
 
 import type { ReactNode } from "react";
 import type { Lst } from "@shared/schema";
-import { fmtPct, fmtRate, fmtInt, fmtDate } from "../lib/format";
+import { fmtPct, fmtRate, fmtInt, fmtDate, fmtSol } from "../lib/format";
 import { YieldBar } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
 
@@ -67,6 +67,35 @@ export function RowDetail({ lst }: { lst: Lst }) {
             on-chain validator list via RPC).
           </p>
         )}
+      </section>
+
+      <section className="detail-section">
+        <h4>DeFi deployment &amp; exit</h4>
+        {lst.deployment ? (
+          <>
+            <div className="detail-grid">
+              {Object.entries(lst.deployment.byProtocol).map(([name, sol]) => (
+                <Field key={name} label={name} value={fmtSol(sol)} />
+              ))}
+              <Field label="Total deployed" value={fmtSol(lst.deployment.totalDeployed)} />
+            </div>
+            <p className="detail-note">{lst.deployment.note}</p>
+          </>
+        ) : (
+          <p className="detail-note">No tracked DeFi deployment for this LST.</p>
+        )}
+        <div className="detail-grid" style={{ marginTop: 12 }}>
+          <Field
+            label="Exit price impact"
+            value={lst.exitCost?.priceImpactPct != null ? fmtPct(lst.exitCost.priceImpactPct, 3) : "—"}
+            hint={`Swapping ~${lst.exitCost?.sampleSizeSol ?? 1000} SOL-worth out to SOL`}
+          />
+          <Field
+            label="Net APY after exit"
+            value={lst.exitCost?.netApyAfterExit != null ? fmtPct(lst.exitCost.netApyAfterExit) : "—"}
+            hint="Realized APY minus the one-time exit haircut at the sample size"
+          />
+        </div>
       </section>
 
       <section className="detail-section detail-meta">

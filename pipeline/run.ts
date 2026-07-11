@@ -17,6 +17,7 @@ import type {
   AdvertisedApyOverrides,
   ApySnapshot,
   Dataset,
+  DefiProtocolsConfig,
   ExchangeRateSnapshot,
   Lst,
   LstType,
@@ -28,12 +29,15 @@ import type {
 } from "../shared/schema.js";
 import { fetchSanctumLsts, type NormalizedSanctumLst } from "./sources/sanctum.js";
 import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz.js";
+import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillama.js";
+import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy } from "./derive/realizedApy.js";
 import { computeYieldSplit } from "./derive/yieldSplit.js";
 import {
   computeDecentralization,
   type PoolValidator,
 } from "./derive/decentralization.js";
+import { computeDeployment } from "./derive/deployment.js";
 import { deepMerge, readJson } from "./lib/merge.js";
 import { appendSnapshot } from "./lib/history.js";
 
@@ -104,6 +108,27 @@ interface BuildContext {
   /** Network base staking APY (percent) for the yield-split model. */
   networkBaseStakingApy: number | null;
   stakewiz: StakewizResult;
+  defiProtocols: ProtocolDeployment[];
+  /** protocol slug -> allowed LST symbols (from manual defi-protocols.json). */
+  restrictBySlug: Record<string, string[] | undefined>;
+}
+
+/** Bounded-concurrency map (gentle on rate limits). */
+async function mapLimit<T, R>(
+  items: T[],
+  limit: number,
+  fn: (item: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  const results: R[] = new Array(items.length);
+  let cursor = 0;
+  async function worker(): Promise<void> {
+    while (cursor < items.length) {
+      const i = cursor++;
+      results[i] = await fn(items[i]!, i);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
 }
 
 /**
@@ -154,6 +179,13 @@ function buildLst(
         isEstimate: true,
       };
 
+  const deployment = computeDeployment(
+    src.symbol,
+    src.exchangeRate,
+    ctx.defiProtocols,
+    ctx.restrictBySlug,
+  );
+
   const base: Lst = {
     symbol: src.symbol,
     mint: src.mint,
@@ -173,8 +205,8 @@ function buildLst(
 
     yieldSplit,
     decentralization,
-    deployment: null,
-    exitCost: null,
+    deployment,
+    exitCost: null, // enriched asynchronously after build (Jupiter quote)
 
     auditCount: tax?.auditCount ?? null,
     launchDate: src.launchDate,
@@ -191,34 +223,67 @@ async function main(): Promise<void> {
   loadEnv();
   const apiKey = process.env.SANCTUM_API_KEY ?? "";
 
-  const [taxonomy, advertised, overrides] = await Promise.all([
+  const [taxonomy, advertised, overrides, defiConfig] = await Promise.all([
     readJson<Taxonomy>(path.join(MANUAL, "lst-taxonomy.json"), { bySymbol: {} }),
     readJson<AdvertisedApyOverrides>(path.join(MANUAL, "advertised-apy.json"), {
       bySymbol: {},
     }),
     readJson<Overrides>(path.join(MANUAL, "overrides.json"), { bySymbol: {} }),
+    readJson<DefiProtocolsConfig>(path.join(MANUAL, "defi-protocols.json"), {
+      protocols: [],
+    }),
   ]);
 
   const sources: Record<string, SourceStatus> = {};
 
-  const [sanctum, stakewiz] = await Promise.all([
+  const [sanctum, stakewiz, defillama] = await Promise.all([
     fetchSanctumLsts(apiKey),
     fetchStakewizValidators(),
+    fetchDefiDeployment(defiConfig.protocols),
   ]);
   sources.sanctum = { ok: sanctum.ok, note: sanctum.note };
   sources.stakewiz = {
     ok: stakewiz.ok,
     note: stakewiz.ok ? `${stakewiz.networkValidatorCount} validators` : stakewiz.note,
   };
+  sources.defillama = {
+    ok: defillama.ok,
+    note: `${defillama.protocols.filter((p) => p.ok).length}/${defillama.protocols.length} protocols`,
+  };
+
+  const restrictBySlug: Record<string, string[] | undefined> = {};
+  for (const p of defiConfig.protocols) restrictBySlug[p.slug] = p.symbols;
 
   const ctx: BuildContext = {
     networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,
     stakewiz,
+    defiProtocols: defillama.protocols,
+    restrictBySlug,
   };
 
   const lsts = sanctum.lsts.map((s) =>
     buildLst(s, taxonomy, advertised, overrides, ctx),
   );
+
+  // Enrich exit cost via Jupiter (one keyless quote per LST, bounded concurrency).
+  const srcBySymbol = new Map(sanctum.lsts.map((s) => [s.symbol, s]));
+  let exitOk = 0;
+  await mapLimit(lsts, 3, async (lst) => {
+    const src = srcBySymbol.get(lst.symbol);
+    if (!src) return;
+    const exit = await quoteExitCost({
+      mint: lst.mint,
+      decimals: src.decimals,
+      exchangeRate: lst.exchangeRate,
+      realizedApy: lst.realizedApy,
+      sampleSizeSol: 1000,
+    });
+    if (exit) {
+      lst.exitCost = exit;
+      exitOk++;
+    }
+  });
+  sources.jupiter = { ok: exitOk > 0, note: `${exitOk}/${lsts.length} exit quotes` };
 
   const epoch = inferEpoch(sanctum.lsts);
   const updatedAt = new Date().toISOString();

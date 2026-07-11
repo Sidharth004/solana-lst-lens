@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-11T16:49:51.149Z",
+  "updatedAt": "2026-07-11T17:37:12.637Z",
   "epoch": null,
   "lstCount": 0,
   "status": "failed",
@@ -7,6 +7,18 @@
     "sanctum": {
       "ok": false,
       "note": "SANCTUM_API_KEY not set"
+    },
+    "stakewiz": {
+      "ok": true,
+      "note": "1422 validators"
+    },
+    "defillama": {
+      "ok": true,
+      "note": "4/4 protocols"
+    },
+    "jupiter": {
+      "ok": false,
+      "note": "0/0 exit quotes"
     }
   }
 }

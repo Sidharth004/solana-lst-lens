@@ -27,6 +27,8 @@ const COLUMNS: Column[] = [
   { key: "apyGap", label: "Gap", align: "right", hint: "Advertised − realized. Amber above 0.5 points." },
   { key: "realizedApy", label: "Yield split", align: "left", hint: "Estimated base / MEV / other split (modeled)" },
   { key: "tvlSol", label: "TVL", align: "right" },
+  { key: "deployment", label: "Deployed †", align: "right", hint: "LST value sitting in tracked DeFi protocols (in SOL). Double-counting caveat below." },
+  { key: "exitCost", label: "Exit", align: "right", hint: "Price impact to swap 1000 SOL-worth out to SOL" },
   { key: "holders", label: "Holders", align: "right" },
   { key: "feePct", label: "Fee", align: "right" },
   { key: "type", label: "Score", align: "right", hint: "Our editorial decentralization index (A–F)" },
@@ -122,6 +124,16 @@ export function Table({ lsts, sort, onSort }: Props) {
                       <YieldBar lst={lst} />
                     </td>
                     <td className="col-right num">{fmtSol(lst.tvlSol)}</td>
+                    <td className="col-right num">
+                      {lst.deployment ? fmtSol(lst.deployment.totalDeployed) : <span className="muted">—</span>}
+                    </td>
+                    <td className="col-right num">
+                      {lst.exitCost && lst.exitCost.priceImpactPct !== null ? (
+                        fmtPct(lst.exitCost.priceImpactPct, 3)
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
+                    </td>
                     <td className="col-right num">{fmtInt(lst.holders)}</td>
                     <td className="col-right num">{fmtPct(lst.feePct)}</td>
                     <td className="col-right">
@@ -149,6 +161,11 @@ export function Table({ lsts, sort, onSort }: Props) {
         </table>
       </div>
       <YieldLegend />
+      <p className="table-footnote">
+        † Deployment via DeFiLlama. LSTs can be double-counted (once as SOL, once
+        as the LST in a lending market), so treat “Deployed” as an upper bound.
+        Exit = price impact swapping a 1000-SOL sample out to SOL.
+      </p>
     </>
   );
 }

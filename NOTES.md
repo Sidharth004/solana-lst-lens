@@ -174,3 +174,39 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   decentralization raw inputs, meta). Rows are click-to-expand and deep-linkable
   via `#lst=SYMBOL` (also how the detail panel was screenshot-verified).
 - Verified at 1240px (jitoSOL expanded) and 680px (responsive, detail stacks).
+
+## Phase 5 — DeFi deployment + exit cost
+
+### Decisions
+- **DeFiLlama shape (live-confirmed):** `/protocol/{slug}` →
+  `chainTvls.Solana.tokens` is an array of `{date, tokens:{SYMBOL: amount}}`;
+  symbols are UPPERCASE, amounts are raw LST token counts. We take the LAST
+  entry, uppercase-match tracked symbols, and convert to SOL via `amount ×
+  exchangeRate`. `computeDeployment` sums per protocol into `byProtocol` (label
+  keys) + `totalDeployed`, carrying the double-count caveat.
+- **Double-counting caveat** surfaced both as a persistent table footnote and in
+  each row's detail `note`.
+- **Jupiter exit cost (keyless, lite-api):** size input so the quote is ~1000
+  SOL-worth (`inputAtomics = 1000/rate × 10^decimals`), read `priceImpactPct`
+  (Jupiter returns a fraction → ×100 to percent). `netApyAfterExit = realizedApy
+  − priceImpactPct` (one-time haircut, not annualized). One quote per LST,
+  bounded concurrency 3.
+- **`meta.sources`** now reports per-source health (sanctum/stakewiz/defillama/
+  jupiter) so a degraded run is legible.
+
+### Live verification
+- DeFiLlama: Kamino + Save return LST token maps; jitoSOL computed at ~1.18M SOL
+  deployed (Kamino 1.09M + Save 89K) with real data. MarginFi/Drift returned no
+  Solana token breakdown via `/protocol/{slug}` → degrade to null (adjust slugs
+  in `data/manual/defi-protocols.json` if better ones exist).
+- Jupiter: 1000-SOL jitoSOL exit → priceImpact 0.016%, net-after-exit 8.294%.
+- Full `pnpm pipeline` (no sanctum key): no crash; stakewiz ok (1422), defillama
+  ok (4/4), sanctum/jupiter degrade cleanly; status=failed only because 0 LSTs
+  without the key.
+
+### UI
+- Columns: `Deployed †` (totalDeployed SOL) and `Exit` (priceImpact, 3dp). Detail
+  adds a "DeFi deployment & exit" section (per-protocol breakdown, total, note,
+  price impact, net-after-exit). Row-detail grid is now 2-col.
+- New sort keys `deployment` / `exitCost`; "Cheapest exit" intent upgraded to
+  live (`exitCost asc`), which also removes the earlier default-sort pill collision.
