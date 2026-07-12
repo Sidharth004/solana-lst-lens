@@ -1,16 +1,16 @@
 # PROGRESS
 
 ## Current status
-- Phase: 6 — Intent router + history + risk flags, **complete**. ALL SIX PHASES BUILT. The only remaining work is operational, not code: supply `SANCTUM_API_KEY` and connect the GitHub remote + host (see "Next action to unblock v1").
-- Last session ended: 2026-07-11, wired all four intent pills to live sorts, added hand-rolled SVG history sparklines (exchange rate + realized APY) and risk flags (APY-overstated, stake-concentrated, depeg from rate history, unaudited) with a row-level ⚠ marker. Verified on mock (vSOL depeg flag + charts render). Full workspace typechecks; web builds.
-- Next action: Operational only — provide `SANCTUM_API_KEY`, run `pnpm pipeline` for the live Phase-1 data verification, push to GitHub (cron), connect Cloudflare Pages (`pnpm build:site` / `web/dist`). Optional future: wire the pool→validator-set resolver (RPC) to light up decentralization on real data.
+- Phase: ALL SIX PHASES BUILT + **pivoted to KEYLESS live data** (2026-07-12). The dashboard now runs on real data with **no API key**. Remaining work is purely operational: push to GitHub + connect a host.
+- Last session (2026-07-12): the gated `sanctum-api.ironforge.network` data API turned out **not** to be self-serve (the Ironforge signup only yields an RPC-gateway key, which 403s on `/lsts`). Pivoted the pipeline to keyless public sources — `sanctum-lst-list` TOML + `extra-api.sanctum.so` (rate/TVL) + DeFiLlama yields (APY bootstrap). **`pnpm pipeline` now produces 75 real LSTs, status=ok, all 5 sources green.** History idempotent. Dashboard verified on real data at 1400px.
+- Next action: Operational only — `git push` to GitHub (cron needs **no secrets** now), enable Actions read/write, connect Cloudflare Pages (`pnpm build:site` → `web/dist`), attach domain. Optional future: RPC validator-list resolver to light up decentralization; add a holders + fee source (both currently null).
 
-## Next action to unblock v1 (needs user)
-1. Create free key at ironforge.network → put in `.env` as `SANCTUM_API_KEY=...`.
-2. `pnpm pipeline` → confirm real `data/latest.json`, history +1 entry, re-run replaces (not duplicates) today.
-3. `cp data/latest.json web/public/data/` → `pnpm dev` to see the dashboard on real data.
-4. Push repo to GitHub; add `SANCTUM_API_KEY` repo secret; enable Actions read/write; run the workflow once.
-5. Connect Cloudflare Pages: build `pnpm build:site`, output `web/dist`; attach domain.
+## Next action to ship v1 (needs user) — NO API KEY NEEDED
+1. `git push` the repo to GitHub.
+2. Settings → Actions → General → Workflow permissions → **Read and write**. (No secrets required.)
+3. Actions tab → run **Update data** once → confirms it commits refreshed `data/`.
+4. Connect **Cloudflare Pages**: build command `pnpm build:site`, output `web/dist`, `NODE_VERSION=20`; attach domain.
+   (Local preview any time: `pnpm pipeline && pnpm prepare-web-data && pnpm dev`.)
 
 ## Phases completed
 - [x] Phase 0 — Scaffold (commit: `chore: scaffold repo, schema, and manual data layer`): full file structure, `shared/schema.ts`, manual data layer seeded, append-only history helpers, fetchJson/merge libs, minimal Vite+React web shell. `tsc --noEmit` passes across workspace.

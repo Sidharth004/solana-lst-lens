@@ -30,8 +30,9 @@ import type {
 import { fetchSanctumLsts, type NormalizedSanctumLst } from "./sources/sanctum.js";
 import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz.js";
 import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillama.js";
+import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
 import { quoteExitCost } from "./sources/jupiter.js";
-import { deriveApy } from "./derive/realizedApy.js";
+import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
 import { computeYieldSplit } from "./derive/yieldSplit.js";
 import {
   computeDecentralization,
@@ -39,7 +40,7 @@ import {
 } from "./derive/decentralization.js";
 import { computeDeployment } from "./derive/deployment.js";
 import { deepMerge, readJson } from "./lib/merge.js";
-import { appendSnapshot } from "./lib/history.js";
+import { appendSnapshot, readHistory } from "./lib/history.js";
 
 // --- paths ------------------------------------------------------------------
 
@@ -91,17 +92,6 @@ function typeFromProgram(program: string | null): LstType {
   }
 }
 
-/** Latest epoch seen across all LSTs' APY history, else null. */
-function inferEpoch(lsts: NormalizedSanctumLst[]): number | null {
-  let max: number | null = null;
-  for (const l of lsts) {
-    for (const e of l.apyHistory) {
-      if (max === null || e.epoch > max) max = e.epoch;
-    }
-  }
-  return max;
-}
-
 // --- build ------------------------------------------------------------------
 
 interface BuildContext {
@@ -111,6 +101,11 @@ interface BuildContext {
   defiProtocols: ProtocolDeployment[];
   /** protocol slug -> allowed LST symbols (from manual defi-protocols.json). */
   restrictBySlug: Record<string, string[] | undefined>;
+  /** DeFiLlama bootstrap APYs (UPPERCASE symbol -> percent). */
+  yields: YieldsResult;
+  /** symbol -> exchange-rate history points (excluding today). */
+  rateHistoryBySymbol: Map<string, RatePoint[]>;
+  todayDate: string;
 }
 
 /** Bounded-concurrency map (gentle on rate limits). */
@@ -154,7 +149,20 @@ function buildLst(
 ): Lst {
   const tax = taxonomy.bySymbol[src.symbol];
   const advOverride = advertised.bySymbol[src.symbol];
-  const { advertisedApy, realizedApy, apyGap } = deriveApy(src, advOverride);
+
+  // Rate series = accumulated history for this symbol + today's fetched rate.
+  const histPts = ctx.rateHistoryBySymbol.get(src.symbol) ?? [];
+  const rateSeries: RatePoint[] =
+    src.exchangeRate !== null
+      ? [...histPts, { date: ctx.todayDate, value: src.exchangeRate }]
+      : histPts;
+  const bootstrapApy = ctx.yields.apyBySymbolUpper[src.symbol.toUpperCase()] ?? null;
+
+  const { advertisedApy, realizedApy, apyGap } = deriveApy(src, {
+    rateSeries,
+    bootstrapApy,
+    advertisedOverride: advOverride,
+  });
 
   const type = tax?.type ?? typeFromProgram(src.poolProgram);
 
@@ -221,7 +229,6 @@ function buildLst(
 
 async function main(): Promise<void> {
   loadEnv();
-  const apiKey = process.env.SANCTUM_API_KEY ?? "";
 
   const [taxonomy, advertised, overrides, defiConfig] = await Promise.all([
     readJson<Taxonomy>(path.join(MANUAL, "lst-taxonomy.json"), { bySymbol: {} }),
@@ -234,12 +241,29 @@ async function main(): Promise<void> {
     }),
   ]);
 
+  // Read the accumulated exchange-rate history up front so realized APY can be
+  // measured from it (oldest -> today) for each LST.
+  const rateHistory = await readHistory<ExchangeRateSnapshot>(
+    path.join(HISTORY, "exchange-rates.json"),
+  );
+  const todayDate = todayUtc();
+  const rateHistoryBySymbol = new Map<string, RatePoint[]>();
+  for (const snap of rateHistory) {
+    if (snap.date === todayDate) continue; // today's point is added from the fresh fetch
+    for (const [sym, value] of Object.entries(snap.bySymbol)) {
+      const arr = rateHistoryBySymbol.get(sym) ?? [];
+      arr.push({ date: snap.date, value });
+      rateHistoryBySymbol.set(sym, arr);
+    }
+  }
+
   const sources: Record<string, SourceStatus> = {};
 
-  const [sanctum, stakewiz, defillama] = await Promise.all([
-    fetchSanctumLsts(apiKey),
+  const [sanctum, stakewiz, defillama, yields] = await Promise.all([
+    fetchSanctumLsts(),
     fetchStakewizValidators(),
     fetchDefiDeployment(defiConfig.protocols),
+    fetchDefiLlamaYields(),
   ]);
   sources.sanctum = { ok: sanctum.ok, note: sanctum.note };
   sources.stakewiz = {
@@ -250,6 +274,10 @@ async function main(): Promise<void> {
     ok: defillama.ok,
     note: `${defillama.protocols.filter((p) => p.ok).length}/${defillama.protocols.length} protocols`,
   };
+  sources.defillamaYields = {
+    ok: yields.ok,
+    note: `${Object.keys(yields.apyBySymbolUpper).length} APY bootstraps`,
+  };
 
   const restrictBySlug: Record<string, string[] | undefined> = {};
   for (const p of defiConfig.protocols) restrictBySlug[p.slug] = p.symbols;
@@ -259,6 +287,9 @@ async function main(): Promise<void> {
     stakewiz,
     defiProtocols: defillama.protocols,
     restrictBySlug,
+    yields,
+    rateHistoryBySymbol,
+    todayDate,
   };
 
   const lsts = sanctum.lsts.map((s) =>
@@ -285,7 +316,8 @@ async function main(): Promise<void> {
   });
   sources.jupiter = { ok: exitOk > 0, note: `${exitOk}/${lsts.length} exit quotes` };
 
-  const epoch = inferEpoch(sanctum.lsts);
+  // Public sources don't expose the Solana epoch directly; leave null.
+  const epoch: number | null = null;
   const updatedAt = new Date().toISOString();
 
   const dataset: Dataset = { updatedAt, epoch, lsts };

@@ -25,11 +25,16 @@ No recurring cost beyond a domain.
 
 ```bash
 pnpm install
-cp .env.example .env   # then fill in SANCTUM_API_KEY
 ```
 
-Get a free `SANCTUM_API_KEY` from the Ironforge gateway
-(<https://ironforge.network>). DeFiLlama, Stakewiz, and Jupiter lite-api need no key.
+**No API keys required.** The pipeline runs entirely on keyless public data:
+
+- **LST registry** — `sanctum-lst-list` (igneous-labs, GitHub): identity, mint, pool, validator list.
+- **Exchange rate + TVL** — `extra-api.sanctum.so` (lamports; ÷1e9 for SOL).
+- **APY** — measured from the exchange-rate history this repo accumulates daily; bootstrapped from **DeFiLlama yields** until enough history exists.
+- **Validators** — `api.stakewiz.com`. **DeFi deployment** — `api.llama.fi`. **Exit cost** — Jupiter `lite-api.jup.ag`.
+
+> The gated `sanctum-api.ironforge.network` data API (which needed a key) is **not** used — that key isn't self-serve. `HELIUS_RPC_URL` is optional, only for a future decentralization resolver (see `.env.example`).
 
 ## Run the data pipeline
 
@@ -81,8 +86,8 @@ and no-opping cleanly when there's no diff. Git history is the time series.
 Setup:
 
 1. Push this repo to GitHub.
-2. Add repo secret **`SANCTUM_API_KEY`** (Settings → Secrets and variables →
-   Actions). Optionally add `HELIUS_RPC_URL`.
+2. **No secrets required** — the pipeline uses keyless public sources. (Optionally
+   add `HELIUS_RPC_URL` for the future decentralization resolver.)
 3. Ensure Actions can push: Settings → Actions → General → Workflow permissions →
    "Read and write permissions".
 4. Trigger a first run from the Actions tab (Run workflow) to confirm it commits

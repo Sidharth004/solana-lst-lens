@@ -242,3 +242,46 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   gated on `SANCTUM_API_KEY` + a GitHub remote/host. Decentralization + delinquency
   are the only metrics still null on real data (need an RPC to read pool validator
   lists); everything else runs on live sources today.
+
+## Pivot — keyless public Sanctum data (2026-07-12)
+
+### Why
+- The `DEVELOPMENT_PLAN`'s primary source (`sanctum-api.ironforge.network`,
+  keyed) is **not self-serve**. Ironforge signup (ironforge.sanctum.so) only
+  provisions an **RPC/Load-Balancer** gateway key. Verified empirically: that key
+  returns HTTP 200 on `rpc.ironforge.network` (auth OK) but **403 "Invalid API
+  key"** on `sanctum-api.ironforge.network/lsts`. Separate products/key-spaces.
+
+### New keyless data sources (no key, ever)
+- **LST registry:** `sanctum-lst-list` TOML (igneous-labs GitHub, 245 entries) —
+  symbol, mint, decimals, `pool.program` (type seed), `pool.validator_list`,
+  `pool.vote_account`. Parsed with `smol-toml`.
+- **Exchange rate:** `extra-api.sanctum.so/v1/sol-value/current?lst=…` — value is
+  **lamports** (÷1e9 → SOL). Batched ~40 symbols/call (multiple `lst=` params).
+- **TVL:** `extra-api.sanctum.so/v1/tvl/current?lst=…` — **lamports** (÷1e9 → SOL).
+- **APY:** `extra-api.sanctum.so/v1/apy/latest` returns **0.0** at the epoch
+  boundary (useless), so realized APY is **measured from exchange-rate history**
+  (`derive/realizedApy.ts#realizedFromHistory`: annualize oldest→today over the
+  window, needs ≥3 days) with a **DeFiLlama yields** bootstrap
+  (`sources/defillamaYields.ts`, ~49 LSTs) until history accrues.
+- Stakewiz / DeFiLlama deployment / Jupiter exit are unchanged (already keyless).
+
+### Consequences / degradations
+- **holders** and **feePct** have no public source now → null (columns show "—").
+  Yield-split uses fee 0. Add a source later to light these up.
+- **advertisedApy vs realizedApy** are equal on day 1 (both = DeFiLlama bootstrap);
+  the gap grows as measured realized diverges from the marketed number over days.
+- **epoch** = null (public sources don't expose it simply).
+- Filter: only LSTs with **TVL ≥ 1000 SOL** are surfaced (75 of 245). Tunable via
+  `MIN_TVL_SOL` in `sources/sanctum.ts`.
+- `networkBaseStakingApy` lowered 6.5 → **4.5** in `overrides.json` (real Solana
+  staking ~5%, so 6.5 made every split all-base). Now base 4.5 + other (MEV/fees).
+- `pool.validator_list` + `vote_account` are now captured on each LST → a future
+  RPC pass can compute decentralization (single-validator pools are trivial).
+
+### Verified live (2026-07-12)
+- `pnpm pipeline` → **75 LSTs, status=ok**, sources: sanctum(public) ok,
+  stakewiz 1422, defillama 4/4, defillamaYields 49, jupiter 74/75. Real TVL/rate/
+  APY/deployment/exit. History idempotent (re-run replaces today). Dashboard
+  renders real data.
+- **The daily cron now needs NO secrets** — works on any fork out of the box.

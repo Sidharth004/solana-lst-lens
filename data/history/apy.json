@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "date": "2026-07-12",
+    "epoch": null,
+    "bySymbol": {
+      "dfdvSOL": 5.869,
+      "JupSOL": 5.688,
+      "hyloSOL": 6.095,
+      "bonkSOL": 5.497,
+      "dSOL": 5.684,
+      "picoSOL": 5.64,
+      "strongSOL": 5.386,
+      "lanternSOL": 6.109,
+      "hSOL": 5.756,
+      "rkSOL": 5.67,
+      "bbSOL": 5.28,
+      "vSOL": 5.318,
+      "dzSOL": 5.004,
+      "bSOL": 5.596,
+      "JitoSOL": 5.27,
+      "JSOL": 5.4,
+      "BNSOL": 4.92,
+      "jagSOL": 4.457,
+      "mSOL": 6.379
+    }
+  }
+]

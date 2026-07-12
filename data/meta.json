@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-07-11T17:37:12.637Z",
+  "updatedAt": "2026-07-12T17:38:00.584Z",
   "epoch": null,
-  "lstCount": 0,
-  "status": "failed",
+  "lstCount": 75,
+  "status": "ok",
   "sources": {
     "sanctum": {
-      "ok": false,
-      "note": "SANCTUM_API_KEY not set"
+      "ok": true,
+      "note": "75/245 LSTs above 1000 SOL TVL"
     },
     "stakewiz": {
       "ok": true,
@@ -16,9 +16,13 @@
       "ok": true,
       "note": "4/4 protocols"
     },
+    "defillamaYields": {
+      "ok": true,
+      "note": "49 APY bootstraps"
+    },
     "jupiter": {
-      "ok": false,
-      "note": "0/0 exit quotes"
+      "ok": true,
+      "note": "74/75 exit quotes"
     }
   }
 }

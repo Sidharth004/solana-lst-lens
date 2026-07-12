@@ -43,8 +43,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run pipeline
+        # The pipeline runs on keyless public data sources — NO secrets required.
+        # HELIUS_RPC_URL is optional (only for the future decentralization resolver).
         env:
-          SANCTUM_API_KEY: ${{ secrets.SANCTUM_API_KEY }}
           HELIUS_RPC_URL: ${{ secrets.HELIUS_RPC_URL }}
         run: pnpm pipeline
 

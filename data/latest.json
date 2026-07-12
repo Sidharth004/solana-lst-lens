@@ -1,5 +1,2926 @@
 {
-  "updatedAt": "2026-07-11T17:37:12.637Z",
+  "updatedAt": "2026-07-12T17:38:00.584Z",
   "epoch": null,
-  "lsts": []
+  "lsts": [
+    {
+      "symbol": "dumSOL",
+      "mint": "cPQPBN7WubB3zyQDpzTK2ormx1BMdAym9xkrYUJsctm",
+      "name": "Dum Staked SOL",
+      "logoUri": "https://arweave.net/TZferu00LMEEmXe9iCHQYu9OGDzw5LmU0leiwP3FQLk",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1224358.91,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.027942,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "orcaSOL",
+      "mint": "orcaSo6gzWvvXvAHVJQVrxWmHepCcGp7swVX1yTBuoJ",
+      "name": "Orca Staked SOL",
+      "logoUri": "https://arweave.net/Qt786Bfm-kZWDwX2tCodPi1rmUyJsd0bGaUI_xaUKIM",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1219.52,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.036211,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.13,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "genSOL",
+      "mint": "genMsDWwH9WuuosGJyfEi4yn9rDc1boG6TNafMfFc43",
+      "name": "Genesis Toby Staked SOL",
+      "logoUri": "https://arweave.net/LfBU6ya0StrlnbnbnN0bDT2MExeiwg2EF9JntU9sxB8",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 3362.81,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.032527,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.079,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "GTSOL",
+      "mint": "gateMurAxe4YFoUR6J63gXGKtkbTfdkMdLjZrCmThFP",
+      "name": "Gate Wrapped SOL",
+      "logoUri": "https://arweave.net/3h5EhmHcesVLbtqkAkGP3DzxNaW8Zde7RyKEvI4Atm0",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 561803.56,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.039458,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "gotmSOL",
+      "mint": "gotMd6mpiWE4RWTv3eH3SrYjAXpxkQiZYY1zFKCNRq9",
+      "name": "GOTM Staked SOL",
+      "logoUri": "https://arweave.net/vktdTiO4C8Kd7JXCioFuWxPaGzHTgCGfxAqp8_syHJQ",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1581.07,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.027368,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.079,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "PSOL",
+      "mint": "pSo1f9nQXWgXibFtKf7NWYxb5enAM4qfP6UJSiXRQfL",
+      "name": "Phantom Staked SOL",
+      "logoUri": "https://assets.phantom.app/assets/metadata/PSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1447070.51,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.073631,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 78041.08
+        },
+        "totalDeployed": 78041.08,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.007,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "mpSOL",
+      "mint": "MpsoLp1YBDqeiuSrVrYH4DoAGJ3myAMmMy6crYNVSTo",
+      "name": "MoonPay Staked SOL",
+      "logoUri": "https://ih7bjzvm63tikcihhsjs62gsckvvivnp6sqzrcb5ch7aqjvwsycq.arweave.net/Qf4U5qz25oUJBzyTL2jSEqtUVa_0oZiIPRH-CCa2lgU",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 12780.52,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.055458,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.13,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "chSOL",
+      "mint": "chSoLyETGSZpdpAk4TKfRWw5kyuHkzt5WaQ2kiJYJun",
+      "name": "Chive Staked SOL",
+      "logoUri": "https://arweave.net/AjN_vG5K_Z5Xjm57UmEXOK6nl1XJIW1GnNKmmCh9k1k",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1692.9,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.145263,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "MonkeSOL",
+      "mint": "MonkeD3uUj5c1w5tW8tJeTe5fX1jkpkdtD3dTibnidx",
+      "name": "MonkeDAO Staked SOL",
+      "logoUri": "https://fzu6dgxlin6o6ql72lompima7juck4g5nli44yk4monpkmsnhqua.arweave.net/LmnhmutDfO9Bf9Lcx6GA-mglcN1q0c5hXGOa9TJNPCg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1615.44,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.066238,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "RoXSOL",
+      "mint": "roxDFxTFHufJBFy3PgzZcgz6kwkQNPZpi9RfpcAv4bu",
+      "name": "RockawayX SOL",
+      "logoUri": "https://skvhuly6ck4wrxttavfrh4462xjwm55y6f3p3jsko4mfv7dpjk4q.arweave.net/kqp6Lx4SuWjecwVLE_Oe1dNmd7jxdv2mSncYWvxvSrk",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 16767.35,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.276669,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "bpSOL",
+      "mint": "BPSoLzmLQn47EP5aa7jmFngRL8KC3TWAeAwXwZD8ip3P",
+      "name": "Backpack Staked SOL",
+      "logoUri": "https://bpsol.s3.us-west-1.amazonaws.com/bpSOL.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 52796.87,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.094076,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.079,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "BulkSOL",
+      "mint": "BULKoNSGzxtCqzwTvg5hFJg8fx6dqZRScyXe5LYMfxrn",
+      "name": "BULK Staked SOL",
+      "logoUri": "https://arweave.net/rkggtSA6GAA_nDd2-oXgwJIDWiEw0YcJLBz95I4ERek",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 127997.54,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.079104,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.041,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "iASOL",
+      "mint": "HALALGvdNJ8u1J3uFFSsba1tyYPRF3vnYfCQ3CpJasfD",
+      "name": "inshAllah SOL",
+      "logoUri": "https://xuc3mbv42u5h53lqxv3dmanqs7rexotek3jedpy6wb2yjhgadsvq.arweave.net/vQW2BrzVOn7tcL12NgGwl-JLumRW0kG_HrB1hJzAHKs",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 19735.73,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.091947,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "sfSOL",
+      "mint": "sctmadV2fcLtrxjzYhTZzwAGjXUXKtYSBrrM36EtdcY",
+      "name": "Staking Facilities Staked SOL",
+      "logoUri": "https://qhjltejk67zo6ukqnzawkds5mqox6qudob5ihyy6rjg4fmrvc5oq.arweave.net/gdK5kSr38u9RUG5BZQ5dZB1_QoNweoPjHopNwrI1F10",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 22591.35,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.080257,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "honestSOL",
+      "mint": "sctmWXGT7L75psrUHV2xxyTQKndE7ZcCQRHy2z6D5ER",
+      "name": "honestSOL",
+      "logoUri": "https://pbs.twimg.com/profile_images/1888100598412709888/51244Jr1_400x400.jpg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1777.4,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.080659,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.106,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "sctmSOL",
+      "mint": "sctmAy9zFfZznZUWxEMgGtF6PHZ3gwoiCGcfwRua1AZ",
+      "name": "Sanctum Staked SOL",
+      "logoUri": "https://solana-validator-website-italo-casas.vercel.app/sanctum.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1795696.08,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.090763,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.172,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "dfdvSOL",
+      "mint": "sctmB7GPi5L2Q5G9tUSzXvhZ4YiDMEGcRov9KfArQpx",
+      "name": "DeFi Development Corp Staked SOL",
+      "logoUri": "https://pbs.twimg.com/profile_images/1897064824317861888/I02i5oX3_400x400.jpg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 741253.37,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.076215,
+      "advertisedApy": 5.869,
+      "realizedApy": 5.869,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.369,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 372.8
+        },
+        "totalDeployed": 372.8,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.11,
+        "netApyAfterExit": 5.759
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "JupSOL",
+      "mint": "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v",
+      "name": "Jupiter Staked SOL",
+      "logoUri": "https://static.jup.ag/jupSOL/icon.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 5034715.91,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.183945,
+      "advertisedApy": 5.688,
+      "realizedApy": 5.688,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.188,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 354819.81,
+          "Save": 18498.98
+        },
+        "totalDeployed": 373318.79,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.01,
+        "netApyAfterExit": 5.678
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "phaseSOL",
+      "mint": "phaseZSfPxTDBpiVb96H4XFSD8xHeHxZre5HerehBJG",
+      "name": "Phase Labs SOL",
+      "logoUri": "https://raw.githubusercontent.com/phaselabscrypto/.github/main/profile/public/phaseSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 8379.78,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.157566,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.121,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "iceSOL",
+      "mint": "iceSdwqztAQFuH6En49HWwMxwthKMnGzLFQcMN3Bqhj",
+      "name": "iceSOL",
+      "logoUri": "https://arweave.net/vIJdshKQBC9cE8V190WgRhYqdjb8HhUJAMmP69gvAFI",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1568.83,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.104989,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.13,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "uptSOL",
+      "mint": "uPtSoL2qszk4SuPHNE2zqk1gDtqCq21ZE1yZCqvFTqq",
+      "name": "UpRock SOL",
+      "logoUri": "https://raw.githubusercontent.com/uprockcom/upt-sol/main/logo.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 2812.83,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.001018,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.079,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "definSOL",
+      "mint": "DEF1NXSZ8Th9n28hYBayrFtx9bj1EwwTiy3mhHEB9oyA",
+      "name": "Definity Staked SOL",
+      "logoUri": "https://hv4gxzchk24cqfezebn3ujjz6oy2kbtztv5vghn6kpbkjc3vg4rq.arweave.net/n3W2lUNPCJpX9WXjXEl0Tx0hB57BvioKUG8pixx1A4o",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 263720.26,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.079725,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "pathSOL",
+      "mint": "pathdXw4He1Xk3eX84pDdDZnGKEme3GivBamGCVPZ5a",
+      "name": "Pathfinders SOL",
+      "logoUri": "https://raw.githubusercontent.com/igneous-labs/lst-offchain-metadata/master/pathSOL/pathSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 2287.1,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.013891,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "portalsSOL",
+      "mint": "prt1sxymaSoH5R6ZFyAnmMrqp9XbuyDXbBWnHg3XuLJ",
+      "name": "Portals SOL",
+      "logoUri": "https://i.ibb.co/tM2ZBq1X/portals-SOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1166.62,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.039445,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.232,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "hyloSOL+",
+      "mint": "hy1opf2bqRDwAxoktyWAj6f3UpeHcLydzEdKjMYGs2u",
+      "name": "Hylo SOL Plus",
+      "logoUri": "https://i.ibb.co/GfsbDVQK/hylo-SOLPlus.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 14818.37,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.000004,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.074,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "hyloSOL",
+      "mint": "hy1oXYgrBW6PVcJ4s6s2FKavRdwgWTXdfE69AxT7kPT",
+      "name": "Hylo Staked SOL",
+      "logoUri": "https://i.ibb.co/bgScQbGF/hyloSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 203260.63,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.051868,
+      "advertisedApy": 6.095,
+      "realizedApy": 6.095,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.595,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.013,
+        "netApyAfterExit": 6.082
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "proSOL",
+      "mint": "jucy5XJ76pHVvtPZb5TKRcGQExkwit2P5s4vY8UzmpC",
+      "name": "ProStaking SOL",
+      "logoUri": "https://bafybeigaa3mbr4qe4hgc55e6srfliawtzdebrs3lrieas63dfc4vdyhiii.ipfs.w3s.link/ProStaking-CircleMark-360px.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 17381.06,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.185469,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.172,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "bonkSOL",
+      "mint": "BonK1YhkXEGLZzwtcvRTip3gAL9nCeQD7ppZBLXhtTs",
+      "name": "bonkSOL",
+      "logoUri": "https://arweave.net/ms-FdIyJ8TxEJOb2SAYhfyrLop7TDrCEjD-I-oIl5u4",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 190739.01,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.175801,
+      "advertisedApy": 5.497,
+      "realizedApy": 5.497,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.997,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 119929.66,
+          "Save": 70.44
+        },
+        "totalDeployed": 120000.1,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.052,
+        "netApyAfterExit": 5.445
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "dSOL",
+      "mint": "Dso1bDeDjCQxTrWHqUUi63oBvV7Mdm6WaobLbQ7gnPQ",
+      "name": "Drift Staked SOL",
+      "logoUri": "https://drift-public.s3.eu-central-1.amazonaws.com/dSOL.svg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 2785442.91,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.189701,
+      "advertisedApy": 5.684,
+      "realizedApy": 5.684,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.184,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 2408495.87
+        },
+        "totalDeployed": 2408495.87,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.043,
+        "netApyAfterExit": 5.641
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "compassSOL",
+      "mint": "Comp4ssDzXcLeu2MnLuGNNFC4cmLPMng8qWHPvzAMU1h",
+      "name": "Compass SOL",
+      "logoUri": "https://solanacompass.com/compass.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 3154.34,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.178746,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "picoSOL",
+      "mint": "picobAEvs6w7QEknPce34wAE4gknZA9v5tTonnmHYdX",
+      "name": "picoSOL",
+      "logoUri": "https://arweave.net/zR2ZKXpwmG4hMpqhGXlvz-B7PMs34cXxVb2gC1DmlDo",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 38367.17,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.19559,
+      "advertisedApy": 5.64,
+      "realizedApy": 5.64,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.14,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 7108.46
+        },
+        "totalDeployed": 7108.46,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": 5.508
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "clockSOL",
+      "mint": "GRJQtWwdJmp5LLpy8JWjPgn5FnLyqSJGNhn5ZnCTFUwM",
+      "name": "Overclock SOL",
+      "logoUri": "https://raw.githubusercontent.com/Overclock-Validator/assets/main/img.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1398.3,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.211477,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "hubSOL",
+      "mint": "HUBsveNpjo5pWqNkH57QzxjQASdTVXcSK7bVKTSZtcSX",
+      "name": "SolanaHub staked SOL",
+      "logoUri": "https://arweave.net/RI0OfNg4Ldn5RRdOp9lE60NqUmweGtJxF5N8JjU_Y0k",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 6525.04,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.171934,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 625.37,
+          "Save": 1691.1
+        },
+        "totalDeployed": 2316.47,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "strongSOL",
+      "mint": "strng7mqqc1MBJJV6vMzYbEqnwVGvKKGKedeCvtktWA",
+      "name": "Stronghold LST",
+      "logoUri": "https://shdw-drive.genesysgo.net/CqCTE2k6ext17JLE7EFk6pXAznS7m1rLJaN9nHxUAwpc/stronghold.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 62974.59,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.177468,
+      "advertisedApy": 5.386,
+      "realizedApy": 5.386,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.886,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 39667.75
+        },
+        "totalDeployed": 39667.75,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.066,
+        "netApyAfterExit": 5.32
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "lanternSOL",
+      "mint": "LnTRntk2kTfWEY6cVB8K9649pgJbt6dJLS1Ns1GZCWg",
+      "name": "Lantern Staked SOL",
+      "logoUri": "https://arweave.net/juI8rxciTff6pljaDiXMEq5klSOngQol_8lvyokGGwY",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 50029.05,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.21207,
+      "advertisedApy": 6.109,
+      "realizedApy": 6.109,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.609,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 13432.18
+        },
+        "totalDeployed": 13432.18,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.044,
+        "netApyAfterExit": 6.065
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "pumpkinSOL",
+      "mint": "pumpkinsEq8xENVZE6QgTS93EN4r9iKvNxNALS1ooyp",
+      "name": "Pumpkin's Staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/bartenbach/pumpkins_pool/main/assets/img/pumpkintoken.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1578.08,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.180262,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "hSOL",
+      "mint": "he1iusmfkpAdwvxLNGV8Y1iSbj4rUy6yMhEA3fotn9A",
+      "name": "Helius Staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/igneous-labs/lst-offchain-metadata/master/hSOL/hSOL.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 642275.55,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.162059,
+      "advertisedApy": 5.756,
+      "realizedApy": 5.756,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.256,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 268643.27,
+          "Save": 925.29
+        },
+        "totalDeployed": 269568.56,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.031,
+        "netApyAfterExit": 5.725
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "camaoSOL",
+      "mint": "camaK1kryp4KJ2jS1HDiZuxmK7S6dyEtr9DA7NsuAAB",
+      "name": "camaoSOL",
+      "logoUri": "https://arweave.net/ifjpBZbaiieeDI7hIkVBpwNxaeaJxxYHzRpxJgsosf8",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1635.85,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.19729,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "digitSOL",
+      "mint": "D1gittVxgtszzY4fMwiTfM4Hp7uL5Tdi1S9LYaepAUUm",
+      "name": "digitSOL",
+      "logoUri": "https://arweave.net/EU5JKGGQEQ3Rwj-LrFJdh7GhSBFoQ4TYvoDnmdZ0FcE",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 3047.13,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.197428,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "digitalSOL",
+      "mint": "3bfv2scCdbvumVBc3Sar5QhYXx7Ecsi8EFF2akjxe329",
+      "name": "digitalSOL",
+      "logoUri": "https://shdw-drive.genesysgo.net/3y9qiDjVtv8xcWsgad8zULmsqg8PLusetN55PdqtLhyr/tokenlogo2.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 3274.42,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.213537,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "dualSOL",
+      "mint": "DUAL6T9pATmQUFPYmrWq2BkkGdRxLtERySGScYmbHMER",
+      "name": "Dual SOL",
+      "logoUri": "https://www.dual.finance/images/token-logos/dualSOL.svg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 2453.34,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.146273,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "haSOL",
+      "mint": "haSo1Vz5aTsqEnz8nisfnEsipvbAAWpgzRDh2WhhMEh",
+      "name": "Hanabi Staked SOL",
+      "logoUri": "https://shdw-drive.genesysgo.net/HjUWneFfxDo1WLdTSi8cngmyZMJHbGqt68iQ1LXJitES/firework_solana_512px.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 65454.8,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.229629,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Save": 7622.84
+        },
+        "totalDeployed": 7622.84,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "hausSOL",
+      "mint": "HausGKcq9G9zM3azwNmgZyzUvYeeqR8h8663PmZpxuDj",
+      "name": "StakeHaus Staked SOL",
+      "logoUri": "https://uqdeavtqqopuojyfesy44m54bi3lxfp4gqodt2zutdpdeboilnoa.arweave.net/pAZAVnCDn0cnBSSxzjO8Cja7lfw0HDnrNJjeMgXIW1w",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 7907.22,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.161392,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "rkSOL",
+      "mint": "EPCz5LK372vmvCkZH3HgSuGNKACJJwwxsofW6fypCPZL",
+      "name": "Starke Staked SOL",
+      "logoUri": "https://r44mixlzslkraelqcaoex6226bmz4mcglehjauf7r33aqosl7cxa.arweave.net/jzjEXXmS1RARcBAcS_ta8FmeMEZZDpBQv472CDpL-K4",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 11089.29,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.250859,
+      "advertisedApy": 5.67,
+      "realizedApy": 5.67,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.17,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": 5.543
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "fuseSOL",
+      "mint": "fuseYvhNJbSzdDByyTCrLcogsoNwAviB1WeewhbqgFc",
+      "name": "Fuse Staked SOL",
+      "logoUri": "https://fusesol.nyc3.digitaloceanspaces.com/fuseSOL.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 3081.27,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.142834,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "mangoSOL",
+      "mint": "MangmsBgFqJhW4cLUR9LxfVgMboY1xAoP8UUBiWwwuY",
+      "name": "Mango SOL",
+      "logoUri": "https://mango.markets/images/tokens/mangoSOL.svg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 20514.84,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.145873,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "bbSOL",
+      "mint": "Bybit2vBJGhPF52GBdNaQfUJ6ZpThSgHBobjWZpLPb4B",
+      "name": "BybitSOL",
+      "logoUri": "https://static.bymj.io/web3/staking/bbsol/bbsol2.png",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1157420.65,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.147564,
+      "advertisedApy": 5.28,
+      "realizedApy": 5.28,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.78,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 728.67,
+          "Save": 115.35
+        },
+        "totalDeployed": 844.02,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.055,
+        "netApyAfterExit": 5.225
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "CDCSOL",
+      "mint": "CDCSoLckzozyktpAp9FWT3w92KFJVEUxAU7cNu2Jn3aX",
+      "name": "Crypto.com Staked SOL",
+      "logoUri": "https://arweave.net/12xEvVVvGFM5n5U6ILXdShlLtUJOT1gUQTlSy8sGybg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 51422.55,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.090793,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 620.06
+        },
+        "totalDeployed": 620.06,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "vybeSOL",
+      "mint": "vybe5DgwzGdvJMi4oH7TiQpubJd4QSDuGmbvWfACeb8",
+      "name": "Vybe Staked SOL",
+      "logoUri": "https://static.vybenetwork.com/VybeSOL.svg",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 1460.39,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.088104,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "pawSOL",
+      "mint": "PawsoLz4VaXjb9jFTp1UF6qvYQ2qmxipZuRJuG16sVq",
+      "name": "Paw SOL",
+      "logoUri": "https://arweave.net/r3LNyiCfKcVLMnACWF7RcDALpdOkZWG9ERss9dbH5UE",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 4389.8,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.104805,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "nxSOL",
+      "mint": "sctmTAsDn4tLUcemqoqYijfuRkiEfAMPi84PNq2EueR",
+      "name": "Nansen Staked SOL",
+      "logoUri": "https://arweave.net/yIhHVanYDPbqPtBz2dx3Ew8kvY0GWUk9Et3u3ukjgms",
+      "type": "single-validator",
+      "issuer": null,
+      "tvlSol": 22364.05,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.069822,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.13,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "cgntSOL",
+      "mint": "CgnTSoL3DgY9SFHxcLj6CgCgKKoTBr6tp4CPAEWy25DE",
+      "name": "Cogent SOL",
+      "logoUri": "https://cogent-cogs.s3.us-west-2.amazonaws.com/cgntSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 43030.09,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.271551,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 53553.99
+        },
+        "totalDeployed": 53553.99,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "laineSOL",
+      "mint": "LAinEtNLgpmCP9Rvsf5Hn8W6EhNiKLZQti1xfWMLy6X",
+      "name": "Laine Stake Token",
+      "logoUri": "https://vvmbtadq63n53sdsqhlzbnzhvj5tdfp7moqixyv7rgkk6frqhqqq.arweave.net/rVgZgHD2293IcoHXkLcnqnsxlf9joIviv4mUrxYwPCE",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 54936.54,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.310727,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.172,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "vSOL",
+      "mint": "vSoLxydx6akxyMD9XEcPvGYNGq6Nn66oqVb3UkGkei7",
+      "name": "The Vault",
+      "logoUri": "https://bafkreig55mf3lazzbgndiqyqvdmchdsykvvebww7cqlws6ywgog5xfdzta.ipfs.nftstorage.link/",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1289067.36,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.149109,
+      "advertisedApy": 5.318,
+      "realizedApy": 5.318,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.818,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 192992.41
+        },
+        "totalDeployed": 192992.41,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.024,
+        "netApyAfterExit": 5.294
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "dzSOL",
+      "mint": "Gekfj7SL2fVpTDxJZmeC46cTYxinjB6gkAnb6EGT6mnn",
+      "name": "DoubleZero Staked SOL",
+      "logoUri": "https://fn474du36qdxqh6szvejo72imufs4tcnskea73kg4jx53e5rarba.arweave.net/K3n-Dpv0B3gf0s1Il39IZQsuTE2SiA_tRuJv3ZOxBEI",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 10241151.67,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.047532,
+      "advertisedApy": 5.004,
+      "realizedApy": 5.004,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.504,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.084,
+        "netApyAfterExit": 4.92
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "bSOL",
+      "mint": "bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1",
+      "name": "BlazeStake Staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1/logo.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1040139,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.290721,
+      "advertisedApy": 5.596,
+      "realizedApy": 5.596,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.096,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 151003.02,
+          "Save": 223986.15
+        },
+        "totalDeployed": 374989.17,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.016,
+        "netApyAfterExit": 5.58
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "JitoSOL",
+      "mint": "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn",
+      "name": "Jito Staked SOL",
+      "logoUri": "https://storage.googleapis.com/token-metadata/JitoSOL-256.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 10416036.2,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.275866,
+      "advertisedApy": 5.27,
+      "realizedApy": 5.27,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.77,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 1080013.42,
+          "Save": 88324.06
+        },
+        "totalDeployed": 1168337.48,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.002,
+        "netApyAfterExit": 5.268
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "JSOL",
+      "mint": "7Q2afV64in6N6SeZsAAB81TJzwDoD6zpqmHkzi9Dcavn",
+      "name": "JPOOL Solana Token",
+      "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7Q2afV64in6N6SeZsAAB81TJzwDoD6zpqmHkzi9Dcavn/logo.svg",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1265897.03,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.349217,
+      "advertisedApy": 5.4,
+      "realizedApy": 5.4,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.9,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 60968.45,
+          "Save": 32700.85
+        },
+        "totalDeployed": 93669.3,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.047,
+        "netApyAfterExit": 5.353
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "LST",
+      "mint": "LSTxxxnJzKDFSLr4dUkPcmCf5VyryEqzPLz5j4bpxFp",
+      "name": "Liquid Staking Token",
+      "logoUri": "https://storage.googleapis.com/static-marginfi/lst.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 107060.63,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.511993,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.009,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "edgeSOL",
+      "mint": "edge86g9cVz87xcpKpy3J77vbp4wYd9idEV562CCntt",
+      "name": "Edgevana Staked SOL",
+      "logoUri": "https://srv.edgevana.com/img/edgesol.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 834873.19,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.276092,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Save": 8.27
+        },
+        "totalDeployed": 8.27,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.027,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "elSOL",
+      "mint": "ELSoL1owwMWQ9foMsutweCsMKbTPVBD9pFqxQGidTaMC",
+      "name": "Enhanced Linkage SOL",
+      "logoUri": "https://arweave.net/4q1KEew_Kqymx6rea_b-VeDX337130aPv0omKRAGPHU",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 10580.51,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.272204,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.079,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "aeroSOL",
+      "mint": "aeroXvCT6tjGVNyTvZy86tFDwE4sYsKCh7FbNDcrcxF",
+      "name": "aeroSOL",
+      "logoUri": "https://raw.githubusercontent.com/phaselabscrypto/.github/main/profile/public/aeroSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1076668.13,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.130343,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "BNSOL",
+      "mint": "BNso1VUJnh4zcfpZa6986Ea66P6TCp59hvtNJ8b1X85",
+      "name": "Binance Staked SOL",
+      "logoUri": "https://arweave.net/LepI-hea-JrbLMb4L_HpMzaq9k0aHY2-lVSGiBtwvFM?ext=png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 10563531.56,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.110411,
+      "advertisedApy": 4.92,
+      "realizedApy": 4.92,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 0.42,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 10918.28,
+          "Save": 164.25
+        },
+        "totalDeployed": 11082.53,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.059,
+        "netApyAfterExit": 4.861
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "xandSOL",
+      "mint": "XAnDeUmMcqFyCdef9jzpNgtZPjTj3xUMj9eXKn2reFN",
+      "name": "Xandeum SOL",
+      "logoUri": "https://raw.githubusercontent.com/bernieblume/XAND-meta-2024/main/xandSOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 28076.6,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.111826,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "raiSOL",
+      "mint": "Ra1so1sTkvX3PorAM9ewqrsUMz9sPSbfFZ5oZUjN4oc",
+      "name": "Rakurai Staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/rakurai-io/token-metadata/master/assets/RaiSOL-Logo.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 27636,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.303788,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.127,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "jagSOL",
+      "mint": "jag58eRBC1c88LaAsRPspTMvoKJPbnzw9p9fREzHqyV",
+      "name": "JagPool Staked SOL",
+      "logoUri": "https://arweave.net/hsBrk--wCnuMc5fCu6ckQCotTPQy6JJqqzwXa2Euefw",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 760164.62,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.092491,
+      "advertisedApy": 4.457,
+      "realizedApy": 4.457,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.457,
+        "mevApy": null,
+        "otherApy": 0,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.132,
+        "netApyAfterExit": 4.325
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "xSHIN",
+      "mint": "xSoL18r4U1k2ALa4yF857VDZJqCKecLtty92nscre3o",
+      "name": "Shinobi Performance Pool Token",
+      "logoUri": "https://xshin.fi/icons/xSHIN_3d.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1104806.64,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.156113,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.04,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "LP-SOLAYER",
+      "mint": "sSo1wxKKr6zW2hqf5hZrp2CawLibcwi1pMBqk5bg2G4",
+      "name": "Solayer Stake Pool LP Token",
+      "logoUri": "",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 147698.86,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.148149,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.112,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "TruSOL",
+      "mint": "6umRHtiuBd1PC6HQhfH9ioNsqY4ihZncZXNPiGu3d3rN",
+      "name": "TruSOL Token",
+      "logoUri": "https://trufin-public-assets.s3.eu-west-2.amazonaws.com/truSOL-logo.svg",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 29675.92,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.574532,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": null,
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "dynoSOL",
+      "mint": "DYNoyS3x5qgbccZg7RPXagm4xQzfnm5iwd9o8pMyJtdE",
+      "name": "dynoSOL",
+      "logoUri": "https://ycfcqd4kivi3yuj7dy6djscn2a7mql24ntvvufef7ltbqri5fila.arweave.net/wIooD4pFUbxRPx48NMhN0D7IL1xs61oUhfrmGEUdKhY",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 1632700.49,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.054243,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.131,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "sharkSOL",
+      "mint": "BdMLRC2gKyFu8FRBErazzpEaKmB1jcVB9Eq1rXXFm4EV",
+      "name": "SharkPool",
+      "logoUri": "https://raw.githubusercontent.com/sharkslabs/validator/refs/heads/main/sharkpool.jpg",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 209430.01,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.047125,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "sentSOL",
+      "mint": "sntn1oVhhKuytG42jyjneMYnGAtzkpJsBxHNEskTfGp",
+      "name": "sentinelSOL",
+      "logoUri": "https://i.ibb.co/jPS5dYhJ/sentinel-SOL.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 2574.96,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.113919,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.208,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "INF",
+      "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
+      "name": "Infinity",
+      "logoUri": "https://bafkreiflz2xxkfn33qjch2wj55bvbn33q3s4mmb6bye5pt3mpgy4t2wg4e.ipfs.nftstorage.link/",
+      "type": "lst-of-lsts",
+      "issuer": "Sanctum",
+      "tvlSol": 2312392.79,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.407837,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 22589.4,
+          "Save": 925.34
+        },
+        "totalDeployed": 23514.74,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.067,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "stSOL",
+      "mint": "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
+      "name": "Lido Staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj/logo.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 50085.66,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.219142,
+      "advertisedApy": null,
+      "realizedApy": null,
+      "apyGap": null,
+      "yieldSplit": {
+        "baseStakingApy": null,
+        "mevApy": null,
+        "otherApy": null,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Save": 3542.56
+        },
+        "totalDeployed": 3542.56,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 3.383,
+        "netApyAfterExit": null
+      },
+      "auditCount": null,
+      "launchDate": null
+    },
+    {
+      "symbol": "mSOL",
+      "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+      "name": "Marinade staked SOL",
+      "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/logo.png",
+      "type": "multi-validator",
+      "issuer": null,
+      "tvlSol": 3203038.4,
+      "holders": null,
+      "feePct": null,
+      "exchangeRate": 1.376648,
+      "advertisedApy": 6.379,
+      "realizedApy": 6.379,
+      "apyGap": 0,
+      "yieldSplit": {
+        "baseStakingApy": 4.5,
+        "mevApy": null,
+        "otherApy": 1.879,
+        "blockspaceApy": null,
+        "isEstimate": true
+      },
+      "decentralization": {
+        "validatorCount": null,
+        "stakeConcentration": null,
+        "avgValidatorRank": null,
+        "grade": null,
+        "isEstimate": true
+      },
+      "deployment": {
+        "byProtocol": {
+          "Kamino": 316704.04,
+          "Save": 271859.58
+        },
+        "totalDeployed": 588563.62,
+        "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
+      },
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0.022,
+        "netApyAfterExit": 6.357
+      },
+      "auditCount": null,
+      "launchDate": null
+    }
+  ]
 }
