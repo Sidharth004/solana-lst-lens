@@ -1,7 +1,9 @@
 # PROGRESS
 
 ## Current status
-- Phase: ALL SIX PHASES BUILT + **pivoted to KEYLESS live data** (2026-07-12). The dashboard now runs on real data with **no API key**. Remaining work is purely operational: push to GitHub + connect a host.
+- ALL SIX PHASES + KEYLESS pivot + **differentiator pass** (2026-07-15). Live real data, no API key. Remaining work is operational: push to GitHub + connect a host.
+- Differentiators now live: decentralization grades **72/75** (single via vote_account, multi via on-chain validator-list RPC — JitoSOL B/705 validators/7 delinquent, JupSOL D); realized-APY coverage 32/75 + basis labels (self-healing via history); yield-trend arrows; net-take-home column + intent; delinquency risk flags. Advertised/gap is manual-curation-only (no keyless marketed source) and its columns hide until curated.
+- Open follow-ups: curate marketed APYs in `data/manual/advertised-apy.json` to light up the gap; add a holders/fee source (still null); 3 LSTs ungraded (Marinade/Lido/SPool layouts unsupported).
 - Last session (2026-07-12): the gated `sanctum-api.ironforge.network` data API turned out **not** to be self-serve (the Ironforge signup only yields an RPC-gateway key, which 403s on `/lsts`). Pivoted the pipeline to keyless public sources — `sanctum-lst-list` TOML + `extra-api.sanctum.so` (rate/TVL) + DeFiLlama yields (APY bootstrap). **`pnpm pipeline` now produces 75 real LSTs, status=ok, all 5 sources green.** History idempotent. Dashboard verified on real data at 1400px.
 - Next action: Operational only — `git push` to GitHub (cron needs **no secrets** now), enable Actions read/write, connect Cloudflare Pages (`pnpm build:site` → `web/dist`), attach domain. Optional future: RPC validator-list resolver to light up decentralization; add a holders + fee source (both currently null).
 
