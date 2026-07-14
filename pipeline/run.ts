@@ -106,6 +106,13 @@ interface BuildContext {
   /** symbol -> exchange-rate history points (excluding today). */
   rateHistoryBySymbol: Map<string, RatePoint[]>;
   todayDate: string;
+  /** mint -> RPC-resolved validator set (feature 4); empty until wired. */
+  validatorSetByMint: Map<string, RpcValidator[]>;
+}
+
+export interface RpcValidator {
+  voteIdentity: string;
+  activatedStake: number; // SOL delegated by the pool to this validator
 }
 
 /** Bounded-concurrency map (gentle on rate limits). */
@@ -126,17 +133,54 @@ async function mapLimit<T, R>(
   return results;
 }
 
+interface ResolvedValidators {
+  validators: PoolValidator[];
+  source: "single" | "rpc";
+}
+
 /**
  * Resolve the validator set a pool delegates to (for decentralization).
- * The pool's `validatorList` is an on-chain SPL stake-pool account; reading it
- * requires an RPC (HELIUS_RPC_URL) or a Sanctum endpoint that exposes members.
- * Neither is wired yet, so this returns null and decentralization degrades to
- * null for every LST (graceful) — see Phase 4 notes / TODO.
+ *
+ * - Single-validator pools (SanctumSpl) delegate to ONE validator, named by the
+ *   registry's `vote_account` — resolved here with no RPC via Stakewiz.
+ * - Multi-validator pools (SanctumSplMulti, Spl) need their on-chain validator
+ *   list read via RPC; that map is prefetched in main() and passed on ctx.
+ * - Anything else (Marinade, Lido, SPool) degrades to null (graceful).
  */
 function resolvePoolValidators(
-  _src: NormalizedSanctumLst,
-  _ctx: BuildContext,
-): PoolValidator[] | null {
+  src: NormalizedSanctumLst,
+  ctx: BuildContext,
+): ResolvedValidators | null {
+  // Multi-validator: use the prefetched RPC-resolved set if available.
+  const rpcSet = ctx.validatorSetByMint.get(src.mint);
+  if (rpcSet && rpcSet.length > 0) {
+    return {
+      source: "rpc",
+      validators: rpcSet.map((v) => ({
+        voteIdentity: v.voteIdentity,
+        activatedStake: v.activatedStake,
+        rank: ctx.stakewiz.byVoteIdentity.get(v.voteIdentity)?.rank ?? null,
+        delinquent: ctx.stakewiz.byVoteIdentity.get(v.voteIdentity)?.delinquent ?? false,
+      })),
+    };
+  }
+
+  // Single-validator: one validator named by vote_account.
+  if (src.poolProgram === "SanctumSpl" && src.voteAccount) {
+    const info = ctx.stakewiz.byVoteIdentity.get(src.voteAccount);
+    return {
+      source: "single",
+      validators: [
+        {
+          voteIdentity: src.voteAccount,
+          activatedStake: src.tvlSol ?? 1,
+          rank: info?.rank ?? null,
+          delinquent: info?.delinquent ?? false,
+        },
+      ],
+    };
+  }
+
   return null;
 }
 
@@ -173,18 +217,21 @@ function buildLst(
     type,
   });
 
-  const poolValidators = resolvePoolValidators(src, ctx);
-  const decentralization = poolValidators
+  const resolved = resolvePoolValidators(src, ctx);
+  const decentralization = resolved
     ? computeDecentralization({
-        validators: poolValidators,
+        validators: resolved.validators,
         networkValidatorCount: ctx.stakewiz.networkValidatorCount,
+        source: resolved.source,
       })
     : {
         validatorCount: null,
         stakeConcentration: null,
         avgValidatorRank: null,
+        delinquentValidatorCount: null,
         grade: null,
         isEstimate: true,
+        source: null,
       };
 
   const deployment = computeDeployment(
@@ -282,6 +329,9 @@ async function main(): Promise<void> {
   const restrictBySlug: Record<string, string[] | undefined> = {};
   for (const p of defiConfig.protocols) restrictBySlug[p.slug] = p.symbols;
 
+  // mint -> RPC-resolved validator set for multi-validator pools (feature 4).
+  const validatorSetByMint = new Map<string, RpcValidator[]>();
+
   const ctx: BuildContext = {
     networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,
     stakewiz,
@@ -290,6 +340,7 @@ async function main(): Promise<void> {
     yields,
     rateHistoryBySymbol,
     todayDate,
+    validatorSetByMint,
   };
 
   const lsts = sanctum.lsts.map((s) =>

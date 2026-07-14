@@ -47,8 +47,11 @@ export interface Decentralization {
   validatorCount: number | null;
   stakeConcentration: number | null; // 0..1 Herfindahl across the pool's set
   avgValidatorRank: number | null; // mean network rank of delegated validators
+  delinquentValidatorCount: number | null; // validators in the set flagged delinquent
   grade: Grade | null; // editorial composite
   isEstimate: boolean;
+  /** How the set was resolved: "single" (vote_account), "rpc" (validator list), or null. */
+  source: "single" | "rpc" | null;
 }
 
 export interface Deployment {

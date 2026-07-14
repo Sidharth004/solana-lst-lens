@@ -72,6 +72,15 @@ export function deriveRiskFlags(lst: Lst, rateSeries: Point[]): RiskFlag[] {
     });
   }
 
+  const delinq = lst.decentralization.delinquentValidatorCount;
+  if (delinq !== null && delinq > 0) {
+    flags.push({
+      label: "Delinquent validator",
+      severity: "high",
+      detail: `${delinq} validator${delinq > 1 ? "s" : ""} in the set ${delinq > 1 ? "are" : "is"} currently delinquent (missing votes).`,
+    });
+  }
+
   const dd = maxDrawdown(rateSeries);
   if (dd > DEPEG_DROP) {
     flags.push({

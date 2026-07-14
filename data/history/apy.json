@@ -23,5 +23,30 @@
       "jagSOL": 4.457,
       "mSOL": 6.379
     }
+  },
+  {
+    "date": "2026-07-14",
+    "epoch": null,
+    "bySymbol": {
+      "dfdvSOL": 5.855,
+      "JupSOL": 5.698,
+      "hyloSOL": 6.121,
+      "bonkSOL": 5.49,
+      "dSOL": 5.667,
+      "picoSOL": 5.635,
+      "strongSOL": 5.382,
+      "lanternSOL": 6.163,
+      "hSOL": 5.765,
+      "rkSOL": 5.667,
+      "bbSOL": 5.33,
+      "vSOL": 5.319,
+      "dzSOL": 4.994,
+      "bSOL": 5.258,
+      "JitoSOL": 4.89,
+      "JSOL": 5.396,
+      "BNSOL": 4.867,
+      "jagSOL": 4.401,
+      "mSOL": 6.363
+    }
   }
 ]

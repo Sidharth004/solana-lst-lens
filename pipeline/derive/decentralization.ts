@@ -17,12 +17,15 @@ export interface PoolValidator {
   voteIdentity: string;
   activatedStake: number; // SOL delegated by THIS pool to the validator
   rank: number | null; // Stakewiz network rank (1 = largest)
+  delinquent?: boolean;
 }
 
 export interface DecentralizationInputs {
   validators: PoolValidator[];
   /** Total validators in the network, to normalize avg rank. */
   networkValidatorCount: number | null;
+  /** How the set was resolved (for provenance in the UI). */
+  source: "single" | "rpc";
 }
 
 /** Herfindahl-Hirschman index of stake shares within the set: 0 spread, 1 concentrated. */
@@ -72,8 +75,10 @@ export function computeDecentralization(
     validatorCount: null,
     stakeConcentration: null,
     avgValidatorRank: null,
+    delinquentValidatorCount: null,
     grade: null,
     isEstimate: true,
+    source: null,
   };
 
   const vals = inp.validators.filter((v) => v.activatedStake > 0);
@@ -81,6 +86,7 @@ export function computeDecentralization(
 
   const validatorCount = vals.length;
   const concentration = herfindahl(vals.map((v) => v.activatedStake));
+  const delinquentValidatorCount = vals.filter((v) => v.delinquent).length;
 
   const ranked = vals.map((v) => v.rank).filter((r): r is number => r !== null && r > 0);
   const avgValidatorRank =
@@ -103,7 +109,9 @@ export function computeDecentralization(
     validatorCount,
     stakeConcentration: concentration !== null ? Math.round(concentration * 1000) / 1000 : null,
     avgValidatorRank: avgValidatorRank !== null ? Math.round(avgValidatorRank) : null,
+    delinquentValidatorCount,
     grade: toGrade(score100),
     isEstimate: true,
+    source: inp.source,
   };
 }

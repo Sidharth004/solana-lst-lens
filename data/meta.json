@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-12T17:38:00.584Z",
+  "updatedAt": "2026-07-14T19:49:54.854Z",
   "epoch": null,
   "lstCount": 75,
   "status": "ok",
@@ -18,11 +18,11 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "49 APY bootstraps"
+      "note": "48 APY bootstraps"
     },
     "jupiter": {
       "ok": true,
-      "note": "74/75 exit quotes"
+      "note": "73/75 exit quotes"
     }
   }
 }

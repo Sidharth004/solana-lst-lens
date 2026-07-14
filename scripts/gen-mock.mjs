@@ -48,10 +48,11 @@ function yieldSplit(realized, feePct) {
 
 function decentralization(dec) {
   if (!dec) {
-    return { validatorCount: null, stakeConcentration: null, avgValidatorRank: null, grade: null, isEstimate: true };
+    return { validatorCount: null, stakeConcentration: null, avgValidatorRank: null, delinquentValidatorCount: null, grade: null, isEstimate: true, source: null };
   }
   const [validatorCount, stakeConcentration, avgValidatorRank, grade] = dec;
-  return { validatorCount, stakeConcentration, avgValidatorRank, grade, isEstimate: true };
+  const source = validatorCount === 1 ? "single" : "rpc";
+  return { validatorCount, stakeConcentration, avgValidatorRank, delinquentValidatorCount: 0, grade, isEstimate: true, source };
 }
 
 const DOUBLE_COUNT_NOTE =

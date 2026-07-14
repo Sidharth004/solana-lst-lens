@@ -64,12 +64,25 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
             hint="Herfindahl index of stake within the set (0 spread → 1 concentrated)"
           />
           <Field label="Avg validator rank" value={fmtInt(d.avgValidatorRank)} hint="Mean Stakewiz network rank of delegated validators (higher = smaller validators)" />
-          <Field label="Audits" value={lst.auditCount === null ? "—" : fmtInt(lst.auditCount)} />
+          <Field
+            label="Delinquent validators"
+            value={d.delinquentValidatorCount === null ? "—" : fmtInt(d.delinquentValidatorCount)}
+            hint="Validators in the set currently flagged delinquent by Stakewiz"
+          />
         </div>
+        {d.source && (
+          <p className="detail-note">
+            Resolved via{" "}
+            {d.source === "single"
+              ? "the pool's single vote account"
+              : "the on-chain validator list (RPC)"}
+            . Audits: {lst.auditCount === null ? "—" : lst.auditCount}.
+          </p>
+        )}
         {d.grade === null && (
           <p className="detail-note">
-            Validator set not yet resolved for this pool — score pending (needs the
-            on-chain validator list via RPC).
+            Validator set not yet resolved for this pool (unsupported pool type) —
+            score pending.
           </p>
         )}
       </section>
