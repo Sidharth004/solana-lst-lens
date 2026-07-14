@@ -16,6 +16,7 @@ export default function App() {
   const [history, setHistory] = useState<HistoryData>(EMPTY_HISTORY);
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<SortState>(DEFAULT_SORT);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     loadDataset()
@@ -28,6 +29,17 @@ export default function App() {
     () => (dataset ? sortLsts(dataset.lsts, sort) : []),
     [dataset, sort],
   );
+
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return sorted;
+    return sorted.filter(
+      (l) =>
+        l.symbol.toLowerCase().includes(q) ||
+        l.name.toLowerCase().includes(q) ||
+        (l.issuer ?? "").toLowerCase().includes(q),
+    );
+  }, [sorted, query]);
 
   function handleSort(key: SortKey) {
     setSort((prev) =>
@@ -76,8 +88,25 @@ export default function App() {
         {dataset && (
           <>
             <MetricCards lsts={dataset.lsts} />
-            <IntentRouter activeSort={sort} onPick={handleIntent} />
-            <Table lsts={sorted} sort={sort} onSort={handleSort} history={history} />
+            <div className="controls">
+              <IntentRouter activeSort={sort} onPick={handleIntent} />
+              <div className="search">
+                <input
+                  type="search"
+                  className="search-input"
+                  placeholder="Search LST…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  aria-label="Search LSTs by symbol, name, or issuer"
+                />
+                {query && (
+                  <span className="search-count">
+                    {visible.length} of {dataset.lsts.length}
+                  </span>
+                )}
+              </div>
+            </div>
+            <Table lsts={visible} sort={sort} onSort={handleSort} history={history} />
             <footer className="app-footer">
               <p>
                 Realized APY is measured from each LST’s on-chain exchange rate.
