@@ -43,9 +43,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run pipeline
-        # The pipeline runs on keyless public data sources — NO secrets required.
-        # HELIUS_RPC_URL is optional (only for the future decentralization resolver).
+        # Keyless public data sources — NO secrets required. The decentralization
+        # resolver defaults to the public Solana RPC; set SOLANA_RPC_URL (or
+        # HELIUS_RPC_URL) as a repo secret for a faster/more reliable RPC.
         env:
+          SOLANA_RPC_URL: ${{ secrets.SOLANA_RPC_URL }}
           HELIUS_RPC_URL: ${{ secrets.HELIUS_RPC_URL }}
         run: pnpm pipeline
 

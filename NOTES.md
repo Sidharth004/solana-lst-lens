@@ -273,6 +273,21 @@ User feedback: on real data advertised==realized (gap 0) and lots of "—". Buil
   fabricate one. The gap shows only where a real marketed number is curated.
   Curating the majors is the way to light up the flagship gap.
 
+### Feature 4 — multi-validator decentralization via RPC
+- `sources/validatorLists.ts`: reads each multi-validator pool's on-chain
+  validator list via `getAccountInfo` (base64) and parses the SPL stake-pool
+  ValidatorList layout by hand: header 5 bytes (account_type u8=2, max u32),
+  then u32 count @5, then 73-byte `ValidatorStakeInfo` items — active stake u64 @
+  item+0, vote account Pubkey @ item+41 (base58 via `bs58`). Skips 0-stake slots.
+- Supported programs: `Spl`, `SanctumSplMulti` (standard layout). `SanctumSpl`
+  (single) still uses the vote_account shortcut. Marinade/Lido/SPool unsupported
+  → null (3 LSTs).
+- RPC: `SOLANA_RPC_URL` || `HELIUS_RPC_URL` || public `api.mainnet-beta`.
+  Concurrency 3, POST retry on 429/5xx. ~22s for 33 pools on public RPC.
+- **Result: 72/75 graded** (was 39). Real distribution B:9 C:3 D:3 F:57. E.g.
+  JitoSOL B (705 validators, HHI 0.004, 7 delinquent), JupSOL D (4, HHI 0.73).
+  Delinquency now real per pool → "Delinquent validator" risk flag fires.
+
 ## Pivot — keyless public Sanctum data (2026-07-12)
 
 ### Why

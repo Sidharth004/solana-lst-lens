@@ -31,6 +31,7 @@ import { fetchSanctumLsts, type NormalizedSanctumLst } from "./sources/sanctum.j
 import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz.js";
 import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillama.js";
 import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
+import { fetchValidatorSets, type RpcValidator } from "./sources/validatorLists.js";
 import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
 import { computeYieldSplit } from "./derive/yieldSplit.js";
@@ -106,13 +107,8 @@ interface BuildContext {
   /** symbol -> exchange-rate history points (excluding today). */
   rateHistoryBySymbol: Map<string, RatePoint[]>;
   todayDate: string;
-  /** mint -> RPC-resolved validator set (feature 4); empty until wired. */
+  /** mint -> RPC-resolved validator set for multi-validator pools. */
   validatorSetByMint: Map<string, RpcValidator[]>;
-}
-
-export interface RpcValidator {
-  voteIdentity: string;
-  activatedStake: number; // SOL delegated by the pool to this validator
 }
 
 /** Bounded-concurrency map (gentle on rate limits). */
@@ -331,8 +327,16 @@ async function main(): Promise<void> {
   const restrictBySlug: Record<string, string[] | undefined> = {};
   for (const p of defiConfig.protocols) restrictBySlug[p.slug] = p.symbols;
 
-  // mint -> RPC-resolved validator set for multi-validator pools (feature 4).
-  const validatorSetByMint = new Map<string, RpcValidator[]>();
+  // Resolve multi-validator pools' on-chain validator lists via RPC (feature 4).
+  const validatorLists = await fetchValidatorSets(
+    sanctum.lsts.map((l) => ({
+      mint: l.mint,
+      validatorList: l.validatorList,
+      program: l.poolProgram,
+    })),
+  );
+  sources.rpc = { ok: validatorLists.ok, note: validatorLists.note };
+  const validatorSetByMint = validatorLists.byMint;
 
   const ctx: BuildContext = {
     networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,

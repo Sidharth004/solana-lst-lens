@@ -27,6 +27,7 @@
     ]
   },
   "dependencies": {
+    "bs58": "^6.0.0",
     "smol-toml": "^1.7.0"
   }
 }

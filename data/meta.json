@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T20:28:04.224Z",
+  "updatedAt": "2026-07-14T20:47:15.780Z",
   "epoch": null,
   "lstCount": 75,
   "status": "ok",
@@ -20,9 +20,13 @@
       "ok": true,
       "note": "48 APY bootstraps"
     },
+    "rpc": {
+      "ok": true,
+      "note": "33/33 validator lists resolved"
+    },
     "jupiter": {
       "ok": true,
-      "note": "73/75 exit quotes"
+      "note": "72/75 exit quotes"
     }
   }
 }
