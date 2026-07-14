@@ -135,9 +135,14 @@ a:hover {
 
 .metric-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-bottom: 20px;
+}
+@media (max-width: 860px) {
+  .metric-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .metric-card {
   border: 1px solid var(--border);

@@ -74,6 +74,13 @@ export function Table({ lsts, sort, onSort, history }: Props) {
   // Expansion is keyed by symbol so a row is deep-linkable via #lst=SYMBOL.
   const [expanded, setExpanded] = useState<string | null>(initialExpanded);
 
+  // Only surface Advertised + Gap when a marketed number is actually curated —
+  // no empty headline columns (see data/manual/advertised-apy.json).
+  const showAdvertised = lsts.some((l) => l.advertisedApy !== null);
+  const columns = showAdvertised
+    ? COLUMNS
+    : COLUMNS.filter((c) => c.key !== "advertisedApy" && c.key !== "apyGap");
+
   function toggle(symbol: string) {
     setExpanded((cur) => {
       const next = cur === symbol ? null : symbol;
@@ -90,7 +97,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
         <table className="lst-table">
           <thead>
             <tr>
-              {COLUMNS.map((col, i) => {
+              {columns.map((col, i) => {
                 const active = sort.key === col.key;
                 return (
                   <th
@@ -140,7 +147,9 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                     <td className="col-left">
                       <span className={`type-badge type-${lst.type}`}>{LST_TYPE_LABELS[lst.type]}</span>
                     </td>
-                    <td className="col-right num">{fmtPct(lst.advertisedApy)}</td>
+                    {showAdvertised && (
+                      <td className="col-right num">{fmtPct(lst.advertisedApy)}</td>
+                    )}
                     <td className="col-right num strong">
                       <span className="realized-cell">
                         <span title={basisTitle(lst.realizedApyBasis)}>
@@ -161,9 +170,11 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                         })()}
                       </span>
                     </td>
-                    <td className="col-right">
-                      <ApyGap gap={lst.apyGap} />
-                    </td>
+                    {showAdvertised && (
+                      <td className="col-right">
+                        <ApyGap gap={lst.apyGap} />
+                      </td>
+                    )}
                     <td className="col-right num">
                       {lst.exitCost && lst.exitCost.netApyAfterExit !== null ? (
                         fmtPct(lst.exitCost.netApyAfterExit)
@@ -191,7 +202,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                   </tr>
                   {isOpen && (
                     <tr className="detail-row">
-                      <td colSpan={COLUMNS.length}>
+                      <td colSpan={columns.length}>
                         <RowDetail lst={lst} history={history} />
                       </td>
                     </tr>
@@ -201,7 +212,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
             })}
             {lsts.length === 0 && (
               <tr>
-                <td className="empty" colSpan={COLUMNS.length}>
+                <td className="empty" colSpan={columns.length}>
                   No LSTs to show.
                 </td>
               </tr>
