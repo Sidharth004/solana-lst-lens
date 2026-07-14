@@ -1,7 +1,7 @@
 {
   "$schema": "Human-authored LST type classifications. The pipeline reads this and MERGES it over the type it seeds from Sanctum pool.program. It never writes here. Keyed by LST symbol. type must be one of shared/schema.ts LstType. Optional: issuer, auditCount, notes.",
   "bySymbol": {
-    "jitoSOL": {
+    "JitoSOL": {
       "type": "multi-validator",
       "issuer": "Jito",
       "auditCount": null,
@@ -13,11 +13,11 @@
       "auditCount": null,
       "notes": "Sanctum Infinity — a pool of LSTs; yield includes fee-sharing over the underlying basket."
     },
-    "rkuSOL": {
+    "raiSOL": {
       "type": "blockspace-yield",
       "issuer": "Rakurai",
       "auditCount": null,
-      "notes": "Blockspace-yield LST. blockspaceApy stays null until the marketplace is live — never render a fake number."
+      "notes": "Rakurai Staked SOL (launched ~mid-2026). Editorial: classified as blockspace-yield given Rakurai's blockspace/MEV focus. blockspaceApy stays null until the marketplace is live — never render a fake number."
     }
   }
 }
