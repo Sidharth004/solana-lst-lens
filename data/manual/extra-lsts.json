@@ -1,0 +1,13 @@
+{
+  "$schema": "LSTs not (yet) in the sanctum-lst-list registry. The pipeline includes these and sources exchange rate from Jupiter + TVL from on-chain token supply (extra-api doesn't cover them). Provide mint, symbol, name, decimals. Optional: program + validatorList to enable the decentralization RPC read. The pipeline never writes here.",
+  "lsts": [
+    {
+      "mint": "rkubjTrZYioRSeXwDnhwGQzvW3qkcin72JSxUt3WMVp",
+      "symbol": "rkuSOL",
+      "name": "Raiku Staked SOL",
+      "decimals": 9,
+      "logoUri": "https://arweave.net/0y-faXJ7pArc83FnXv8bNf_0wjloZcTrUBNnbEMJ9Cg",
+      "notes": "First Solana LST with blockspace auction revenue as a yield source (Raiku, launched 2026-06-03, with Sanctum/Kamino/Loopscale/Jupiter). Not yet in sanctum-lst-list; rate via Jupiter, TVL via on-chain supply."
+    }
+  ]
+}

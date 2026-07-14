@@ -181,3 +181,21 @@ export interface DefiProtocolEntry {
   /** LST symbols to match inside chainTvls.Solana.tokens. Empty = match all tracked. */
   symbols?: string[];
 }
+
+/** data/manual/extra-lsts.json — LSTs not (yet) in the sanctum-lst-list registry. */
+export interface ExtraLstsConfig {
+  $schema?: string;
+  lsts: ExtraLstEntry[];
+}
+
+export interface ExtraLstEntry {
+  mint: string;
+  symbol: string;
+  name: string;
+  decimals: number;
+  logoUri?: string | null;
+  /** Pool program (e.g. "Spl") + validatorList to enable the decentralization RPC read. */
+  program?: string | null;
+  validatorList?: string | null;
+  notes?: string;
+}

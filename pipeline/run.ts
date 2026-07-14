@@ -19,6 +19,7 @@ import type {
   Dataset,
   DefiProtocolsConfig,
   ExchangeRateSnapshot,
+  ExtraLstsConfig,
   Lst,
   LstType,
   Meta,
@@ -28,6 +29,7 @@ import type {
   TvlSnapshot,
 } from "../shared/schema.js";
 import { fetchSanctumLsts, type NormalizedSanctumLst } from "./sources/sanctum.js";
+import { fetchExtraLsts } from "./sources/extraLsts.js";
 import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz.js";
 import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillama.js";
 import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
@@ -275,7 +277,7 @@ function buildLst(
 async function main(): Promise<void> {
   loadEnv();
 
-  const [taxonomy, advertised, overrides, defiConfig] = await Promise.all([
+  const [taxonomy, advertised, overrides, defiConfig, extraConfig] = await Promise.all([
     readJson<Taxonomy>(path.join(MANUAL, "lst-taxonomy.json"), { bySymbol: {} }),
     readJson<AdvertisedApyOverrides>(path.join(MANUAL, "advertised-apy.json"), {
       bySymbol: {},
@@ -284,6 +286,7 @@ async function main(): Promise<void> {
     readJson<DefiProtocolsConfig>(path.join(MANUAL, "defi-protocols.json"), {
       protocols: [],
     }),
+    readJson<ExtraLstsConfig>(path.join(MANUAL, "extra-lsts.json"), { lsts: [] }),
   ]);
 
   // Read the accumulated exchange-rate history up front so realized APY can be
@@ -304,13 +307,22 @@ async function main(): Promise<void> {
 
   const sources: Record<string, SourceStatus> = {};
 
-  const [sanctum, stakewiz, defillama, yields] = await Promise.all([
+  const [sanctum, stakewiz, defillama, yields, extra] = await Promise.all([
     fetchSanctumLsts(),
     fetchStakewizValidators(),
     fetchDefiDeployment(defiConfig.protocols),
     fetchDefiLlamaYields(),
+    fetchExtraLsts(extraConfig.lsts),
   ]);
   sources.sanctum = { ok: sanctum.ok, note: sanctum.note };
+  sources.extra = { ok: extra.ok, note: `extra-lsts: ${extra.note}` };
+
+  // Merge registry LSTs with manually-supplemented ones (dedupe by mint).
+  const seenMints = new Set(sanctum.lsts.map((l) => l.mint));
+  const allSrc: NormalizedSanctumLst[] = [
+    ...sanctum.lsts,
+    ...extra.lsts.filter((l) => !seenMints.has(l.mint)),
+  ];
   sources.stakewiz = {
     ok: stakewiz.ok,
     note: stakewiz.ok ? `${stakewiz.networkValidatorCount} validators` : stakewiz.note,
@@ -329,7 +341,7 @@ async function main(): Promise<void> {
 
   // Resolve multi-validator pools' on-chain validator lists via RPC (feature 4).
   const validatorLists = await fetchValidatorSets(
-    sanctum.lsts.map((l) => ({
+    allSrc.map((l) => ({
       mint: l.mint,
       validatorList: l.validatorList,
       program: l.poolProgram,
@@ -349,12 +361,12 @@ async function main(): Promise<void> {
     validatorSetByMint,
   };
 
-  const lsts = sanctum.lsts.map((s) =>
+  const lsts = allSrc.map((s) =>
     buildLst(s, taxonomy, advertised, overrides, ctx),
   );
 
   // Enrich exit cost via Jupiter (one keyless quote per LST, bounded concurrency).
-  const srcBySymbol = new Map(sanctum.lsts.map((s) => [s.symbol, s]));
+  const srcBySymbol = new Map(allSrc.map((s) => [s.symbol, s]));
   let exitOk = 0;
   await mapLimit(lsts, 3, async (lst) => {
     const src = srcBySymbol.get(lst.symbol);

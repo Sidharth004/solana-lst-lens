@@ -273,6 +273,21 @@ User feedback: on real data advertised==realized (gap 0) and lots of "—". Buil
   fabricate one. The gap shows only where a real marketed number is curated.
   Curating the majors is the way to light up the flagship gap.
 
+### Registry-supplement LSTs (extra-lsts) — rkuSOL
+- New launches lag the `sanctum-lst-list` registry, and extra-api returns
+  `UNSUPPORTED_LST` for them. `data/manual/extra-lsts.json` supplements the roster
+  with `{mint, symbol, name, decimals, [program, validatorList]}`.
+- `sources/extraLsts.ts` sources their data keylessly: exchange rate from a small
+  **Jupiter** quote (1 token → SOL), TVL from on-chain **getTokenSupply** × rate.
+  Deployment (DeFiLlama), exit (Jupiter), realized (our history) then flow
+  normally. `run.ts` merges `allSrc = registry ∪ extra` (dedupe by mint).
+- **rkuSOL** (Raiku Staked SOL, mint `rkubjTrZY…`): first Solana LST with
+  blockspace-auction revenue (launched 2026-06-03). NOT the same as raiSOL
+  (Rakurai). Now shows TVL ~96K SOL, rate 1.007, deployed ~21K SOL, exit 0.16%;
+  realized/decentralization null until history/validator-list are available.
+- Taxonomy: `rkuSOL` = blockspace-yield/Raiku; `raiSOL` = multi-validator/Rakurai
+  (corrected — I'd wrongly merged the two).
+
 ### Feature 4 — multi-validator decentralization via RPC
 - `sources/validatorLists.ts`: reads each multi-validator pool's on-chain
   validator list via `getAccountInfo` (base64) and parses the SPL stake-pool

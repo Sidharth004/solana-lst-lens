@@ -13,11 +13,17 @@
       "auditCount": null,
       "notes": "Sanctum Infinity — a pool of LSTs; yield includes fee-sharing over the underlying basket."
     },
-    "raiSOL": {
+    "rkuSOL": {
       "type": "blockspace-yield",
+      "issuer": "Raiku",
+      "auditCount": null,
+      "notes": "Raiku Staked SOL — first Solana LST with blockspace auction revenue as a yield source (launched 2026-06-03). Not in sanctum-lst-list; supplemented via data/manual/extra-lsts.json. blockspaceApy stays null until quantified — never render a fake number."
+    },
+    "raiSOL": {
+      "type": "multi-validator",
       "issuer": "Rakurai",
       "auditCount": null,
-      "notes": "Rakurai Staked SOL (launched ~mid-2026). Editorial: classified as blockspace-yield given Rakurai's blockspace/MEV focus. blockspaceApy stays null until the marketplace is live — never render a fake number."
+      "notes": "Rakurai Staked SOL — standard multi-validator SPL pool (distinct from Raiku's rkuSOL)."
     }
   }
 }

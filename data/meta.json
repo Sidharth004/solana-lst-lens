@@ -1,12 +1,16 @@
 {
-  "updatedAt": "2026-07-14T22:14:03.462Z",
+  "updatedAt": "2026-07-14T22:26:47.320Z",
   "epoch": null,
-  "lstCount": 75,
+  "lstCount": 76,
   "status": "ok",
   "sources": {
     "sanctum": {
       "ok": true,
       "note": "75/245 LSTs above 1000 SOL TVL"
+    },
+    "extra": {
+      "ok": true,
+      "note": "extra-lsts: 1/1 resolved"
     },
     "stakewiz": {
       "ok": true,
@@ -26,7 +30,7 @@
     },
     "jupiter": {
       "ok": true,
-      "note": "73/75 exit quotes"
+      "note": "74/76 exit quotes"
     }
   }
 }
