@@ -243,6 +243,36 @@ Running log: decisions, rejected approaches, obsolete files, long rationale.
   are the only metrics still null on real data (need an RPC to read pool validator
   lists); everything else runs on live sources today.
 
+## Differentiator pass (2026-07-15)
+
+User feedback: on real data advertised==realized (gap 0) and lots of "—". Built:
+
+### Feature 2 — single-validator decentralization (no RPC)
+- SanctumSpl pools delegate to ONE validator named by the registry `vote_account`
+  (verified real: 38/39 resolve in Stakewiz). Resolve rank/stake/delinquent →
+  grade 39/75 LSTs (correctly F: one validator = maximally concentrated).
+- Schema: `Decentralization.delinquentValidatorCount` + `source` ('single'|'rpc').
+  New "Delinquent validator" risk flag.
+
+### Feature 3 — yield trend + net-after-exit + broadened realized
+- **Realized coverage** was only ~19/75 (DeFiLlama only). Added extra-api
+  `/v1/apy/inception` (annualized since launch, measured from the exchange rate)
+  as a fallback → **32/75** now, self-healing to all 75 as our history accrues.
+- **Basis transparency** (addresses "compare like timeframes"): realized carries
+  `realizedApyBasis` = measured | recent (30d) | lifetime (since launch). The UI
+  marks lifetime cells with a superscript "L" + tooltip so timeframes are never
+  silently mixed. `apy/latest` is dead (returns 0); dropped it.
+- **Yield trend**: DeFiLlama `apyPct30D` → 30d up/down arrow on Realized.
+- **Net take-home**: new "Net" column = realized − exit drag (`netApyAfterExit`).
+  "Best take-home" intent pill replaces the dead "Newest" pill (launchDate null).
+- Dropped the always-empty Holders + Fee columns.
+
+### Advertised / gap — honest position
+- There is NO keyless source for a protocol's *marketed* APY. So `advertisedApy`
+  is now **manual-override only** (`data/manual/advertised-apy.json`) — we never
+  fabricate one. The gap shows only where a real marketed number is curated.
+  Curating the majors is the way to light up the flagship gap.
+
 ## Pivot — keyless public Sanctum data (2026-07-12)
 
 ### Why

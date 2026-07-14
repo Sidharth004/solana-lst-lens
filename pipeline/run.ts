@@ -101,7 +101,7 @@ interface BuildContext {
   defiProtocols: ProtocolDeployment[];
   /** protocol slug -> allowed LST symbols (from manual defi-protocols.json). */
   restrictBySlug: Record<string, string[] | undefined>;
-  /** DeFiLlama bootstrap APYs (UPPERCASE symbol -> percent). */
+  /** DeFiLlama bootstrap APY + 30d trend (UPPERCASE symbol -> info). */
   yields: YieldsResult;
   /** symbol -> exchange-rate history points (excluding today). */
   rateHistoryBySymbol: Map<string, RatePoint[]>;
@@ -200,11 +200,11 @@ function buildLst(
     src.exchangeRate !== null
       ? [...histPts, { date: ctx.todayDate, value: src.exchangeRate }]
       : histPts;
-  const bootstrapApy = ctx.yields.apyBySymbolUpper[src.symbol.toUpperCase()] ?? null;
+  const yieldInfo = ctx.yields.bySymbolUpper[src.symbol.toUpperCase()];
 
-  const { advertisedApy, realizedApy, apyGap } = deriveApy(src, {
+  const { advertisedApy, realizedApy, realizedApyBasis, apyGap } = deriveApy(src, {
     rateSeries,
-    bootstrapApy,
+    recentApy: yieldInfo?.apy ?? null,
     advertisedOverride: advOverride,
   });
 
@@ -256,7 +256,9 @@ function buildLst(
 
     advertisedApy: round(advertisedApy, 3),
     realizedApy: round(realizedApy, 3),
+    realizedApyBasis,
     apyGap: round(apyGap, 3),
+    yieldTrend30d: round(yieldInfo?.trend30d ?? null, 2),
 
     yieldSplit,
     decentralization,
@@ -323,7 +325,7 @@ async function main(): Promise<void> {
   };
   sources.defillamaYields = {
     ok: yields.ok,
-    note: `${Object.keys(yields.apyBySymbolUpper).length} APY bootstraps`,
+    note: `${Object.keys(yields.bySymbolUpper).length} APY bootstraps`,
   };
 
   const restrictBySlug: Record<string, string[] | undefined> = {};

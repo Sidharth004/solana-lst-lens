@@ -48,6 +48,14 @@ export function median(values: number[]): number | null {
   return nums.length % 2 === 0 ? (nums[mid - 1]! + nums[mid]!) / 2 : nums[mid]!;
 }
 
+/** Trend arrow + magnitude for a signed 30d APY change, e.g. "↓ 3.1%". */
+export function fmtTrend(v: number | null | undefined): { text: string; dir: "up" | "down" | "flat" } {
+  if (v === null || v === undefined || !Number.isFinite(v)) return { text: DASH, dir: "flat" };
+  const dir = v > 1 ? "up" : v < -1 ? "down" : "flat";
+  const arrow = dir === "up" ? "↑" : dir === "down" ? "↓" : "→";
+  return { text: `${arrow} ${Math.abs(v).toFixed(1)}%`, dir };
+}
+
 export function fmtDate(iso: string | null | undefined): string {
   if (!iso) return DASH;
   const d = new Date(iso);

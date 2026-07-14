@@ -283,6 +283,33 @@ th.sorted {
   font-weight: 600;
 }
 
+.realized-cell {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.trend {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.trend-up {
+  color: var(--green);
+}
+.trend-down {
+  color: var(--red);
+}
+.trend-flat {
+  color: var(--text-muted);
+}
+.basis-mark {
+  font-size: 8px;
+  color: var(--text-muted);
+  margin-left: 1px;
+  font-weight: 600;
+  cursor: help;
+}
+
 .lst-cell {
   display: flex;
   flex-direction: column;

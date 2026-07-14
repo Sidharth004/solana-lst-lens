@@ -16,9 +16,12 @@ export interface RatePoint {
   value: number; // exchange rate (SOL per token)
 }
 
+export type RealizedBasis = "measured" | "recent" | "lifetime" | null;
+
 export interface ApyResult {
   advertisedApy: number | null;
   realizedApy: number | null;
+  realizedApyBasis: RealizedBasis;
   apyGap: number | null;
 }
 
@@ -48,27 +51,41 @@ export function realizedFromHistory(series: RatePoint[]): number | null {
 export interface DeriveApyContext {
   /** Exchange-rate history for this symbol, INCLUDING today's point. */
   rateSeries: RatePoint[];
-  /** Bootstrap/marketed APY (percent) from DeFiLlama, if any. */
-  bootstrapApy: number | null;
+  /** Recent realized APY (percent) from DeFiLlama, if any. */
+  recentApy: number | null;
   /** Manual advertised override (percent), if any. */
   advertisedOverride: number | null | undefined;
 }
 
 export function deriveApy(lst: NormalizedSanctumLst, ctx: DeriveApyContext): ApyResult {
+  // Realized = our measured trailing yield (best) -> DeFiLlama recent -> since-launch.
+  // Basis is reported so each cell's timeframe is transparent (not silently mixed).
   const measured = realizedFromHistory(ctx.rateSeries);
-  const latest = lst.latestApy; // extra-api (usually null at epoch boundary)
-
-  const realizedApy = measured ?? latest ?? ctx.bootstrapApy ?? null;
-
-  let advertisedApy: number | null;
-  if (ctx.advertisedOverride !== null && ctx.advertisedOverride !== undefined) {
-    advertisedApy = ctx.advertisedOverride;
+  let realizedApy: number | null;
+  let realizedApyBasis: RealizedBasis;
+  if (measured !== null) {
+    realizedApy = measured;
+    realizedApyBasis = "measured";
+  } else if (ctx.recentApy !== null) {
+    realizedApy = ctx.recentApy;
+    realizedApyBasis = "recent";
+  } else if (lst.inceptionApy !== null) {
+    realizedApy = lst.inceptionApy;
+    realizedApyBasis = "lifetime";
   } else {
-    advertisedApy = ctx.bootstrapApy ?? latest ?? null;
+    realizedApy = null;
+    realizedApyBasis = null;
   }
+
+  // Advertised only exists where a human has recorded the marketed number — we
+  // never fabricate one, so the gap shows only where it's real.
+  const advertisedApy =
+    ctx.advertisedOverride !== null && ctx.advertisedOverride !== undefined
+      ? ctx.advertisedOverride
+      : null;
 
   const apyGap =
     advertisedApy !== null && realizedApy !== null ? advertisedApy - realizedApy : null;
 
-  return { advertisedApy, realizedApy, apyGap };
+  return { advertisedApy, realizedApy, realizedApyBasis, apyGap };
 }

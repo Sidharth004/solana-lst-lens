@@ -30,23 +30,36 @@
     "bySymbol": {
       "dfdvSOL": 5.855,
       "JupSOL": 5.698,
+      "iceSOL": 4.602,
+      "pathSOL": 0.615,
       "hyloSOL": 6.121,
+      "proSOL": 7.106,
       "bonkSOL": 5.49,
       "dSOL": 5.667,
+      "compassSOL": 6.972,
       "picoSOL": 5.635,
+      "clockSOL": 8.566,
+      "hubSOL": 7.033,
       "strongSOL": 5.382,
       "lanternSOL": 6.163,
+      "pumpkinSOL": 7.643,
       "hSOL": 5.765,
       "rkSOL": 5.667,
       "bbSOL": 5.33,
+      "cgntSOL": 7.121,
+      "laineSOL": 7.52,
       "vSOL": 5.319,
       "dzSOL": 4.994,
       "bSOL": 5.258,
       "JitoSOL": 4.89,
       "JSOL": 5.396,
+      "LST": 7.24,
+      "edgeSOL": 10.563,
       "BNSOL": 4.867,
       "jagSOL": 4.401,
-      "mSOL": 6.363
+      "INF": 7.687,
+      "stSOL": 4.109,
+      "mSOL": 6.366
     }
   }
 ]

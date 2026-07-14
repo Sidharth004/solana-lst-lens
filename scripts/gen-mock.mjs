@@ -79,7 +79,8 @@ function lst(r) {
   return {
     symbol, mint: `MOCKmint${symbol}`, name, logoUri: null, type, issuer,
     tvlSol, holders, feePct, exchangeRate: rate,
-    advertisedApy: advertised, realizedApy: realized, apyGap: round3(advertised - realized),
+    advertisedApy: advertised, realizedApy: realized, realizedApyBasis: "recent", apyGap: round3(advertised - realized),
+    yieldTrend30d: round3((realized - 7.8) * 4),
     yieldSplit: yieldSplit(realized, feePct),
     decentralization: decentralization(dec),
     deployment: deployment(tvlSol),

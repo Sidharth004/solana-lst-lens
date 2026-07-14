@@ -55,7 +55,7 @@ export interface NormalizedSanctumLst {
   feePct: number | null; // not exposed by public sources -> null
   tvlSol: number | null;
   exchangeRate: number | null; // solValue (SOL per token)
-  latestApy: number | null; // extra-api apy/latest (percent) — often null
+  inceptionApy: number | null; // annualized yield since launch, from exchange rate (percent)
 }
 
 export interface SanctumResult {
@@ -127,10 +127,12 @@ export async function fetchSanctumLsts(): Promise<SanctumResult> {
   }
 
   const symbols = withSymbol.map((l) => l.symbol as string);
-  const [solValues, tvls, apys] = await Promise.all([
+  const [solValues, tvls, inception] = await Promise.all([
     fetchMap("/v1/sol-value/current", "solValues", symbols),
     fetchMap("/v1/tvl/current", "tvls", symbols),
-    fetchMap("/v1/apy/latest", "apys", symbols),
+    // apy/latest returns 0 at the epoch boundary; apy/inception is the annualized
+    // yield since launch, measured from the exchange rate — real and broad.
+    fetchMap("/v1/apy/inception", "apys", symbols),
   ]);
 
   const lsts: NormalizedSanctumLst[] = [];
@@ -139,9 +141,9 @@ export async function fetchSanctumLsts(): Promise<SanctumResult> {
     const tvlSol = lamportsToSol(tvls[symbol]);
     if (tvlSol === null || tvlSol < MIN_TVL_SOL) continue;
 
-    const apyRaw = apys[symbol];
-    const apyNum = apyRaw !== undefined ? Number(apyRaw) : NaN;
-    const latestApy = Number.isFinite(apyNum) && apyNum > 0 ? apyNum * 100 : null;
+    const incRaw = inception[symbol];
+    const incNum = incRaw !== undefined ? Number(incRaw) : NaN;
+    const inceptionApy = Number.isFinite(incNum) && incNum > 0 ? incNum * 100 : null;
 
     lsts.push({
       symbol,
@@ -158,7 +160,7 @@ export async function fetchSanctumLsts(): Promise<SanctumResult> {
       feePct: null,
       tvlSol,
       exchangeRate: lamportsToSol(solValues[symbol]),
-      latestApy,
+      inceptionApy,
     });
   }
 

@@ -6,7 +6,7 @@ import { Fragment, useState } from "react";
 import type { Lst } from "@shared/schema";
 import { LST_TYPE_LABELS } from "@shared/schema";
 import type { SortKey, SortState } from "../lib/sort";
-import { fmtPct, fmtInt, fmtSol } from "../lib/format";
+import { fmtPct, fmtSol, fmtTrend } from "../lib/format";
 import { deriveRiskFlags, highestSeverity, seriesFor, type HistoryData } from "../lib/history";
 import { ApyGap } from "./ApyGap";
 import { YieldBar, YieldLegend } from "./YieldBar";
@@ -24,15 +24,14 @@ const COLUMNS: Column[] = [
   { key: "symbol", label: "LST", align: "left" },
   { key: "type", label: "Type", align: "left" },
   { key: "advertisedApy", label: "Advertised", align: "right", hint: "The APY the protocol markets" },
-  { key: "realizedApy", label: "Realized", align: "right", hint: "APY actually delivered, from the on-chain exchange rate" },
+  { key: "realizedApy", label: "Realized", align: "right", hint: "APY actually delivered, measured from the on-chain exchange rate. Arrow = 30d trend." },
   { key: "apyGap", label: "Gap", align: "right", hint: "Advertised − realized. Amber above 0.5 points." },
+  { key: "netApyAfterExit", label: "Net", align: "right", hint: "Take-home: realized APY minus the exit-cost drag (1000-SOL sample)" },
   { key: "realizedApy", label: "Yield split", align: "left", hint: "Estimated base / MEV / other split (modeled)" },
   { key: "tvlSol", label: "TVL", align: "right" },
   { key: "deployment", label: "Deployed †", align: "right", hint: "LST value sitting in tracked DeFi protocols (in SOL). Double-counting caveat below." },
   { key: "exitCost", label: "Exit", align: "right", hint: "Price impact to swap 1000 SOL-worth out to SOL" },
-  { key: "holders", label: "Holders", align: "right" },
-  { key: "feePct", label: "Fee", align: "right" },
-  { key: "type", label: "Score", align: "right", hint: "Our editorial decentralization index (A–F)" },
+  { key: "decentralization", label: "Score", align: "right", hint: "Our editorial decentralization index (A–F)" },
 ];
 
 interface Props {
@@ -40,6 +39,19 @@ interface Props {
   sort: SortState;
   onSort: (key: SortKey) => void;
   history: HistoryData;
+}
+
+function basisTitle(basis: Lst["realizedApyBasis"]): string {
+  switch (basis) {
+    case "measured":
+      return "Measured from the exchange rate over our accumulated history";
+    case "recent":
+      return "Recent delivered APY (DeFiLlama, ~30d)";
+    case "lifetime":
+      return "Annualized since launch (used when no recent 30d data is available)";
+    default:
+      return "No realized-APY data yet — fills in as daily history accrues";
+  }
 }
 
 function SortIndicator({ active, dir }: { active: boolean; dir: "asc" | "desc" }) {
@@ -129,9 +141,35 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                       <span className={`type-badge type-${lst.type}`}>{LST_TYPE_LABELS[lst.type]}</span>
                     </td>
                     <td className="col-right num">{fmtPct(lst.advertisedApy)}</td>
-                    <td className="col-right num strong">{fmtPct(lst.realizedApy)}</td>
+                    <td className="col-right num strong">
+                      <span className="realized-cell">
+                        <span title={basisTitle(lst.realizedApyBasis)}>
+                          {fmtPct(lst.realizedApy)}
+                          {lst.realizedApyBasis === "lifetime" && (
+                            <sup className="basis-mark" title="Annualized since launch (no recent 30d data yet)">
+                              L
+                            </sup>
+                          )}
+                        </span>
+                        {(() => {
+                          const t = fmtTrend(lst.yieldTrend30d);
+                          return t.dir === "flat" && lst.yieldTrend30d === null ? null : (
+                            <span className={`trend trend-${t.dir}`} title="30-day change in APY">
+                              {t.text}
+                            </span>
+                          );
+                        })()}
+                      </span>
+                    </td>
                     <td className="col-right">
                       <ApyGap gap={lst.apyGap} />
+                    </td>
+                    <td className="col-right num">
+                      {lst.exitCost && lst.exitCost.netApyAfterExit !== null ? (
+                        fmtPct(lst.exitCost.netApyAfterExit)
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
                     </td>
                     <td className="col-left yield-col">
                       <YieldBar lst={lst} />
@@ -147,8 +185,6 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                         <span className="muted">—</span>
                       )}
                     </td>
-                    <td className="col-right num">{fmtInt(lst.holders)}</td>
-                    <td className="col-right num">{fmtPct(lst.feePct)}</td>
                     <td className="col-right">
                       <ScoreBadge grade={lst.decentralization.grade} />
                     </td>

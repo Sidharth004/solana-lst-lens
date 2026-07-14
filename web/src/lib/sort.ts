@@ -15,7 +15,9 @@ export type SortKey =
   | "launchDate"
   | "deployment"
   | "exitCost"
-  | "decentralization";
+  | "decentralization"
+  | "netApyAfterExit"
+  | "yieldTrend30d";
 
 export type SortDir = "asc" | "desc";
 
@@ -36,6 +38,10 @@ function value(lst: Lst, key: SortKey): number | string | null {
       return lst.deployment?.totalDeployed ?? null;
     case "exitCost":
       return lst.exitCost?.priceImpactPct ?? null;
+    case "netApyAfterExit":
+      return lst.exitCost?.netApyAfterExit ?? null;
+    case "yieldTrend30d":
+      return lst.yieldTrend30d;
     case "decentralization": {
       // Grade (A best) as the primary rank, low concentration as the tiebreak.
       const grade = lst.decentralization.grade;
@@ -78,7 +84,7 @@ export function sortLsts(lsts: Lst[], state: SortState): Lst[] {
 
 // --- intent router ----------------------------------------------------------
 
-export type IntentId = "maxYield" | "mostDecentralized" | "cheapestExit" | "newest";
+export type IntentId = "maxYield" | "mostDecentralized" | "cheapestExit" | "bestTakeHome";
 
 export interface Intent {
   id: IntentId;
@@ -115,10 +121,10 @@ export const INTENTS: Intent[] = [
     live: true,
   },
   {
-    id: "newest",
-    label: "Newest yield sources",
-    hint: "Newest LSTs and novel yield types first",
-    sort: { key: "launchDate", dir: "desc" },
+    id: "bestTakeHome",
+    label: "Best take-home",
+    hint: "Highest realized APY after subtracting the exit-cost drag",
+    sort: { key: "netApyAfterExit", dir: "desc" },
     live: true,
   },
 ];

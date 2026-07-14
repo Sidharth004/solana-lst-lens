@@ -80,8 +80,11 @@ export interface Lst {
   exchangeRate: number | null; // solValue
 
   advertisedApy: number | null; // marketed number (manual override or proxy)
-  realizedApy: number | null; // 10-epoch measured (Sanctum avgApy)
+  realizedApy: number | null; // measured delivered yield
+  /** What realizedApy is based on, so the timeframe is transparent per LST. */
+  realizedApyBasis: "measured" | "recent" | "lifetime" | null;
   apyGap: number | null; // advertised - realized
+  yieldTrend30d: number | null; // % change in APY over the last 30d (DeFiLlama apyPct30D)
 
   yieldSplit: YieldSplit; // phase 4
   decentralization: Decentralization; // phase 4
