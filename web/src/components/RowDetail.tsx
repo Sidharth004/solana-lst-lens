@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import type { Lst } from "@shared/schema";
 import { fmtPct, fmtRate, fmtInt, fmtDate, fmtSol } from "../lib/format";
 import { deriveRiskFlags, seriesFor, type HistoryData } from "../lib/history";
+import { lstLinks } from "../lib/links";
 import { YieldBar } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
 import { Sparkline } from "./Sparkline";
@@ -157,6 +158,22 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
         <Field label="Issuer" value={lst.issuer ?? "—"} />
         <Field label="Launched" value={fmtDate(lst.launchDate)} />
         <Field label="Mint" value={<code className="mint">{lst.mint}</code>} />
+        <div className="detail-links">
+          <span className="detail-label">Links</span>
+          <div className="link-row">
+            {lstLinks(lst).map((l) => (
+              <a
+                key={l.label}
+                className="link-pill"
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );
