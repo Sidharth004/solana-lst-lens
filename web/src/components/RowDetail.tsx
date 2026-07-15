@@ -47,7 +47,7 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       <section className="detail-section">
         <h4>Fee &amp; rate</h4>
         <div className="detail-grid">
-          <Field label="Protocol fee" value={fmtPct(lst.feePct)} hint="Manager withhold rate from Sanctum" />
+          <Field label="Protocol fee" value={fmtPct(lst.feePct)} hint="Manager fee as a % of staking rewards, read from the on-chain stake pool account" />
           <Field label="Exchange rate" value={fmtRate(lst.exchangeRate)} hint="LST → SOL (solValue); the basis for realized yield" />
           <Field label="Advertised" value={fmtPct(lst.advertisedApy)} />
           <Field label="Realized" value={fmtPct(lst.realizedApy)} />

@@ -288,6 +288,26 @@ User feedback: on real data advertised==realized (gap 0) and lots of "—". Buil
 - Taxonomy: `rkuSOL` = blockspace-yield/Raiku; `raiSOL` = multi-validator/Rakurai
   (corrected — I'd wrongly merged the two).
 
+### Fee + issuer + realized-window fix (2026-07-16)
+- **Fee (69/76):** `sources/poolAccounts.ts` reads the on-chain SPL StakePool
+  account (getMultipleAccounts, batched) and parses `epoch_fee` (num/den @ offset
+  330/338) → fee as a % of rewards. Covers Spl/SanctumSpl/SanctumSplMulti;
+  Marinade/Lido/SPool + rkuSOL null. Added `poolAddress` to the normalized LST.
+- **Issuer (75/76):** derived from the LST name (`issuerFromName`: strip
+  "…Staked SOL" etc.) with the taxonomy override winning. Fills Binance, Jito,
+  Jupiter, Marinade, Drift, DoubleZero, …
+- **Yield-split fix:** the fee is a % of *rewards* (e.g. 4%), not APY points, and
+  realized is already net of it — so `computeYieldSplit` no longer subtracts it
+  (base = min(networkBase, realized); other = residual).
+- **Realized-window bug:** with only ~4 days of history and per-epoch rate updates
+  (~2.5d), `realizedFromHistory` annualized a near-flat window to ~0% and (as top
+  priority) clobbered the good DeFiLlama APY. Fixed: `MIN_DAYS` 3 → **14** (the
+  plan's ~10-epoch window) + a plausibility band (0.5–30%); until then we keep the
+  reliable recent/lifetime values. Transitions to "measured" once real history spans 14d.
+- **Still missing (data/time-limited, not code):** MEV split (needs per-validator
+  MEV attribution — folded into "Other"); launch date (no clean keyless source);
+  realized-APY charts are sparse until daily history accrues.
+
 ### Feature 4 — multi-validator decentralization via RPC
 - `sources/validatorLists.ts`: reads each multi-validator pool's on-chain
   validator list via `getAccountInfo` (base64) and parses the SPL stake-pool

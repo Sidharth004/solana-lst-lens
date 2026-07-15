@@ -34,17 +34,18 @@ export function computeYieldSplit(inp: YieldSplitInputs): YieldSplit {
     isEstimate: true,
   };
 
-  const { realizedApy, feePct, networkBaseStakingApy } = inp;
+  const { realizedApy, networkBaseStakingApy } = inp;
+  // Note: feePct is the manager fee as a % of REWARDS (e.g. 4%), not APY points,
+  // and realizedApy is already net of it — so it is NOT subtracted here.
   if (realizedApy === null || !Number.isFinite(realizedApy)) return empty;
   if (networkBaseStakingApy === null || !Number.isFinite(networkBaseStakingApy)) {
     // No base rate to model against — leave the whole thing as unattributed.
     return { ...empty, otherApy: round3(Math.max(realizedApy, 0)) };
   }
 
-  const fee = feePct ?? 0;
-  // Base after fee, floored at 0 and capped so parts don't exceed realized.
-  const baseRaw = Math.max(networkBaseStakingApy - fee, 0);
-  const baseStakingApy = Math.min(baseRaw, Math.max(realizedApy, 0));
+  // Base = network inflation staking, capped so parts don't exceed realized.
+  // Other = the residual (MEV + priority fees + fee-sharing).
+  const baseStakingApy = Math.min(Math.max(networkBaseStakingApy, 0), Math.max(realizedApy, 0));
   const otherApy = Math.max(realizedApy - baseStakingApy, 0);
 
   return {

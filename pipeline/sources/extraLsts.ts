@@ -69,6 +69,7 @@ export async function fetchExtraLsts(entries: ExtraLstEntry[]): Promise<ExtraLst
         logoUri: e.logoUri ?? null,
         decimals: e.decimals,
         poolProgram: e.program ?? null,
+        poolAddress: null,
         validatorList: e.validatorList ?? null,
         voteAccount: null,
         holders: null,

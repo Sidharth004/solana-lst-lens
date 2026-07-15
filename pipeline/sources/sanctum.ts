@@ -47,6 +47,7 @@ export interface NormalizedSanctumLst {
   logoUri: string | null;
   decimals: number | null;
   poolProgram: string | null;
+  poolAddress: string | null;
   validatorList: string | null;
   voteAccount: string | null;
   holders: number | null; // not exposed by public sources -> null
@@ -152,6 +153,7 @@ export async function fetchSanctumLsts(): Promise<SanctumResult> {
       logoUri: l.logo_uri ?? null,
       decimals: l.decimals ?? null,
       poolProgram: l.pool?.program ?? null,
+      poolAddress: l.pool?.pool ?? null,
       validatorList: l.pool?.validator_list ?? null,
       voteAccount: l.pool?.vote_account ?? null,
       holders: null,

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T22:26:47.320Z",
+  "updatedAt": "2026-07-15T20:31:02.725Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -27,6 +27,10 @@
     "rpc": {
       "ok": true,
       "note": "33/33 validator lists resolved"
+    },
+    "poolFees": {
+      "ok": true,
+      "note": "69/72 pool fees"
     },
     "jupiter": {
       "ok": true,

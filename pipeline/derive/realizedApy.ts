@@ -25,14 +25,22 @@ export interface ApyResult {
   apyGap: number | null;
 }
 
-const MIN_DAYS = 3; // need a few days of accrual before a rate-measured APY is meaningful
+// Exchange rates only update per-epoch (~2.5 days), so a short window looks flat
+// and annualizes to noise. Require ~2 weeks (several epochs) before trusting a
+// rate-measured APY — matches the plan's "10-epoch" realized. Until then we fall
+// back to DeFiLlama (recent) / inception (lifetime), which are reliable.
+const MIN_DAYS = 14;
+// Plausibility band for a staking-derived APY; outside this it's a stale-rate or
+// bad-data artifact, so we discard it and fall back rather than show nonsense.
+const MIN_PLAUSIBLE_APY = 0.5;
+const MAX_PLAUSIBLE_APY = 30;
 
 function daysBetween(a: string, b: string): number {
   const ms = new Date(b).getTime() - new Date(a).getTime();
   return ms / (1000 * 60 * 60 * 24);
 }
 
-/** Annualize the oldest→newest exchange-rate move. Null if the span is too short. */
+/** Annualize the oldest→newest exchange-rate move. Null if too short/implausible. */
 export function realizedFromHistory(series: RatePoint[]): number | null {
   const pts = series
     .filter((p) => Number.isFinite(p.value) && p.value > 0)
@@ -45,7 +53,10 @@ export function realizedFromHistory(series: RatePoint[]): number | null {
   const growth = last.value / first.value;
   if (!(growth > 0)) return null;
   const apy = (growth ** (365 / days) - 1) * 100;
-  return Number.isFinite(apy) ? apy : null;
+  if (!Number.isFinite(apy) || apy < MIN_PLAUSIBLE_APY || apy > MAX_PLAUSIBLE_APY) {
+    return null;
+  }
+  return apy;
 }
 
 export interface DeriveApyContext {

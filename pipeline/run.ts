@@ -34,6 +34,7 @@ import { fetchStakewizValidators, type StakewizResult } from "./sources/stakewiz
 import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillama.js";
 import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
 import { fetchValidatorSets, type RpcValidator } from "./sources/validatorLists.js";
+import { fetchPoolFees } from "./sources/poolAccounts.js";
 import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
 import { computeYieldSplit } from "./derive/yieldSplit.js";
@@ -111,6 +112,18 @@ interface BuildContext {
   todayDate: string;
   /** mint -> RPC-resolved validator set for multi-validator pools. */
   validatorSetByMint: Map<string, RpcValidator[]>;
+  /** mint -> protocol fee percent (from the on-chain stake pool account). */
+  feeByMint: Map<string, number>;
+}
+
+/** Derive a human issuer from the LST name (e.g. "Jito Staked SOL" -> "Jito"). */
+function issuerFromName(name: string): string | null {
+  const cleaned = name
+    .replace(/\b(liquid staking token|liquid staked|staked|stake|staking)\b/gi, " ")
+    .replace(/\bSOL\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return cleaned.length >= 2 ? cleaned : null;
 }
 
 /** Bounded-concurrency map (gentle on rate limits). */
@@ -207,10 +220,12 @@ function buildLst(
   });
 
   const type = tax?.type ?? typeFromProgram(src.poolProgram);
+  const feePct = ctx.feeByMint.get(src.mint) ?? src.feePct;
+  const issuer = tax?.issuer ?? issuerFromName(src.name);
 
   const yieldSplit = computeYieldSplit({
     realizedApy,
-    feePct: src.feePct,
+    feePct,
     networkBaseStakingApy: ctx.networkBaseStakingApy,
     type,
   });
@@ -245,11 +260,11 @@ function buildLst(
     name: src.name,
     logoUri: src.logoUri,
     type,
-    issuer: tax?.issuer ?? null,
+    issuer,
 
     tvlSol: round(src.tvlSol, 2),
     holders: src.holders,
-    feePct: round(src.feePct, 3),
+    feePct: round(feePct, 3),
     exchangeRate: round(src.exchangeRate, 6),
 
     advertisedApy: round(advertisedApy, 3),
@@ -350,6 +365,12 @@ async function main(): Promise<void> {
   sources.rpc = { ok: validatorLists.ok, note: validatorLists.note };
   const validatorSetByMint = validatorLists.byMint;
 
+  // Read protocol fees from the on-chain stake pool accounts (batched RPC).
+  const poolFees = await fetchPoolFees(
+    allSrc.map((l) => ({ mint: l.mint, poolAddress: l.poolAddress, program: l.poolProgram })),
+  );
+  sources.poolFees = { ok: poolFees.ok, note: poolFees.note };
+
   const ctx: BuildContext = {
     networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,
     stakewiz,
@@ -359,6 +380,7 @@ async function main(): Promise<void> {
     rateHistoryBySymbol,
     todayDate,
     validatorSetByMint,
+    feeByMint: poolFees.feeByMint,
   };
 
   const lsts = allSrc.map((s) =>

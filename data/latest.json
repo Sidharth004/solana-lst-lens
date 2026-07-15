@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T22:26:47.320Z",
+  "updatedAt": "2026-07-15T20:31:02.725Z",
   "epoch": null,
   "lsts": [
     {
@@ -8,10 +8,10 @@
       "name": "Dum Staked SOL",
       "logoUri": "https://arweave.net/TZferu00LMEEmXe9iCHQYu9OGDzw5LmU0leiwP3FQLk",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Dum",
       "tvlSol": 1224358.91,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.027942,
       "advertisedApy": null,
       "realizedApy": null,
@@ -28,7 +28,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 354,
+        "avgValidatorRank": 356,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -37,7 +37,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.161,
+        "priceImpactPct": 0.159,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -49,10 +49,10 @@
       "name": "Orca Staked SOL",
       "logoUri": "https://arweave.net/Qt786Bfm-kZWDwX2tCodPi1rmUyJsd0bGaUI_xaUKIM",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Orca",
       "tvlSol": 1219.52,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.036211,
       "advertisedApy": null,
       "realizedApy": null,
@@ -90,10 +90,10 @@
       "name": "Genesis Toby Staked SOL",
       "logoUri": "https://arweave.net/LfBU6ya0StrlnbnbnN0bDT2MExeiwg2EF9JntU9sxB8",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Genesis Toby",
       "tvlSol": 3362.81,
       "holders": null,
-      "feePct": null,
+      "feePct": 15,
       "exchangeRate": 1.032527,
       "advertisedApy": null,
       "realizedApy": null,
@@ -110,7 +110,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 354,
+        "avgValidatorRank": 356,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -131,10 +131,10 @@
       "name": "Gate Wrapped SOL",
       "logoUri": "https://arweave.net/3h5EhmHcesVLbtqkAkGP3DzxNaW8Zde7RyKEvI4Atm0",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Gate Wrapped",
       "tvlSol": 561803.56,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.039458,
       "advertisedApy": null,
       "realizedApy": null,
@@ -172,10 +172,10 @@
       "name": "GOTM Staked SOL",
       "logoUri": "https://arweave.net/vktdTiO4C8Kd7JXCioFuWxPaGzHTgCGfxAqp8_syHJQ",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "GOTM",
       "tvlSol": 1581.07,
       "holders": null,
-      "feePct": null,
+      "feePct": 27.5,
       "exchangeRate": 1.027368,
       "advertisedApy": null,
       "realizedApy": null,
@@ -192,7 +192,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 158,
+        "avgValidatorRank": 156,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -201,7 +201,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.168,
+        "priceImpactPct": 0.189,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -213,10 +213,10 @@
       "name": "Phantom Staked SOL",
       "logoUri": "https://assets.phantom.app/assets/metadata/PSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Phantom",
       "tvlSol": 1447070.51,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.073631,
       "advertisedApy": null,
       "realizedApy": null,
@@ -233,7 +233,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 588,
+        "avgValidatorRank": 586,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -241,14 +241,14 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 75686.59
+          "Kamino": 76404.22
         },
-        "totalDeployed": 75686.59,
+        "totalDeployed": 76404.22,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.01,
+        "priceImpactPct": 0.013,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -260,10 +260,10 @@
       "name": "MoonPay Staked SOL",
       "logoUri": "https://ih7bjzvm63tikcihhsjs62gsckvvivnp6sqzrcb5ch7aqjvwsycq.arweave.net/Qf4U5qz25oUJBzyTL2jSEqtUVa_0oZiIPRH-CCa2lgU",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "MoonPay",
       "tvlSol": 12780.52,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.055458,
       "advertisedApy": null,
       "realizedApy": null,
@@ -280,7 +280,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 796,
+        "avgValidatorRank": 794,
         "delinquentValidatorCount": 1,
         "grade": "F",
         "isEstimate": true,
@@ -301,10 +301,10 @@
       "name": "Chive Staked SOL",
       "logoUri": "https://arweave.net/AjN_vG5K_Z5Xjm57UmEXOK6nl1XJIW1GnNKmmCh9k1k",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Chive",
       "tvlSol": 1692.9,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.145263,
       "advertisedApy": null,
       "realizedApy": null,
@@ -321,7 +321,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 64,
+        "avgValidatorRank": 62,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -342,10 +342,10 @@
       "name": "MonkeDAO Staked SOL",
       "logoUri": "https://fzu6dgxlin6o6ql72lompima7juck4g5nli44yk4monpkmsnhqua.arweave.net/LmnhmutDfO9Bf9Lcx6GA-mglcN1q0c5hXGOa9TJNPCg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "MonkeDAO",
       "tvlSol": 1615.44,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.066238,
       "advertisedApy": null,
       "realizedApy": null,
@@ -362,7 +362,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 354,
+        "avgValidatorRank": 356,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -383,10 +383,10 @@
       "name": "RockawayX SOL",
       "logoUri": "https://skvhuly6ck4wrxttavfrh4462xjwm55y6f3p3jsko4mfv7dpjk4q.arweave.net/kqp6Lx4SuWjecwVLE_Oe1dNmd7jxdv2mSncYWvxvSrk",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "RockawayX",
       "tvlSol": 16767.35,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.276669,
       "advertisedApy": null,
       "realizedApy": null,
@@ -403,7 +403,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 298,
+        "avgValidatorRank": 297,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -424,10 +424,10 @@
       "name": "Backpack Staked SOL",
       "logoUri": "https://bpsol.s3.us-west-1.amazonaws.com/bpSOL.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Backpack",
       "tvlSol": 52796.87,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.094076,
       "advertisedApy": null,
       "realizedApy": null,
@@ -444,7 +444,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 58,
+        "avgValidatorRank": 57,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -465,10 +465,10 @@
       "name": "BULK Staked SOL",
       "logoUri": "https://arweave.net/rkggtSA6GAA_nDd2-oXgwJIDWiEw0YcJLBz95I4ERek",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "BULK",
       "tvlSol": 127997.54,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.079104,
       "advertisedApy": null,
       "realizedApy": null,
@@ -485,7 +485,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 518,
+        "avgValidatorRank": 514,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -494,7 +494,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.034,
+        "priceImpactPct": 0.041,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -506,10 +506,10 @@
       "name": "inshAllah SOL",
       "logoUri": "https://xuc3mbv42u5h53lqxv3dmanqs7rexotek3jedpy6wb2yjhgadsvq.arweave.net/vQW2BrzVOn7tcL12NgGwl-JLumRW0kG_HrB1hJzAHKs",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "inshAllah",
       "tvlSol": 19735.73,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.091947,
       "advertisedApy": null,
       "realizedApy": null,
@@ -526,7 +526,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 430,
+        "avgValidatorRank": 427,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -547,10 +547,10 @@
       "name": "Staking Facilities Staked SOL",
       "logoUri": "https://qhjltejk67zo6ukqnzawkds5mqox6qudob5ihyy6rjg4fmrvc5oq.arweave.net/gdK5kSr38u9RUG5BZQ5dZB1_QoNweoPjHopNwrI1F10",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Facilities",
       "tvlSol": 22591.35,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.080257,
       "advertisedApy": null,
       "realizedApy": null,
@@ -567,7 +567,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 583,
+        "avgValidatorRank": 581,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -588,10 +588,10 @@
       "name": "honestSOL",
       "logoUri": "https://pbs.twimg.com/profile_images/1888100598412709888/51244Jr1_400x400.jpg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "honestSOL",
       "tvlSol": 1777.4,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.080659,
       "advertisedApy": null,
       "realizedApy": null,
@@ -617,7 +617,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.11,
+        "priceImpactPct": 0.109,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -629,10 +629,10 @@
       "name": "Sanctum Staked SOL",
       "logoUri": "https://solana-validator-website-italo-casas.vercel.app/sanctum.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Sanctum",
       "tvlSol": 1795696.08,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.090763,
       "advertisedApy": null,
       "realizedApy": null,
@@ -649,7 +649,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 354,
+        "avgValidatorRank": 356,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -658,7 +658,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.024,
+        "priceImpactPct": 0.029,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -670,10 +670,10 @@
       "name": "DeFi Development Corp Staked SOL",
       "logoUri": "https://pbs.twimg.com/profile_images/1897064824317861888/I02i5oX3_400x400.jpg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "DeFi Development Corp",
       "tvlSol": 741253.37,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.076215,
       "advertisedApy": null,
       "realizedApy": 5.855,
@@ -690,7 +690,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 539,
+        "avgValidatorRank": 535,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -705,8 +705,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.144,
-        "netApyAfterExit": 5.711
+        "priceImpactPct": 0.149,
+        "netApyAfterExit": 5.706
       },
       "auditCount": null,
       "launchDate": null
@@ -717,10 +717,10 @@
       "name": "Jupiter Staked SOL",
       "logoUri": "https://static.jup.ag/jupSOL/icon.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Jupiter",
       "tvlSol": 5034715.91,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.183945,
       "advertisedApy": null,
       "realizedApy": 5.698,
@@ -737,7 +737,7 @@
       "decentralization": {
         "validatorCount": 4,
         "stakeConcentration": 0.732,
-        "avgValidatorRank": 832,
+        "avgValidatorRank": 830,
         "delinquentValidatorCount": 0,
         "grade": "D",
         "isEstimate": true,
@@ -745,16 +745,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 353553.19,
+          "Kamino": 353587.22,
           "Save": 18600.1
         },
-        "totalDeployed": 372153.29,
+        "totalDeployed": 372187.32,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.01,
-        "netApyAfterExit": 5.688
+        "priceImpactPct": 0.02,
+        "netApyAfterExit": 5.678
       },
       "auditCount": null,
       "launchDate": null
@@ -765,10 +765,10 @@
       "name": "Phase Labs SOL",
       "logoUri": "https://raw.githubusercontent.com/phaselabscrypto/.github/main/profile/public/phaseSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Phase Labs",
       "tvlSol": 8379.78,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.157566,
       "advertisedApy": null,
       "realizedApy": null,
@@ -794,7 +794,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
+        "priceImpactPct": 0,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -806,27 +806,27 @@
       "name": "iceSOL",
       "logoUri": "https://arweave.net/vIJdshKQBC9cE8V190WgRhYqdjb8HhUJAMmP69gvAFI",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "iceSOL",
       "tvlSol": 1568.83,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.104989,
       "advertisedApy": null,
-      "realizedApy": 4.601,
+      "realizedApy": 4.596,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 0.101,
+        "otherApy": 0.096,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 454,
+        "avgValidatorRank": 451,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -836,7 +836,7 @@
       "exitCost": {
         "sampleSizeSol": 1000,
         "priceImpactPct": 0.16,
-        "netApyAfterExit": 4.441
+        "netApyAfterExit": 4.436
       },
       "auditCount": null,
       "launchDate": null
@@ -847,7 +847,7 @@
       "name": "UpRock SOL",
       "logoUri": "https://raw.githubusercontent.com/uprockcom/upt-sol/main/logo.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "UpRock",
       "tvlSol": 2812.83,
       "holders": null,
       "feePct": null,
@@ -867,7 +867,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 580,
+        "avgValidatorRank": 576,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -876,7 +876,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.115,
+        "priceImpactPct": 0.124,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -888,10 +888,10 @@
       "name": "Definity Staked SOL",
       "logoUri": "https://hv4gxzchk24cqfezebn3ujjz6oy2kbtztv5vghn6kpbkjc3vg4rq.arweave.net/n3W2lUNPCJpX9WXjXEl0Tx0hB57BvioKUG8pixx1A4o",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Definity",
       "tvlSol": 263720.26,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.079725,
       "advertisedApy": null,
       "realizedApy": null,
@@ -908,7 +908,7 @@
       "decentralization": {
         "validatorCount": 32,
         "stakeConcentration": 0.054,
-        "avgValidatorRank": 279,
+        "avgValidatorRank": 282,
         "delinquentValidatorCount": 1,
         "grade": "C",
         "isEstimate": true,
@@ -929,18 +929,18 @@
       "name": "Pathfinders SOL",
       "logoUri": "https://raw.githubusercontent.com/igneous-labs/lst-offchain-metadata/master/pathSOL/pathSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Pathfinders",
       "tvlSol": 2287.1,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.013891,
       "advertisedApy": null,
-      "realizedApy": 0.615,
+      "realizedApy": 0.614,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 0.615,
+        "baseStakingApy": 0.614,
         "mevApy": null,
         "otherApy": 0,
         "blockspaceApy": null,
@@ -949,7 +949,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 354,
+        "avgValidatorRank": 356,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -959,7 +959,7 @@
       "exitCost": {
         "sampleSizeSol": 1000,
         "priceImpactPct": 0.16,
-        "netApyAfterExit": 0.455
+        "netApyAfterExit": 0.454
       },
       "auditCount": null,
       "launchDate": null
@@ -970,10 +970,10 @@
       "name": "Portals SOL",
       "logoUri": "https://i.ibb.co/tM2ZBq1X/portals-SOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Portals",
       "tvlSol": 1166.62,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.039445,
       "advertisedApy": null,
       "realizedApy": null,
@@ -990,7 +990,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 447,
+        "avgValidatorRank": 443,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -999,7 +999,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.313,
+        "priceImpactPct": 0.325,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1011,7 +1011,7 @@
       "name": "Hylo SOL Plus",
       "logoUri": "https://i.ibb.co/GfsbDVQK/hylo-SOLPlus.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Hylo Plus",
       "tvlSol": 14818.37,
       "holders": null,
       "feePct": null,
@@ -1031,7 +1031,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 100,
+        "avgValidatorRank": 99,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1040,7 +1040,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.141,
+        "priceImpactPct": 0.162,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1052,10 +1052,10 @@
       "name": "Hylo Staked SOL",
       "logoUri": "https://i.ibb.co/bgScQbGF/hyloSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Hylo",
       "tvlSol": 203260.63,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.051868,
       "advertisedApy": null,
       "realizedApy": 6.121,
@@ -1072,7 +1072,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 100,
+        "avgValidatorRank": 99,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1081,8 +1081,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.073,
-        "netApyAfterExit": 6.048
+        "priceImpactPct": 0.095,
+        "netApyAfterExit": 6.026
       },
       "auditCount": null,
       "launchDate": null
@@ -1093,27 +1093,27 @@
       "name": "ProStaking SOL",
       "logoUri": "https://bafybeigaa3mbr4qe4hgc55e6srfliawtzdebrs3lrieas63dfc4vdyhiii.ipfs.w3s.link/ProStaking-CircleMark-360px.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "ProStaking",
       "tvlSol": 17381.06,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.185469,
       "advertisedApy": null,
-      "realizedApy": 7.105,
+      "realizedApy": 7.098,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.605,
+        "otherApy": 2.598,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 303,
+        "avgValidatorRank": 301,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1123,7 +1123,7 @@
       "exitCost": {
         "sampleSizeSol": 1000,
         "priceImpactPct": 0.16,
-        "netApyAfterExit": 6.945
+        "netApyAfterExit": 6.938
       },
       "auditCount": null,
       "launchDate": null
@@ -1134,10 +1134,10 @@
       "name": "bonkSOL",
       "logoUri": "https://arweave.net/ms-FdIyJ8TxEJOb2SAYhfyrLop7TDrCEjD-I-oIl5u4",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "bonkSOL",
       "tvlSol": 190739.01,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.175801,
       "advertisedApy": null,
       "realizedApy": 5.49,
@@ -1154,7 +1154,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 469,
+        "avgValidatorRank": 467,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1162,16 +1162,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 119929.66,
+          "Kamino": 119929.75,
           "Save": 70.44
         },
-        "totalDeployed": 120000.1,
+        "totalDeployed": 120000.19,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.113,
-        "netApyAfterExit": 5.377
+        "priceImpactPct": 0.122,
+        "netApyAfterExit": 5.368
       },
       "auditCount": null,
       "launchDate": null
@@ -1182,10 +1182,10 @@
       "name": "Drift Staked SOL",
       "logoUri": "https://drift-public.s3.eu-central-1.amazonaws.com/dSOL.svg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Drift",
       "tvlSol": 2785442.91,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.189701,
       "advertisedApy": null,
       "realizedApy": 5.667,
@@ -1202,7 +1202,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 561,
+        "avgValidatorRank": 558,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1217,8 +1217,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.144,
-        "netApyAfterExit": 5.523
+        "priceImpactPct": 0.149,
+        "netApyAfterExit": 5.518
       },
       "auditCount": null,
       "launchDate": null
@@ -1229,27 +1229,27 @@
       "name": "Compass SOL",
       "logoUri": "https://solanacompass.com/compass.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Compass",
       "tvlSol": 3154.34,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.178746,
       "advertisedApy": null,
-      "realizedApy": 6.972,
+      "realizedApy": 6.964,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.472,
+        "otherApy": 2.464,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 213,
+        "avgValidatorRank": 211,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1258,8 +1258,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.162,
-        "netApyAfterExit": 6.81
+        "priceImpactPct": 0.16,
+        "netApyAfterExit": 6.804
       },
       "auditCount": null,
       "launchDate": null
@@ -1270,10 +1270,10 @@
       "name": "picoSOL",
       "logoUri": "https://arweave.net/zR2ZKXpwmG4hMpqhGXlvz-B7PMs34cXxVb2gC1DmlDo",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "picoSOL",
       "tvlSol": 38367.17,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.19559,
       "advertisedApy": null,
       "realizedApy": 5.635,
@@ -1290,7 +1290,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 391,
+        "avgValidatorRank": 389,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1317,20 +1317,20 @@
       "name": "Overclock SOL",
       "logoUri": "https://raw.githubusercontent.com/Overclock-Validator/assets/main/img.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Overclock",
       "tvlSol": 1398.3,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.211477,
       "advertisedApy": null,
-      "realizedApy": 8.565,
+      "realizedApy": 8.555,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 4.065,
+        "otherApy": 4.055,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -1347,7 +1347,7 @@
       "exitCost": {
         "sampleSizeSol": 1000,
         "priceImpactPct": 0.16,
-        "netApyAfterExit": 8.405
+        "netApyAfterExit": 8.395
       },
       "auditCount": null,
       "launchDate": null
@@ -1358,27 +1358,27 @@
       "name": "SolanaHub staked SOL",
       "logoUri": "https://arweave.net/RI0OfNg4Ldn5RRdOp9lE60NqUmweGtJxF5N8JjU_Y0k",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "SolanaHub",
       "tvlSol": 6525.04,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.171934,
       "advertisedApy": null,
-      "realizedApy": 7.032,
+      "realizedApy": 7.024,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.532,
+        "otherApy": 2.524,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 181,
+        "avgValidatorRank": 178,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1387,8 +1387,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.159,
-        "netApyAfterExit": 6.873
+        "priceImpactPct": 0.155,
+        "netApyAfterExit": 6.869
       },
       "auditCount": null,
       "launchDate": null
@@ -1399,10 +1399,10 @@
       "name": "Stronghold LST",
       "logoUri": "https://shdw-drive.genesysgo.net/CqCTE2k6ext17JLE7EFk6pXAznS7m1rLJaN9nHxUAwpc/stronghold.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Stronghold LST",
       "tvlSol": 62974.59,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.177468,
       "advertisedApy": null,
       "realizedApy": 5.382,
@@ -1419,7 +1419,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 158,
+        "avgValidatorRank": 156,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1434,8 +1434,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.074,
-        "netApyAfterExit": 5.308
+        "priceImpactPct": 0.065,
+        "netApyAfterExit": 5.317
       },
       "auditCount": null,
       "launchDate": null
@@ -1446,10 +1446,10 @@
       "name": "Lantern Staked SOL",
       "logoUri": "https://arweave.net/juI8rxciTff6pljaDiXMEq5klSOngQol_8lvyokGGwY",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Lantern",
       "tvlSol": 50029.05,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.21207,
       "advertisedApy": null,
       "realizedApy": 6.163,
@@ -1466,7 +1466,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 164,
+        "avgValidatorRank": 163,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1474,15 +1474,15 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 13449.94
+          "Kamino": 13389.66
         },
-        "totalDeployed": 13449.94,
+        "totalDeployed": 13389.66,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.088,
-        "netApyAfterExit": 6.075
+        "priceImpactPct": 0.055,
+        "netApyAfterExit": 6.108
       },
       "auditCount": null,
       "launchDate": null
@@ -1493,27 +1493,27 @@
       "name": "Pumpkin's Staked SOL",
       "logoUri": "https://raw.githubusercontent.com/bartenbach/pumpkins_pool/main/assets/img/pumpkintoken.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Pumpkin's",
       "tvlSol": 1578.08,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.180262,
       "advertisedApy": null,
-      "realizedApy": 7.642,
+      "realizedApy": 7.633,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 3.142,
+        "otherApy": 3.133,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 153,
+        "avgValidatorRank": 162,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1523,7 +1523,7 @@
       "exitCost": {
         "sampleSizeSol": 1000,
         "priceImpactPct": 0.16,
-        "netApyAfterExit": 7.482
+        "netApyAfterExit": 7.473
       },
       "auditCount": null,
       "launchDate": null
@@ -1534,10 +1534,10 @@
       "name": "Helius Staked SOL",
       "logoUri": "https://raw.githubusercontent.com/igneous-labs/lst-offchain-metadata/master/hSOL/hSOL.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Helius",
       "tvlSol": 642275.55,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.162059,
       "advertisedApy": null,
       "realizedApy": 5.765,
@@ -1554,7 +1554,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 506,
+        "avgValidatorRank": 502,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1562,16 +1562,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 268641.99,
+          "Kamino": 268660.72,
           "Save": 925.29
         },
-        "totalDeployed": 269567.28,
+        "totalDeployed": 269586.01,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.022,
-        "netApyAfterExit": 5.743
+        "priceImpactPct": 0.054,
+        "netApyAfterExit": 5.711
       },
       "auditCount": null,
       "launchDate": null
@@ -1582,10 +1582,10 @@
       "name": "camaoSOL",
       "logoUri": "https://arweave.net/ifjpBZbaiieeDI7hIkVBpwNxaeaJxxYHzRpxJgsosf8",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "camaoSOL",
       "tvlSol": 1635.85,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.19729,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1602,7 +1602,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 260,
+        "avgValidatorRank": 258,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1623,10 +1623,10 @@
       "name": "digitSOL",
       "logoUri": "https://arweave.net/EU5JKGGQEQ3Rwj-LrFJdh7GhSBFoQ4TYvoDnmdZ0FcE",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "digitSOL",
       "tvlSol": 3047.13,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.197428,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1643,7 +1643,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 194,
+        "avgValidatorRank": 192,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1664,10 +1664,10 @@
       "name": "digitalSOL",
       "logoUri": "https://shdw-drive.genesysgo.net/3y9qiDjVtv8xcWsgad8zULmsqg8PLusetN55PdqtLhyr/tokenlogo2.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "digitalSOL",
       "tvlSol": 3274.42,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.213537,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1705,10 +1705,10 @@
       "name": "Dual SOL",
       "logoUri": "https://www.dual.finance/images/token-logos/dualSOL.svg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Dual",
       "tvlSol": 2453.34,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.146273,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1725,7 +1725,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 1405,
+        "avgValidatorRank": 1404,
         "delinquentValidatorCount": 1,
         "grade": "F",
         "isEstimate": true,
@@ -1734,7 +1734,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.168,
+        "priceImpactPct": 0.16,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1746,10 +1746,10 @@
       "name": "Hanabi Staked SOL",
       "logoUri": "https://shdw-drive.genesysgo.net/HjUWneFfxDo1WLdTSi8cngmyZMJHbGqt68iQ1LXJitES/firework_solana_512px.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Hanabi",
       "tvlSol": 65454.8,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.229629,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1766,7 +1766,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 458,
+        "avgValidatorRank": 457,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1781,7 +1781,7 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.162,
+        "priceImpactPct": 0.16,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1793,10 +1793,10 @@
       "name": "StakeHaus Staked SOL",
       "logoUri": "https://uqdeavtqqopuojyfesy44m54bi3lxfp4gqodt2zutdpdeboilnoa.arweave.net/pAZAVnCDn0cnBSSxzjO8Cja7lfw0HDnrNJjeMgXIW1w",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "StakeHaus",
       "tvlSol": 7907.22,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.161392,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1813,7 +1813,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 410,
+        "avgValidatorRank": 436,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1834,10 +1834,10 @@
       "name": "Starke Staked SOL",
       "logoUri": "https://r44mixlzslkraelqcaoex6226bmz4mcglehjauf7r33aqosl7cxa.arweave.net/jzjEXXmS1RARcBAcS_ta8FmeMEZZDpBQv472CDpL-K4",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Starke",
       "tvlSol": 11089.29,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.250859,
       "advertisedApy": null,
       "realizedApy": 5.667,
@@ -1854,7 +1854,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 35,
+        "avgValidatorRank": 33,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1875,10 +1875,10 @@
       "name": "Fuse Staked SOL",
       "logoUri": "https://fusesol.nyc3.digitaloceanspaces.com/fuseSOL.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Fuse",
       "tvlSol": 3081.27,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.142834,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1895,7 +1895,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 154,
+        "avgValidatorRank": 193,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1904,7 +1904,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.168,
+        "priceImpactPct": 0.16,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1916,10 +1916,10 @@
       "name": "Mango SOL",
       "logoUri": "https://mango.markets/images/tokens/mangoSOL.svg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Mango",
       "tvlSol": 20514.84,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.145873,
       "advertisedApy": null,
       "realizedApy": null,
@@ -1945,7 +1945,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.16,
+        "priceImpactPct": 0.171,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1957,10 +1957,10 @@
       "name": "BybitSOL",
       "logoUri": "https://static.bymj.io/web3/staking/bbsol/bbsol2.png",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "BybitSOL",
       "tvlSol": 1157420.65,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.147564,
       "advertisedApy": null,
       "realizedApy": 5.33,
@@ -1977,7 +1977,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 522,
+        "avgValidatorRank": 519,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1993,8 +1993,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.077,
-        "netApyAfterExit": 5.253
+        "priceImpactPct": 0.103,
+        "netApyAfterExit": 5.227
       },
       "auditCount": null,
       "launchDate": null
@@ -2005,10 +2005,10 @@
       "name": "Crypto.com Staked SOL",
       "logoUri": "https://arweave.net/12xEvVVvGFM5n5U6ILXdShlLtUJOT1gUQTlSy8sGybg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Crypto.com",
       "tvlSol": 51422.55,
       "holders": null,
-      "feePct": null,
+      "feePct": 20,
       "exchangeRate": 1.090793,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2025,7 +2025,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 575,
+        "avgValidatorRank": 572,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2052,10 +2052,10 @@
       "name": "Vybe Staked SOL",
       "logoUri": "https://static.vybenetwork.com/VybeSOL.svg",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Vybe",
       "tvlSol": 1460.39,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.088104,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2072,7 +2072,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 401,
+        "avgValidatorRank": 400,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2093,10 +2093,10 @@
       "name": "Paw SOL",
       "logoUri": "https://arweave.net/r3LNyiCfKcVLMnACWF7RcDALpdOkZWG9ERss9dbH5UE",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Paw",
       "tvlSol": 4389.8,
       "holders": null,
-      "feePct": null,
+      "feePct": 2.5,
       "exchangeRate": 1.104805,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2113,7 +2113,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 14,
+        "avgValidatorRank": 13,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2134,10 +2134,10 @@
       "name": "Nansen Staked SOL",
       "logoUri": "https://arweave.net/yIhHVanYDPbqPtBz2dx3Ew8kvY0GWUk9Et3u3ukjgms",
       "type": "single-validator",
-      "issuer": null,
+      "issuer": "Nansen",
       "tvlSol": 22364.05,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.069822,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2163,7 +2163,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.168,
+        "priceImpactPct": 0.16,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2175,27 +2175,27 @@
       "name": "Cogent SOL",
       "logoUri": "https://cogent-cogs.s3.us-west-2.amazonaws.com/cgntSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Cogent",
       "tvlSol": 43030.09,
       "holders": null,
-      "feePct": null,
+      "feePct": 0.04,
       "exchangeRate": 1.271551,
       "advertisedApy": null,
-      "realizedApy": 7.12,
+      "realizedApy": 7.115,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.62,
+        "otherApy": 2.615,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 574,
+        "avgValidatorRank": 564,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2203,15 +2203,15 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 53553.99
+          "Kamino": 53267.41
         },
-        "totalDeployed": 53553.99,
+        "totalDeployed": 53267.41,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
-        "netApyAfterExit": 6.907
+        "priceImpactPct": 0.225,
+        "netApyAfterExit": 6.89
       },
       "auditCount": null,
       "launchDate": null
@@ -2222,27 +2222,27 @@
       "name": "Laine Stake Token",
       "logoUri": "https://vvmbtadq63n53sdsqhlzbnzhvj5tdfp7moqixyv7rgkk6frqhqqq.arweave.net/rVgZgHD2293IcoHXkLcnqnsxlf9joIviv4mUrxYwPCE",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Laine Token",
       "tvlSol": 54936.54,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.310727,
       "advertisedApy": null,
-      "realizedApy": 7.52,
+      "realizedApy": 7.514,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 3.02,
+        "otherApy": 3.014,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 536,
+        "avgValidatorRank": 531,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2251,8 +2251,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
-        "netApyAfterExit": 7.307
+        "priceImpactPct": 0.225,
+        "netApyAfterExit": 7.289
       },
       "auditCount": null,
       "launchDate": null
@@ -2263,10 +2263,10 @@
       "name": "The Vault",
       "logoUri": "https://bafkreig55mf3lazzbgndiqyqvdmchdsykvvebww7cqlws6ywgog5xfdzta.ipfs.nftstorage.link/",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "The Vault",
       "tvlSol": 1289067.36,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.149109,
       "advertisedApy": null,
       "realizedApy": 5.319,
@@ -2283,7 +2283,7 @@
       "decentralization": {
         "validatorCount": 156,
         "stakeConcentration": 0.014,
-        "avgValidatorRank": 247,
+        "avgValidatorRank": 248,
         "delinquentValidatorCount": 1,
         "grade": "B",
         "isEstimate": true,
@@ -2291,15 +2291,15 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 192883.6
+          "Kamino": 192851.38
         },
-        "totalDeployed": 192883.6,
+        "totalDeployed": 192851.38,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.062,
-        "netApyAfterExit": 5.257
+        "priceImpactPct": 0,
+        "netApyAfterExit": 5.319
       },
       "auditCount": null,
       "launchDate": null
@@ -2310,10 +2310,10 @@
       "name": "DoubleZero Staked SOL",
       "logoUri": "https://fn474du36qdxqh6szvejo72imufs4tcnskea73kg4jx53e5rarba.arweave.net/K3n-Dpv0B3gf0s1Il39IZQsuTE2SiA_tRuJv3ZOxBEI",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "DoubleZero",
       "tvlSol": 10241151.67,
       "holders": null,
-      "feePct": null,
+      "feePct": 6,
       "exchangeRate": 1.047532,
       "advertisedApy": null,
       "realizedApy": 4.994,
@@ -2330,7 +2330,7 @@
       "decentralization": {
         "validatorCount": 383,
         "stakeConcentration": 0.014,
-        "avgValidatorRank": 293,
+        "avgValidatorRank": 292,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2339,8 +2339,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.037,
-        "netApyAfterExit": 4.957
+        "priceImpactPct": 0,
+        "netApyAfterExit": 4.994
       },
       "auditCount": null,
       "launchDate": null
@@ -2351,10 +2351,10 @@
       "name": "BlazeStake Staked SOL",
       "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1/logo.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "BlazeStake",
       "tvlSol": 1040139,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.290721,
       "advertisedApy": null,
       "realizedApy": 5.258,
@@ -2371,18 +2371,18 @@
       "decentralization": {
         "validatorCount": 714,
         "stakeConcentration": 0.088,
-        "avgValidatorRank": 408,
-        "delinquentValidatorCount": 41,
+        "avgValidatorRank": 409,
+        "delinquentValidatorCount": 42,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 149209.74,
-          "Save": 223599.38
+          "Kamino": 149469.38,
+          "Save": 223599.7
         },
-        "totalDeployed": 372809.12,
+        "totalDeployed": 373069.08,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
@@ -2402,7 +2402,7 @@
       "issuer": "Jito",
       "tvlSol": 10416036.2,
       "holders": null,
-      "feePct": null,
+      "feePct": 4,
       "exchangeRate": 1.275866,
       "advertisedApy": null,
       "realizedApy": 4.89,
@@ -2419,24 +2419,24 @@
       "decentralization": {
         "validatorCount": 705,
         "stakeConcentration": 0.004,
-        "avgValidatorRank": 422,
-        "delinquentValidatorCount": 7,
+        "avgValidatorRank": 423,
+        "delinquentValidatorCount": 8,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 1077004.77,
-          "Save": 88324.2
+          "Kamino": 1078860.12,
+          "Save": 88325.43
         },
-        "totalDeployed": 1165328.97,
+        "totalDeployed": 1167185.55,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.009,
-        "netApyAfterExit": 4.881
+        "priceImpactPct": 0.004,
+        "netApyAfterExit": 4.886
       },
       "auditCount": null,
       "launchDate": null
@@ -2447,10 +2447,10 @@
       "name": "JPOOL Solana Token",
       "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7Q2afV64in6N6SeZsAAB81TJzwDoD6zpqmHkzi9Dcavn/logo.svg",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "JPOOL Solana Token",
       "tvlSol": 1265897.03,
       "holders": null,
-      "feePct": null,
+      "feePct": 7,
       "exchangeRate": 1.349217,
       "advertisedApy": null,
       "realizedApy": 5.396,
@@ -2475,16 +2475,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 60088.19,
+          "Kamino": 61572.99,
           "Save": 32700.85
         },
-        "totalDeployed": 92789.04,
+        "totalDeployed": 94273.84,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.098,
-        "netApyAfterExit": 5.298
+        "priceImpactPct": 0.121,
+        "netApyAfterExit": 5.275
       },
       "auditCount": null,
       "launchDate": null
@@ -2498,25 +2498,25 @@
       "issuer": null,
       "tvlSol": 107060.63,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.511993,
       "advertisedApy": null,
-      "realizedApy": 7.239,
+      "realizedApy": 7.232,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.739,
+        "otherApy": 2.732,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 2026,
         "stakeConcentration": 0.695,
-        "avgValidatorRank": 789,
-        "delinquentValidatorCount": 491,
+        "avgValidatorRank": 788,
+        "delinquentValidatorCount": 492,
         "grade": "C",
         "isEstimate": true,
         "source": "rpc"
@@ -2524,8 +2524,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.011,
-        "netApyAfterExit": 7.228
+        "priceImpactPct": 0.009,
+        "netApyAfterExit": 7.223
       },
       "auditCount": null,
       "launchDate": null
@@ -2536,20 +2536,20 @@
       "name": "Edgevana Staked SOL",
       "logoUri": "https://srv.edgevana.com/img/edgesol.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Edgevana",
       "tvlSol": 834873.19,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.276092,
       "advertisedApy": null,
-      "realizedApy": 10.562,
+      "realizedApy": 10.55,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 6.062,
+        "otherApy": 6.05,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -2571,8 +2571,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.13,
-        "netApyAfterExit": 10.432
+        "priceImpactPct": 0.141,
+        "netApyAfterExit": 10.409
       },
       "auditCount": null,
       "launchDate": null
@@ -2583,10 +2583,10 @@
       "name": "Enhanced Linkage SOL",
       "logoUri": "https://arweave.net/4q1KEew_Kqymx6rea_b-VeDX337130aPv0omKRAGPHU",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Enhanced Linkage",
       "tvlSol": 10580.51,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.272204,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2603,7 +2603,7 @@
       "decentralization": {
         "validatorCount": 2,
         "stakeConcentration": 1,
-        "avgValidatorRank": 818,
+        "avgValidatorRank": 817,
         "delinquentValidatorCount": 1,
         "grade": "F",
         "isEstimate": true,
@@ -2612,7 +2612,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.168,
+        "priceImpactPct": 0.189,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2624,10 +2624,10 @@
       "name": "aeroSOL",
       "logoUri": "https://raw.githubusercontent.com/phaselabscrypto/.github/main/profile/public/aeroSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "aeroSOL",
       "tvlSol": 1076668.13,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.130343,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2644,7 +2644,7 @@
       "decentralization": {
         "validatorCount": 100,
         "stakeConcentration": 0.011,
-        "avgValidatorRank": 335,
+        "avgValidatorRank": 336,
         "delinquentValidatorCount": 2,
         "grade": "B",
         "isEstimate": true,
@@ -2653,7 +2653,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
+        "priceImpactPct": 0.079,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2665,10 +2665,10 @@
       "name": "Binance Staked SOL",
       "logoUri": "https://arweave.net/LepI-hea-JrbLMb4L_HpMzaq9k0aHY2-lVSGiBtwvFM?ext=png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Binance",
       "tvlSol": 10563531.56,
       "holders": null,
-      "feePct": null,
+      "feePct": 10,
       "exchangeRate": 1.110411,
       "advertisedApy": null,
       "realizedApy": 4.867,
@@ -2685,7 +2685,7 @@
       "decentralization": {
         "validatorCount": 5,
         "stakeConcentration": 0.643,
-        "avgValidatorRank": 356,
+        "avgValidatorRank": 357,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2701,8 +2701,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.166,
-        "netApyAfterExit": 4.701
+        "priceImpactPct": 0.139,
+        "netApyAfterExit": 4.728
       },
       "auditCount": null,
       "launchDate": null
@@ -2713,10 +2713,10 @@
       "name": "Xandeum SOL",
       "logoUri": "https://raw.githubusercontent.com/bernieblume/XAND-meta-2024/main/xandSOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Xandeum",
       "tvlSol": 28076.6,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.111826,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2733,7 +2733,7 @@
       "decentralization": {
         "validatorCount": 4,
         "stakeConcentration": 0.307,
-        "avgValidatorRank": 217,
+        "avgValidatorRank": 216,
         "delinquentValidatorCount": 0,
         "grade": "D",
         "isEstimate": true,
@@ -2742,7 +2742,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.215,
+        "priceImpactPct": 0.225,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2757,7 +2757,7 @@
       "issuer": "Rakurai",
       "tvlSol": 27636,
       "holders": null,
-      "feePct": null,
+      "feePct": 0,
       "exchangeRate": 1.303788,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2774,7 +2774,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 157,
+        "avgValidatorRank": 155,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2783,7 +2783,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
+        "priceImpactPct": 0.225,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2795,18 +2795,18 @@
       "name": "JagPool Staked SOL",
       "logoUri": "https://arweave.net/hsBrk--wCnuMc5fCu6ckQCotTPQy6JJqqzwXa2Euefw",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "JagPool",
       "tvlSol": 760164.62,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.092491,
       "advertisedApy": null,
-      "realizedApy": 4.401,
+      "realizedApy": 4.399,
       "realizedApyBasis": "recent",
       "apyGap": null,
       "yieldTrend30d": -0.08,
       "yieldSplit": {
-        "baseStakingApy": 4.401,
+        "baseStakingApy": 4.399,
         "mevApy": null,
         "otherApy": 0,
         "blockspaceApy": null,
@@ -2815,7 +2815,7 @@
       "decentralization": {
         "validatorCount": 88,
         "stakeConcentration": 0.031,
-        "avgValidatorRank": 304,
+        "avgValidatorRank": 303,
         "delinquentValidatorCount": 1,
         "grade": "B",
         "isEstimate": true,
@@ -2824,8 +2824,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.11,
-        "netApyAfterExit": 4.291
+        "priceImpactPct": 0.225,
+        "netApyAfterExit": 4.174
       },
       "auditCount": null,
       "launchDate": null
@@ -2836,10 +2836,10 @@
       "name": "Shinobi Performance Pool Token",
       "logoUri": "https://xshin.fi/icons/xSHIN_3d.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Shinobi Performance Pool Token",
       "tvlSol": 1104806.64,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.156113,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2856,7 +2856,7 @@
       "decentralization": {
         "validatorCount": 59,
         "stakeConcentration": 0.025,
-        "avgValidatorRank": 265,
+        "avgValidatorRank": 263,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2865,7 +2865,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.04,
+        "priceImpactPct": 0,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2877,10 +2877,10 @@
       "name": "Solayer Stake Pool LP Token",
       "logoUri": "",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Solayer Pool LP Token",
       "tvlSol": 147698.86,
       "holders": null,
-      "feePct": null,
+      "feePct": 7,
       "exchangeRate": 1.148149,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2897,7 +2897,7 @@
       "decentralization": {
         "validatorCount": 3,
         "stakeConcentration": 1,
-        "avgValidatorRank": 634,
+        "avgValidatorRank": 632,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2906,7 +2906,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.193,
+        "priceImpactPct": 0.205,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2918,10 +2918,10 @@
       "name": "TruSOL Token",
       "logoUri": "https://trufin-public-assets.s3.eu-west-2.amazonaws.com/truSOL-logo.svg",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "TruSOL Token",
       "tvlSol": 29675.92,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.574532,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2938,7 +2938,7 @@
       "decentralization": {
         "validatorCount": 4,
         "stakeConcentration": 0.407,
-        "avgValidatorRank": 592,
+        "avgValidatorRank": 613,
         "delinquentValidatorCount": 0,
         "grade": "D",
         "isEstimate": true,
@@ -2955,10 +2955,10 @@
       "name": "dynoSOL",
       "logoUri": "https://ycfcqd4kivi3yuj7dy6djscn2a7mql24ntvvufef7ltbqri5fila.arweave.net/wIooD4pFUbxRPx48NMhN0D7IL1xs61oUhfrmGEUdKhY",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "dynoSOL",
       "tvlSol": 1632700.49,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.054243,
       "advertisedApy": null,
       "realizedApy": null,
@@ -2975,7 +2975,7 @@
       "decentralization": {
         "validatorCount": 74,
         "stakeConcentration": 0.055,
-        "avgValidatorRank": 271,
+        "avgValidatorRank": 275,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2984,7 +2984,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
+        "priceImpactPct": 0.225,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2996,10 +2996,10 @@
       "name": "SharkPool",
       "logoUri": "https://raw.githubusercontent.com/sharkslabs/validator/refs/heads/main/sharkpool.jpg",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "SharkPool",
       "tvlSol": 209430.01,
       "holders": null,
-      "feePct": null,
+      "feePct": 5,
       "exchangeRate": 1.047125,
       "advertisedApy": null,
       "realizedApy": null,
@@ -3016,7 +3016,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 568,
+        "avgValidatorRank": 566,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -3033,7 +3033,7 @@
       "name": "sentinelSOL",
       "logoUri": "https://i.ibb.co/jPS5dYhJ/sentinel-SOL.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "sentinelSOL",
       "tvlSol": 2574.96,
       "holders": null,
       "feePct": null,
@@ -3062,7 +3062,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.213,
+        "priceImpactPct": 0.079,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -3080,14 +3080,14 @@
       "feePct": null,
       "exchangeRate": 1.407837,
       "advertisedApy": null,
-      "realizedApy": 7.687,
+      "realizedApy": 7.678,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 3.187,
+        "otherApy": 3.178,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -3102,16 +3102,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 22027.85,
-          "Save": 925.34
+          "Kamino": 21968.22,
+          "Save": 924.04
         },
-        "totalDeployed": 22953.19,
+        "totalDeployed": 22892.26,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.055,
-        "netApyAfterExit": 7.632
+        "priceImpactPct": 0.086,
+        "netApyAfterExit": 7.592
       },
       "auditCount": null,
       "launchDate": null
@@ -3122,18 +3122,18 @@
       "name": "Lido Staked SOL",
       "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj/logo.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Lido",
       "tvlSol": 50085.66,
       "holders": null,
       "feePct": null,
       "exchangeRate": 1.219142,
       "advertisedApy": null,
-      "realizedApy": 4.108,
+      "realizedApy": 4.106,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 4.108,
+        "baseStakingApy": 4.106,
         "mevApy": null,
         "otherApy": 0,
         "blockspaceApy": null,
@@ -3157,8 +3157,8 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 3.619,
-        "netApyAfterExit": 0.489
+        "priceImpactPct": 3.581,
+        "netApyAfterExit": 0.525
       },
       "auditCount": null,
       "launchDate": null
@@ -3169,20 +3169,20 @@
       "name": "Marinade staked SOL",
       "logoUri": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So/logo.png",
       "type": "multi-validator",
-      "issuer": null,
+      "issuer": "Marinade",
       "tvlSol": 3203038.4,
       "holders": null,
       "feePct": null,
       "exchangeRate": 1.376648,
       "advertisedApy": null,
-      "realizedApy": 6.366,
+      "realizedApy": 4.73,
       "realizedApyBasis": "recent",
       "apyGap": null,
-      "yieldTrend30d": -0.67,
+      "yieldTrend30d": -0.52,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 1.866,
+        "otherApy": 0.23,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -3197,16 +3197,16 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 316527.68,
-          "Save": 269533.73
+          "Kamino": 312687.95,
+          "Save": 269532.33
         },
-        "totalDeployed": 586061.41,
+        "totalDeployed": 582220.28,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.021,
-        "netApyAfterExit": 6.345
+        "priceImpactPct": 0.022,
+        "netApyAfterExit": 4.708
       },
       "auditCount": null,
       "launchDate": null
@@ -3218,7 +3218,7 @@
       "logoUri": "https://arweave.net/0y-faXJ7pArc83FnXv8bNf_0wjloZcTrUBNnbEMJ9Cg",
       "type": "blockspace-yield",
       "issuer": "Raiku",
-      "tvlSol": 96245.61,
+      "tvlSol": 96271.87,
       "holders": null,
       "feePct": null,
       "exchangeRate": 1.00716,
@@ -3252,7 +3252,7 @@
       },
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.16,
+        "priceImpactPct": 0.159,
         "netApyAfterExit": null
       },
       "auditCount": null,
