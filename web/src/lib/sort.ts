@@ -82,6 +82,36 @@ export function sortLsts(lsts: Lst[], state: SortState): Lst[] {
     .map((x) => x.lst);
 }
 
+// --- sort presets (the "Sort by" dropdown) ----------------------------------
+
+export interface SortPreset {
+  id: string;
+  label: string;
+  sort: SortState;
+}
+
+// Direction-aware, human-labelled sorts. Grouping is by intent; every option maps
+// to a (key, dir) the table already understands. Nulls always sink to the bottom.
+export const SORT_PRESETS: SortPreset[] = [
+  { id: "tvl", label: "TVL — largest first", sort: { key: "tvlSol", dir: "desc" } },
+  { id: "realized", label: "Realized APY — highest", sort: { key: "realizedApy", dir: "desc" } },
+  { id: "net", label: "Net take-home APY — highest", sort: { key: "netApyAfterExit", dir: "desc" } },
+  { id: "decent", label: "Decentralization — best grade", sort: { key: "decentralization", dir: "desc" } },
+  { id: "exit", label: "Exit cost — cheapest", sort: { key: "exitCost", dir: "asc" } },
+  { id: "deployed", label: "DeFi deployed — most", sort: { key: "deployment", dir: "desc" } },
+  { id: "trendUp", label: "Yield trend — rising", sort: { key: "yieldTrend30d", dir: "desc" } },
+  { id: "trendDown", label: "Yield trend — declining", sort: { key: "yieldTrend30d", dir: "asc" } },
+  { id: "gap", label: "APY gap — most overstated", sort: { key: "apyGap", dir: "desc" } },
+  { id: "name", label: "Name — A→Z", sort: { key: "symbol", dir: "asc" } },
+];
+
+/** The preset id matching the active sort, or "" when it's a custom header sort. */
+export function presetIdFor(sort: SortState): string {
+  return (
+    SORT_PRESETS.find((p) => p.sort.key === sort.key && p.sort.dir === sort.dir)?.id ?? ""
+  );
+}
+
 // --- intent router ----------------------------------------------------------
 
 export type IntentId = "maxYield" | "mostDecentralized" | "cheapestExit" | "bestTakeHome";

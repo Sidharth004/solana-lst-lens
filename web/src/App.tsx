@@ -2,7 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import type { Dataset } from "@shared/schema";
 import { loadDataset, loadHistory } from "./data";
 import { EMPTY_HISTORY, type HistoryData } from "./lib/history";
-import { sortLsts, type Intent, type SortKey, type SortState } from "./lib/sort";
+import {
+  sortLsts,
+  SORT_PRESETS,
+  presetIdFor,
+  type Intent,
+  type SortKey,
+  type SortState,
+} from "./lib/sort";
 import { fmtDate } from "./lib/format";
 import { MetricCards } from "./components/MetricCards";
 import { IntentRouter } from "./components/IntentRouter";
@@ -90,6 +97,29 @@ export default function App() {
             <MetricCards lsts={dataset.lsts} />
             <div className="controls">
               <IntentRouter activeSort={sort} onPick={handleIntent} />
+              <div className="sort-by">
+                <label className="sort-by-label" htmlFor="sort-select">
+                  Sort by
+                </label>
+                <select
+                  id="sort-select"
+                  className="sort-select"
+                  value={presetIdFor(sort)}
+                  onChange={(e) => {
+                    const preset = SORT_PRESETS.find((p) => p.id === e.target.value);
+                    if (preset) setSort(preset.sort);
+                  }}
+                >
+                  {presetIdFor(sort) === "" && (
+                    <option value="">Custom (column)…</option>
+                  )}
+                  {SORT_PRESETS.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="search">
                 <input
                   type="search"
