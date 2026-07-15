@@ -9,6 +9,7 @@ import { deriveRiskFlags, seriesFor, type HistoryData } from "../lib/history";
 import { YieldBar } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
 import { Sparkline } from "./Sparkline";
+import { InfoTip } from "./InfoTip";
 
 function Field({ label, value, hint }: { label: string; value: ReactNode; hint?: string }) {
   return (
@@ -31,6 +32,7 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       <section className="detail-section">
         <h4>
           Yield split <span className="est-tag">estimate</span>
+          <InfoTip text="Modeled breakdown of the delivered yield into base staking (network inflation, net of fee) vs MEV/other (the residual). Blockspace LSTs show a hollow ‘coming’ segment — we never invent a number." />
         </h4>
         <YieldBar lst={lst} showValue={false} />
         <div className="detail-grid">
@@ -55,6 +57,7 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
         <h4>
           Decentralization <span className="est-tag">our index</span>{" "}
           <ScoreBadge grade={d.grade} />
+          <InfoTip text="How much this LST helps or hurts validator decentralization. We read the pool's on-chain validator set and grade A–F from validator count, stake concentration (Herfindahl), average validator rank, and delinquency. Raw inputs shown so it's auditable." />
         </h4>
         <div className="detail-grid">
           <Field label="Validators" value={fmtInt(d.validatorCount)} hint="Number of validators the pool delegates to" />
@@ -88,7 +91,10 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       </section>
 
       <section className="detail-section">
-        <h4>DeFi deployment &amp; exit</h4>
+        <h4>
+          DeFi deployment &amp; exit
+          <InfoTip text="Where this LST is actually used across DeFi (in SOL), plus the price impact to exit a 1000-SOL position to SOL and your net-after-exit APY. Deployment via DeFiLlama can double-count — treat as an upper bound." />
+        </h4>
         {lst.deployment ? (
           <>
             <div className="detail-grid">
@@ -117,7 +123,10 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       </section>
 
       <section className="detail-section">
-        <h4>History</h4>
+        <h4>
+          History
+          <InfoTip text="Exchange rate and realized APY over time, built from the daily snapshots this project commits to git (git is the time-series database). It deepens every day the pipeline runs." />
+        </h4>
         <div className="spark-row">
           <Sparkline points={rateSeries} label="Exchange rate (SOL)" format={(v) => fmtRate(v)} color="#6366f1" />
           <Sparkline points={apySeries} label="Realized APY" format={(v) => fmtPct(v)} color="#0ea5e9" />
@@ -125,7 +134,10 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       </section>
 
       <section className="detail-section">
-        <h4>Risk flags</h4>
+        <h4>
+          Risk flags
+          <InfoTip text="Automated warnings other dashboards don't compute: overstated APY (advertised ≫ realized), stake concentration, depeg events detected from the exchange-rate history, delinquent validators in the set, and unaudited pools." />
+        </h4>
         {risks.length === 0 ? (
           <p className="detail-note">No risk flags raised.</p>
         ) : (

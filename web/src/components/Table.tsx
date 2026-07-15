@@ -12,26 +12,63 @@ import { ApyGap } from "./ApyGap";
 import { YieldBar, YieldLegend } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
 import { RowDetail } from "./RowDetail";
+import { InfoTip } from "./InfoTip";
 
 interface Column {
   key: SortKey;
   label: string;
   align: "left" | "right";
   hint?: string;
+  /** Rich "what is this / why it's different" tooltip (renders an ⓘ affordance). */
+  tip?: string;
+  tipAlign?: "left" | "right";
 }
 
 const COLUMNS: Column[] = [
   { key: "symbol", label: "LST", align: "left" },
   { key: "type", label: "Type", align: "left" },
-  { key: "advertisedApy", label: "Advertised", align: "right", hint: "The APY the protocol markets" },
-  { key: "realizedApy", label: "Realized", align: "right", hint: "APY actually delivered, measured from the on-chain exchange rate. Arrow = 30d trend." },
+  { key: "advertisedApy", label: "Advertised", align: "right", hint: "The APY the protocol markets (curated)" },
+  {
+    key: "realizedApy",
+    label: "Realized",
+    align: "right",
+    tip: "APY actually delivered — measured from the on-chain exchange rate, not the marketed number. The arrow is the 30-day trend; a small ‘L’ means it's annualized since launch until we have 30d of data.",
+  },
   { key: "apyGap", label: "Gap", align: "right", hint: "Advertised − realized. Amber above 0.5 points." },
-  { key: "netApyAfterExit", label: "Net", align: "right", hint: "Take-home: realized APY minus the exit-cost drag (1000-SOL sample)" },
-  { key: "realizedApy", label: "Yield split", align: "left", hint: "Estimated base / MEV / other split (modeled)" },
+  {
+    key: "netApyAfterExit",
+    label: "Net",
+    align: "right",
+    tip: "Your real take-home: realized APY minus the price impact of swapping back to SOL. Most dashboards show only the headline APY and ignore what it costs to get out.",
+  },
+  {
+    key: "realizedApy",
+    label: "Yield split",
+    align: "left",
+    tip: "Estimated breakdown of the yield into base staking vs MEV/other, with a hollow ‘coming’ segment for blockspace LSTs. A modeled estimate — flagged as such, never a fabricated number.",
+  },
   { key: "tvlSol", label: "TVL", align: "right" },
-  { key: "deployment", label: "Deployed †", align: "right", hint: "LST value sitting in tracked DeFi protocols (in SOL). Double-counting caveat below." },
-  { key: "exitCost", label: "Exit", align: "right", hint: "Price impact to swap 1000 SOL-worth out to SOL" },
-  { key: "decentralization", label: "Score", align: "right", hint: "Our editorial decentralization index (A–F)" },
+  {
+    key: "deployment",
+    label: "Deployed",
+    align: "right",
+    tip: "How much of this LST is deployed across DeFi (Kamino, Save, …), in SOL. Source: DeFiLlama — can double-count, so treat as an upper bound.",
+    tipAlign: "right",
+  },
+  {
+    key: "exitCost",
+    label: "Exit",
+    align: "right",
+    tip: "Price impact to swap a 1000-SOL position out to SOL right now — the liquidity / exit risk other dashboards rarely surface.",
+    tipAlign: "right",
+  },
+  {
+    key: "decentralization",
+    label: "Score",
+    align: "right",
+    tip: "Our A–F decentralization contribution grade. We read each pool's on-chain validator set and weight validator count, stake concentration (Herfindahl), how small the delegated validators are, and delinquency — not just a raw validator count.",
+    tipAlign: "right",
+  },
 ];
 
 interface Props {
@@ -107,6 +144,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                   >
                     <button type="button" className="th-btn" onClick={() => onSort(col.key)} title={col.hint}>
                       <span>{col.label}</span>
+                      {col.tip && <InfoTip text={col.tip} align={col.tipAlign ?? "left"} stop />}
                       <SortIndicator active={active} dir={sort.dir} />
                     </button>
                   </th>

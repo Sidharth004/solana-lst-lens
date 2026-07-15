@@ -3,6 +3,7 @@
 
 import type { Lst } from "@shared/schema";
 import { fmtInt, fmtSol, fmtPct, fmtPctSigned, median } from "../lib/format";
+import { InfoTip } from "./InfoTip";
 
 export function MetricCards({ lsts }: { lsts: Lst[] }) {
   const count = lsts.length;
@@ -20,13 +21,13 @@ export function MetricCards({ lsts }: { lsts: Lst[] }) {
   // decentralization coverage when no marketed numbers are curated yet.
   const third =
     gaps.length > 0
-      ? { label: "Median APY gap", value: fmtPctSigned(medGap), hint: "Median (advertised − realized) where a marketed number is curated" }
-      : { label: "Graded for decentralization", value: `${graded} / ${count}`, hint: "LSTs with a computed decentralization grade" };
+      ? { label: "Median APY gap", value: fmtPctSigned(medGap), tip: "Median of (advertised − realized) across LSTs where a marketed number is curated — how much the typical LST overstates its yield." }
+      : { label: "Graded for decentralization", value: `${graded} / ${count}`, tip: "How many LSTs we've graded by reading their on-chain validator sets — the decentralization contribution score is unique to this dashboard." };
 
-  const cards: { label: string; value: string; hint?: string }[] = [
+  const cards: { label: string; value: string; tip?: string }[] = [
     { label: "Tracked LSTs", value: fmtInt(count) },
     { label: "Total SOL staked", value: fmtSol(totalSol) },
-    { label: "Median realized APY", value: fmtPct(medRealized), hint: "Median measured delivered APY across tracked LSTs" },
+    { label: "Median realized APY", value: fmtPct(medRealized), tip: "Median APY actually delivered (measured from on-chain exchange rates), not the marketed number." },
     third,
   ];
 
@@ -34,8 +35,9 @@ export function MetricCards({ lsts }: { lsts: Lst[] }) {
     <div className="metric-cards">
       {cards.map((c) => (
         <div className="metric-card" key={c.label}>
-          <div className="metric-label" title={c.hint}>
+          <div className="metric-label">
             {c.label}
+            {c.tip && <InfoTip text={c.tip} />}
           </div>
           <div className="metric-value num">{c.value}</div>
         </div>
