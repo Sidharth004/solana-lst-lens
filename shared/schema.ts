@@ -92,7 +92,8 @@ export interface Lst {
   exitCost: ExitCost | null; // phase 5
 
   auditCount: number | null; // manual
-  launchDate: string | null;
+  launchDate: string | null; // first seen on Jupiter (≈ launch for recent LSTs)
+  website: string | null; // project website (from Jupiter token metadata)
 }
 
 export interface Dataset {

@@ -156,7 +156,11 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
       <section className="detail-section detail-meta">
         <Field label="Type" value={lst.type} />
         <Field label="Issuer" value={lst.issuer ?? "—"} />
-        <Field label="Launched" value={fmtDate(lst.launchDate)} />
+        <Field
+          label="First seen"
+          value={fmtDate(lst.launchDate)}
+          hint="First appearance on Jupiter — the launch date for LSTs listed since ~2024; may lag the true launch for older tokens"
+        />
         <Field label="Mint" value={<code className="mint">{lst.mint}</code>} />
         <div className="detail-links">
           <span className="detail-label">Links</span>

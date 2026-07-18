@@ -18,6 +18,8 @@ export interface YieldSplitInputs {
   feePct: number | null;
   /** Network base staking APY (percent), from overrides or a live median. */
   networkBaseStakingApy: number | null;
+  /** Estimated MEV APY (percent) for this LST, carved out of the residual. */
+  mevApy?: number | null;
   type: LstType;
 }
 
@@ -44,13 +46,18 @@ export function computeYieldSplit(inp: YieldSplitInputs): YieldSplit {
   }
 
   // Base = network inflation staking, capped so parts don't exceed realized.
-  // Other = the residual (MEV + priority fees + fee-sharing).
+  // Residual = realized − base (MEV + priority fees + fee-sharing).
   const baseStakingApy = Math.min(Math.max(networkBaseStakingApy, 0), Math.max(realizedApy, 0));
-  const otherApy = Math.max(realizedApy - baseStakingApy, 0);
+  const residual = Math.max(realizedApy - baseStakingApy, 0);
+
+  // Carve the estimated MEV out of the residual; the rest is "other".
+  const mevRaw = inp.mevApy ?? null;
+  const mevApy = mevRaw !== null && mevRaw > 0 ? Math.min(mevRaw, residual) : null;
+  const otherApy = Math.max(residual - (mevApy ?? 0), 0);
 
   return {
     baseStakingApy: round3(baseStakingApy),
-    mevApy: null,
+    mevApy: mevApy !== null ? round3(mevApy) : null,
     otherApy: round3(otherApy),
     blockspaceApy: null,
     isEstimate: true,

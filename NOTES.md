@@ -308,6 +308,23 @@ User feedback: on real data advertised==realized (gap 0) and lots of "—". Buil
   MEV attribution — folded into "Other"); launch date (no clean keyless source);
   realized-APY charts are sparse until daily history accrues.
 
+### MEV estimate + first-seen date + website (2026-07-18)
+- **MEV (27/76):** Jito's per-validator `mev_rewards` are all 0 in the API, so the
+  exact per-validator split isn't possible. Instead `sources/jitoMev.ts` takes the
+  NETWORK rate (`mev_reward_per_lamport` → annualized ≈ 0.089% now) and each LST's
+  **Jito-enabled stake fraction** (its validator set ∩ Kobe `running_jito`,
+  stake-weighted). MEV = networkRate × jitoFraction, carved out of the yield
+  split's residual ("Other"). Labeled estimate. Kobe needs a browser UA; its
+  /validators is wrapped `{validators:[…]}` (not a bare array — that bit me).
+- **First-seen / launch (76/76):** `sources/jupiterMeta.ts` reads Jupiter token
+  metadata (`createdAt` / `firstPool.createdAt`, batched 40 mints/call). This is
+  when the token first appeared on Jupiter — the true launch for LSTs listed since
+  ~2024 (rkuSOL → 2026-05-12 ✓), a lag for older ones (JitoSOL → 2024, not 2022).
+  So the UI labels it **"First seen"**, not "Launched". The plain RPC approach
+  (oldest mint signature) is infeasible — active LST mints have 100k+ signatures.
+- **Website (bonus, 12/76):** same Jupiter call returns `website` → used first in
+  the LST links (falls back to the curated issuer map). Schema `Lst.website` added.
+
 ### Feature 4 — multi-validator decentralization via RPC
 - `sources/validatorLists.ts`: reads each multi-validator pool's on-chain
   validator list via `getAccountInfo` (base64) and parses the SPL stake-pool

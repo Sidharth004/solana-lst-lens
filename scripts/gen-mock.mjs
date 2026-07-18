@@ -85,7 +85,7 @@ function lst(r) {
     decentralization: decentralization(dec),
     deployment: deployment(tvlSol),
     exitCost: exitCost(tvlSol, realized),
-    auditCount: audits, launchDate: launch,
+    auditCount: audits, launchDate: launch, website: null,
   };
 }
 

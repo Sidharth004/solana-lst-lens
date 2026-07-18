@@ -32,7 +32,8 @@ export function lstLinks(lst: Lst): LstLink[] {
     { label: "Jupiter", href: `https://jup.ag/tokens/${lst.mint}` },
     { label: "Explorer", href: `https://explorer.solana.com/address/${lst.mint}` },
   ];
-  const site = lst.issuer ? ISSUER_SITES[lst.issuer.toLowerCase()] : undefined;
-  if (site) links.push({ label: lst.issuer as string, href: site });
+  // Prefer the per-token website from Jupiter; fall back to the curated map.
+  const site = lst.website ?? (lst.issuer ? ISSUER_SITES[lst.issuer.toLowerCase()] : undefined);
+  if (site) links.push({ label: lst.issuer ?? "Website", href: site });
   return links;
 }

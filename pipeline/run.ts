@@ -35,6 +35,8 @@ import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillam
 import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
 import { fetchValidatorSets, type RpcValidator } from "./sources/validatorLists.js";
 import { fetchPoolFees } from "./sources/poolAccounts.js";
+import { fetchJitoMev } from "./sources/jitoMev.js";
+import { fetchJupiterMeta, type JupiterMetaInfo } from "./sources/jupiterMeta.js";
 import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
 import { computeYieldSplit } from "./derive/yieldSplit.js";
@@ -114,6 +116,29 @@ interface BuildContext {
   validatorSetByMint: Map<string, RpcValidator[]>;
   /** mint -> protocol fee percent (from the on-chain stake pool account). */
   feeByMint: Map<string, number>;
+  /** Network MEV APY (percent) + the set of Jito-running vote accounts. */
+  networkMevApy: number | null;
+  jitoVoteAccounts: Set<string>;
+  /** mint -> Jupiter "first seen" date + website. */
+  jupiterMeta: Map<string, JupiterMetaInfo>;
+}
+
+/** Stake-weighted MEV APY for an LST = networkMevApy × its Jito-stake fraction. */
+function estimateMevApy(
+  validators: PoolValidator[] | undefined,
+  networkMevApy: number | null,
+  jitoVoteAccounts: Set<string>,
+): number | null {
+  if (networkMevApy === null || !validators || validators.length === 0) return null;
+  let total = 0;
+  let jito = 0;
+  for (const v of validators) {
+    if (v.activatedStake <= 0) continue;
+    total += v.activatedStake;
+    if (jitoVoteAccounts.has(v.voteIdentity)) jito += v.activatedStake;
+  }
+  if (total <= 0) return null;
+  return networkMevApy * (jito / total);
 }
 
 /** Derive a human issuer from the LST name (e.g. "Jito Staked SOL" -> "Jito"). */
@@ -223,14 +248,21 @@ function buildLst(
   const feePct = ctx.feeByMint.get(src.mint) ?? src.feePct;
   const issuer = tax?.issuer ?? issuerFromName(src.name);
 
+  const resolved = resolvePoolValidators(src, ctx);
+  const mevApy = estimateMevApy(
+    resolved?.validators,
+    ctx.networkMevApy,
+    ctx.jitoVoteAccounts,
+  );
+
   const yieldSplit = computeYieldSplit({
     realizedApy,
     feePct,
     networkBaseStakingApy: ctx.networkBaseStakingApy,
+    mevApy,
     type,
   });
 
-  const resolved = resolvePoolValidators(src, ctx);
   const decentralization = resolved
     ? computeDecentralization({
         validators: resolved.validators,
@@ -279,7 +311,8 @@ function buildLst(
     exitCost: null, // enriched asynchronously after build (Jupiter quote)
 
     auditCount: tax?.auditCount ?? null,
-    launchDate: src.launchDate,
+    launchDate: ctx.jupiterMeta.get(src.mint)?.firstSeen ?? src.launchDate,
+    website: ctx.jupiterMeta.get(src.mint)?.website ?? null,
   };
 
   // Manual overrides.bySymbol wins last (arbitrary partial Lst corrections).
@@ -322,12 +355,13 @@ async function main(): Promise<void> {
 
   const sources: Record<string, SourceStatus> = {};
 
-  const [sanctum, stakewiz, defillama, yields, extra] = await Promise.all([
+  const [sanctum, stakewiz, defillama, yields, extra, jitoMev] = await Promise.all([
     fetchSanctumLsts(),
     fetchStakewizValidators(),
     fetchDefiDeployment(defiConfig.protocols),
     fetchDefiLlamaYields(),
     fetchExtraLsts(extraConfig.lsts),
+    fetchJitoMev(),
   ]);
   sources.sanctum = { ok: sanctum.ok, note: sanctum.note };
   sources.extra = { ok: extra.ok, note: `extra-lsts: ${extra.note}` };
@@ -365,11 +399,16 @@ async function main(): Promise<void> {
   sources.rpc = { ok: validatorLists.ok, note: validatorLists.note };
   const validatorSetByMint = validatorLists.byMint;
 
-  // Read protocol fees from the on-chain stake pool accounts (batched RPC).
-  const poolFees = await fetchPoolFees(
-    allSrc.map((l) => ({ mint: l.mint, poolAddress: l.poolAddress, program: l.poolProgram })),
-  );
+  // Read protocol fees on-chain + Jupiter metadata (first-seen date + website).
+  const [poolFees, jupiterMeta] = await Promise.all([
+    fetchPoolFees(
+      allSrc.map((l) => ({ mint: l.mint, poolAddress: l.poolAddress, program: l.poolProgram })),
+    ),
+    fetchJupiterMeta(allSrc.map((l) => l.mint)),
+  ]);
   sources.poolFees = { ok: poolFees.ok, note: poolFees.note };
+  sources.jitoMev = { ok: jitoMev.ok, note: jitoMev.note };
+  sources.jupiterMeta = { ok: jupiterMeta.ok, note: jupiterMeta.note };
 
   const ctx: BuildContext = {
     networkBaseStakingApy: overrides.networkBaseStakingApy ?? null,
@@ -381,6 +420,9 @@ async function main(): Promise<void> {
     todayDate,
     validatorSetByMint,
     feeByMint: poolFees.feeByMint,
+    networkMevApy: jitoMev.networkMevApy,
+    jitoVoteAccounts: jitoMev.jitoVoteAccounts,
+    jupiterMeta: jupiterMeta.byMint,
   };
 
   const lsts = allSrc.map((s) =>

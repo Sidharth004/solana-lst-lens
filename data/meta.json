@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-15T20:31:02.725Z",
+  "updatedAt": "2026-07-18T17:56:04.239Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,11 +14,11 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "1422 validators"
+      "note": "1425 validators"
     },
     "defillama": {
       "ok": true,
-      "note": "4/4 protocols"
+      "note": "3/4 protocols"
     },
     "defillamaYields": {
       "ok": true,
@@ -31,6 +31,14 @@
     "poolFees": {
       "ok": true,
       "note": "69/72 pool fees"
+    },
+    "jitoMev": {
+      "ok": true,
+      "note": "netMevApy≈0.089%, 677 jito validators"
+    },
+    "jupiterMeta": {
+      "ok": true,
+      "note": "76/76 resolved"
     },
     "jupiter": {
       "ok": true,
