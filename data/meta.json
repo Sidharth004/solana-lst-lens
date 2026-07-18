@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T17:56:04.239Z",
+  "updatedAt": "2026-07-18T18:34:13.306Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -32,9 +32,9 @@
       "ok": true,
       "note": "69/72 pool fees"
     },
-    "jitoMev": {
+    "jitoTips": {
       "ok": true,
-      "note": "netMevApy≈0.089%, 677 jito validators"
+      "note": "165 validators, epochs 1002/1001/1000"
     },
     "jupiterMeta": {
       "ok": true,

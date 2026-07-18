@@ -308,14 +308,24 @@ User feedback: on real data advertised==realized (gap 0) and lots of "—". Buil
   MEV attribution — folded into "Other"); launch date (no clean keyless source);
   realized-APY charts are sparse until daily history accrues.
 
-### MEV estimate + first-seen date + website (2026-07-18)
-- **MEV (27/76):** Jito's per-validator `mev_rewards` are all 0 in the API, so the
-  exact per-validator split isn't possible. Instead `sources/jitoMev.ts` takes the
-  NETWORK rate (`mev_reward_per_lamport` → annualized ≈ 0.089% now) and each LST's
-  **Jito-enabled stake fraction** (its validator set ∩ Kobe `running_jito`,
-  stake-weighted). MEV = networkRate × jitoFraction, carved out of the yield
-  split's residual ("Other"). Labeled estimate. Kobe needs a browser UA; its
-  /validators is wrapped `{validators:[…]}` (not a bare array — that bit me).
+### MEV — TRUE per-validator, on-chain (2026-07-19; supersedes the estimate)
+- Jito's Kobe API only exposes per-validator MEV as 0, but the ground truth is
+  **on-chain**: Jito routes each validator's MEV tips into a **TipDistribution
+  account** (PDA per validator+epoch, program `4R3gSG8B…c2r7`, seed
+  `TIP_DISTRIBUTION_ACCOUNT`). `merkle_root.max_total_claim` = total tips; staker
+  share = ×(1 − commission). `sources/jitoTips.ts` derives the PDA (via
+  @solana/web3.js) for every validator our LSTs use × last 3 finalized epochs,
+  batches getMultipleAccounts, and computes each validator's real MEV APY
+  (tips/epoch ÷ active stake × epochs/yr). run.ts stake-weights them per LST.
+- **Result: genuinely per-LST and varying** — e.g. vSOL 0.131% vs JitoSOL 0.045%
+  vs JupSOL 0.041% (they delegate to different-MEV validators). This is exact, not
+  an estimate — the earlier network-rate×Jito-fraction version (`jitoMev.ts`, now
+  unused) is superseded.
+- **Caveat — RPC throughput:** it's thousands of small account reads. On the
+  public RPC, rate-limiting means partial resolution (heavy pools like JitoSOL get
+  under-counted; ~3 min run). A dedicated `SOLANA_RPC_URL` (free Helius) resolves
+  everything and is fast. `jitoMev.ts` left in place per the no-delete rule.
+  TDA layout offsets: option-tag @72, max_total_claim @105, commission_bps @145.
 - **First-seen / launch (76/76):** `sources/jupiterMeta.ts` reads Jupiter token
   metadata (`createdAt` / `firstPool.createdAt`, batched 40 mints/call). This is
   when the token first appeared on Jupiter — the true launch for LSTs listed since

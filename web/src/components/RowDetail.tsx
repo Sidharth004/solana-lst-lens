@@ -38,7 +38,7 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
         <YieldBar lst={lst} showValue={false} />
         <div className="detail-grid">
           <Field label="Base staking" value={fmtPct(y.baseStakingApy)} hint="Network inflation component, net of the protocol fee" />
-          <Field label="MEV" value={y.mevApy === null ? "—" : fmtPct(y.mevApy)} hint="Not separated at this layer; folded into Other" />
+          <Field label="MEV" value={y.mevApy === null ? "—" : fmtPct(y.mevApy)} hint="Real MEV yield: stake-weighted from Jito's on-chain tip-distribution accounts across this pool's validators (last 3 epochs). Fullest with a dedicated RPC." />
           <Field label="Other" value={fmtPct(y.otherApy)} hint="MEV + fee-sharing + residual" />
           <Field label="Realized total" value={fmtPct(lst.realizedApy)} />
         </div>
