@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T18:34:13.306Z",
+  "updatedAt": "2026-07-23T16:07:21.850Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,15 +14,15 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "1425 validators"
+      "note": "1429 validators"
     },
     "defillama": {
       "ok": true,
-      "note": "3/4 protocols"
+      "note": "4/4 protocols"
     },
     "defillamaYields": {
       "ok": true,
-      "note": "48 APY bootstraps"
+      "note": "47 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -34,7 +34,7 @@
     },
     "jitoTips": {
       "ok": true,
-      "note": "165 validators, epochs 1002/1001/1000"
+      "note": "599 validators, epochs 1004/1003/1002"
     },
     "jupiterMeta": {
       "ok": true,
@@ -42,7 +42,7 @@
     },
     "jupiter": {
       "ok": true,
-      "note": "74/76 exit quotes"
+      "note": "75/76 exit quotes"
     }
   }
 }
