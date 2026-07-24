@@ -36,6 +36,7 @@ import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYiel
 import { fetchValidatorSets, type RpcValidator } from "./sources/validatorLists.js";
 import { fetchPoolFees } from "./sources/poolAccounts.js";
 import { fetchJitoTips } from "./sources/jitoTips.js";
+import { fetchInflationRewards } from "./sources/inflationRewards.js";
 import { fetchJupiterMeta, type JupiterMetaInfo } from "./sources/jupiterMeta.js";
 import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
@@ -118,6 +119,8 @@ interface BuildContext {
   feeByMint: Map<string, number>;
   /** vote account -> real per-validator MEV APY (percent), from Jito tip accounts. */
   mevApyByVote: Map<string, number>;
+  /** vote account -> exact NET base staking APY (percent), from inflation rewards. */
+  baseApyByVote: Map<string, number>;
   /** mint -> Jupiter "first seen" date + website. */
   jupiterMeta: Map<string, JupiterMetaInfo>;
 }
@@ -146,6 +149,30 @@ function estimateMevApy(
   }
   if (total <= 0 || matched === 0) return null;
   return Math.round((weighted / total) * 1000) / 1000;
+}
+
+/**
+ * Exact per-LST base staking APY: stake-weight each validator's measured net base
+ * yield. Unlike MEV, every validator earns base staking, so uncovered validators
+ * are excluded (weight over MATCHED stake) rather than diluting toward zero.
+ */
+function estimateBaseApy(
+  validators: PoolValidator[] | undefined,
+  baseApyByVote: Map<string, number>,
+): number | null {
+  if (!validators || validators.length === 0 || baseApyByVote.size === 0) return null;
+  let weighted = 0;
+  let matchedStake = 0;
+  for (const v of validators) {
+    if (v.activatedStake <= 0) continue;
+    const base = baseApyByVote.get(v.voteIdentity);
+    if (base !== undefined) {
+      weighted += v.activatedStake * base;
+      matchedStake += v.activatedStake;
+    }
+  }
+  if (matchedStake <= 0) return null;
+  return Math.round((weighted / matchedStake) * 1000) / 1000;
 }
 
 /** Derive a human issuer from the LST name (e.g. "Jito Staked SOL" -> "Jito"). */
@@ -257,11 +284,14 @@ function buildLst(
 
   const resolved = resolvePoolValidators(src, ctx);
   const mevApy = estimateMevApy(resolved?.validators, ctx.mevApyByVote);
+  // Exact measured base staking APY for this LST; fall back to the constant only
+  // where the validator set has no inflation-reward coverage.
+  const measuredBaseApy = estimateBaseApy(resolved?.validators, ctx.baseApyByVote);
 
   const yieldSplit = computeYieldSplit({
     realizedApy,
     feePct,
-    networkBaseStakingApy: ctx.networkBaseStakingApy,
+    networkBaseStakingApy: measuredBaseApy ?? ctx.networkBaseStakingApy,
     mevApy,
     type,
   });
@@ -411,16 +441,19 @@ async function main(): Promise<void> {
     if (l.poolProgram === "SanctumSpl" && l.voteAccount) uniqueVotes.add(l.voteAccount);
   }
 
-  // Fees on-chain + Jupiter metadata + real per-validator MEV (Jito tip accounts).
-  const [poolFees, jupiterMeta, jitoTips] = await Promise.all([
+  // Fees on-chain + Jupiter metadata + real per-validator MEV (Jito tips) + exact
+  // per-validator base staking APY (inflation rewards, routed off Alchemy).
+  const [poolFees, jupiterMeta, jitoTips, inflation] = await Promise.all([
     fetchPoolFees(
       allSrc.map((l) => ({ mint: l.mint, poolAddress: l.poolAddress, program: l.poolProgram })),
     ),
     fetchJupiterMeta(allSrc.map((l) => l.mint)),
     fetchJitoTips([...uniqueVotes], stakewiz),
+    fetchInflationRewards([...uniqueVotes], stakewiz),
   ]);
   sources.poolFees = { ok: poolFees.ok, note: poolFees.note };
   sources.jitoTips = { ok: jitoTips.ok, note: jitoTips.note };
+  sources.inflation = { ok: inflation.ok, note: inflation.note };
   sources.jupiterMeta = { ok: jupiterMeta.ok, note: jupiterMeta.note };
 
   const ctx: BuildContext = {
@@ -434,6 +467,7 @@ async function main(): Promise<void> {
     validatorSetByMint,
     feeByMint: poolFees.feeByMint,
     mevApyByVote: jitoTips.mevApyByVote,
+    baseApyByVote: inflation.baseApyByVote,
     jupiterMeta: jupiterMeta.byMint,
   };
 

@@ -1,12 +1,18 @@
 // Yield split: base staking / MEV / other (DEVELOPMENT_PLAN section 6.2).
 //
-// This is a MODELED estimate — isEstimate is always true.
+// Two of the three parts are now measured on-chain, so this is only lightly
+// modeled (isEstimate stays true — the epoch window + `other` residual keep it
+// an estimate, not a guarantee).
 //
-//   baseStakingApy = networkBaseStakingApy - feePct, capped at realizedApy so
-//                    the parts never exceed the whole.
-//   mevApy         = null (per-validator MEV isn't separable at this layer;
-//                    it's folded into `otherApy` as residual).
-//   otherApy       = realizedApy - baseStakingApy  (MEV + fee-sharing + residual).
+//   baseStakingApy = the LST's EXACT inflation-reward base (stake-weighted, net
+//                    of commission; see sources/inflationRewards.ts), capped at
+//                    realizedApy so the parts never exceed the whole. Falls back
+//                    to the overrides constant only where a pool's validator set
+//                    has no coverage.
+//   mevApy         = REAL per-validator MEV, carved out of the residual (see
+//                    sources/jitoTips.ts); null when the set has no Jito tips.
+//   otherApy       = realizedApy - baseStakingApy - mevApy (priority fees +
+//                    fee-sharing + residual).
 //   blockspaceApy  = null for every LST (and null for rkuSOL too until the
 //                    marketplace is live — the UI renders a hollow "coming"
 //                    segment, never a fabricated number).
@@ -16,7 +22,9 @@ import type { LstType, YieldSplit } from "../../shared/schema.js";
 export interface YieldSplitInputs {
   realizedApy: number | null;
   feePct: number | null;
-  /** Network base staking APY (percent), from overrides or a live median. */
+  /** Base staking APY (percent): the LST's EXACT measured inflation-reward base
+   *  where available (stake-weighted, net of commission), else the overrides
+   *  constant as a fallback. */
   networkBaseStakingApy: number | null;
   /** Estimated MEV APY (percent) for this LST, carved out of the residual. */
   mevApy?: number | null;
