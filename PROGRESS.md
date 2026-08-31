@@ -28,11 +28,11 @@
   staking, MEV, commission, and every column this dashboard measures.
 - **Previous session:** exact on-chain base staking APY (replaced the hardcoded
   4.5%), full MEV coverage via Alchemy, and the Vercel deploy.
-- **Operational TODO:** (1) **merge `deploy` → `main` — still the big one**, see the
-  cron caveat below; (2) ~~Read and write permissions~~ **DONE 2026-08-31** (via
-  `gh api -X PUT .../actions/permissions/workflow`); (3) repo secrets
-  `SOLANA_RPC_URL` + `HELIUS_RPC_URL` — done via `gh secret set`; (4) **Vercel
-  auto-deploy is NOT actually working** — see "Deployment" below.
+- **Operational TODO — ALL CLEAR as of 2026-08-31.** (1) ~~merge `deploy` → `main`~~
+  DONE, both branches at `ce449e1`; (2) ~~Actions read/write permission~~ DONE;
+  (3) repo secrets — done; (4) ~~stale prod~~ DONE, deployed manually and verified.
+  The one REMAINING item is **connecting the Vercel project to the GitHub repo** —
+  root cause of the "auto-deploy" myth, see "Deployment" below.
 
 ## How to run / see it locally
 ```
@@ -190,14 +190,19 @@ Benchmarked against the two tools people actually use for this:
   solana-lst-lens` · `vercel.json` at repo root (build `pnpm build:site`, output
   `web/dist`, pnpm install, vite). `.vercel/` is gitignored. Manual redeploy is
   still `vercel --prod` (authed as sidharth004).
-- **Auto-deploy is NOT working** (corrected 2026-08-31). The 2026-07-31 note here
-  claimed it was wired; measurement says otherwise. Two pushes to `main` that day —
-  `464fb0e` (CI fix) and the bot's `4a0fad6` (data) — produced no redeploy: prod
-  still served `updatedAt` 2026-07-24 six minutes later, polled every 30s. Until
-  this is fixed **the daily cron refreshes the repo but not the site**, which is
-  the whole point of the cron. Diagnosing needs the Vercel dashboard or CLI; the
-  local CLI token is EXPIRED (`vercel ls` → "The specified token is not valid"),
-  so step one is `vercel login`.
+- **Auto-deploy is NOT working — ROOT CAUSE FOUND** (2026-08-31). The 2026-07-31
+  note claimed it was wired; it never was. Four pushes to `main`/`deploy` produced
+  no redeploy across ~8 min of 30s polling. `vercel whoami` prints the giveaway:
+  *"To deploy every commit automatically, connect a Git Repository"* — Vercel only
+  says that when the project has **no Git repo connected**. So the Vercel GitHub
+  app still isn't installed on the repo, exactly as `memory` said and PROGRESS
+  denied. **Fix: Vercel dashboard → project → Settings → Git → Connect.**
+- **Consequence while unconnected:** the daily cron refreshes the *repo* but not the
+  *site*. Prod only moves when someone runs `vercel --prod` by hand. This is the
+  last thing standing between the project and being genuinely self-updating.
+- Deployed manually 2026-08-31: `dpl_F3N2wFqUopVpPG1JbbUWdmer6da2`, aliased to the
+  production domain; verified prod serving `updatedAt` 2026-08-31T19:20 with 11/11
+  sources and `nativeStaking` present.
 
 ## Daily data cron (fixed 2026-08-31 — it had NEVER run)
 - `.github/workflows/update-data.yml`, 06:00 UTC, commits only `data/**` back to `main`.
@@ -218,15 +223,15 @@ Benchmarked against the two tools people actually use for this:
   commit `4a0fad6`. Epochs jumped 1007→1023 — 16 epochs of drift, all real data.
 
 ## To finish shipping (operational)
-1. **Merge `deploy` → `main`** (clean fast-forward, 7 commits; `data-refresh-alchemy`
-   is an ancestor so one merge covers both). **This is now urgent, not cosmetic:**
-   the cron is green again and commits to `main` daily, but `main`'s pipeline has no
-   `inflationRewards.ts` at all — so every cron run overwrites `data/` with
-   **fallback 4.5% base staking and no `nativeStaking` baseline**. The exact-base
-   work and the whole native-baseline/compare-tray/charts UI live only on `deploy`.
-2. ~~Workflow permissions~~ **DONE 2026-08-31** — `default_workflow_permissions` is
-   now `write`; verified, and the bot's first push succeeded.
-3. **Fix Vercel auto-deploy** — believed wired, measured broken. See "Deployment".
+Everything below is now DONE except item 1.
+1. **Connect the Vercel project to the GitHub repo** (dashboard → Settings → Git).
+   Until then prod is manual-only: `vercel --prod`. This is the ONLY remaining gap.
+2. ~~Merge `deploy` → `main`~~ **DONE 2026-08-31.** `main` had diverged (the CI fix
+   + the bot's old-pipeline data), so it was a real merge, not a fast-forward: data
+   conflicts resolved in favour of `deploy`, then the pipeline re-run to regenerate
+   `data/` correctly. Both branches now at `ce449e1`.
+3. ~~Workflow permissions~~ **DONE** — `default_workflow_permissions` is `write`.
+4. ~~Stale prod~~ **DONE** — deployed and verified.
 
 ## Gotchas
 - **node/icu4c:** if `node` errors with missing `libicui18n.*.dylib`, `brew reinstall node`.
