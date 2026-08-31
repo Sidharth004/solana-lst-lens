@@ -1,9 +1,12 @@
 # PROGRESS
 
 > Read this first in any new session, then `NOTES.md` for the deeper "why".
+> `GUIDE.md` (LST concepts → mastery, worked from real `data/latest.json`
+> numbers) and `GUIDE-BASICS.md` (the same middle section re-taught slowly,
+> with *Check yourself* exercises) are the reader-facing explainers.
 > `DEVELOPMENT_PLAN.md` is the original spec (now fully executed + extended).
 
-## Current status (2026-07-25)
+## Current status (2026-07-31)
 - **LIVE ON VERCEL:** **https://solana-lst-lens.vercel.app** (production, HTTP 200,
   serving app + data). Repo public at **https://github.com/Sidharth004/solana-lst-lens**.
 - **Runs on 76 real LSTs.** Core data is keyless; two **free RPCs are now configured**
@@ -13,16 +16,23 @@
   marketed." Vite+React white-theme frontend; a `tsx` pipeline that pulls public
   data, commits JSON to `data/` (git = the time-series DB), and a daily GitHub
   Actions cron. Zero recurring cost.
-- **Latest work (this session):** exact on-chain **base staking APY** (replaces the
-  hardcoded 4.5% in the yield split), full MEV coverage via Alchemy, and the Vercel
-  deploy. On branch **`data-refresh-alchemy`** (pushed) + **`deploy`** (pushed, has
-  `vercel.json`). NOT yet merged to `main`.
+- **Latest work (this session):** **native-staking baseline** (measured, in the
+  dataset + metric card + a reference row + per-row "vs native" delta), a
+  **compare tray** (star rows → side-by-side panel, shareable via `#compare=`),
+  **range-toggle history charts** with a hover readout (replacing the sparklines
+  in RowDetail), and table ergonomics (working sticky header, no TVL wrap,
+  relative "updated N ago", dimmed no-data rows + a hide toggle, and a fix for a
+  page-wide horizontal scroll on phones). Benchmarked against Helius's staking
+  table and Helius's Orb explorer — see "Competitive read" below. Also wrote
+  **`GUIDE.md` + `GUIDE-BASICS.md`** (~2.1k lines): a from-zero explainer of
+  staking, MEV, commission, and every column this dashboard measures.
+- **Previous session:** exact on-chain base staking APY (replaced the hardcoded
+  4.5%), full MEV coverage via Alchemy, and the Vercel deploy.
 - **Operational TODO:** (1) merge `data-refresh-alchemy`/`deploy` → `main`; (2) GitHub
   Actions → repo **Read and write permissions** for the cron; (3) add `SOLANA_RPC_URL`
   + `HELIUS_RPC_URL` as **repo secrets** (done via `gh secret set`) so the cron gets
-  full coverage; (4) **connect Vercel↔GitHub** for push-to-deploy — CLI auto-connect
-  FAILED (Vercel GitHub app not installed on the repo); install it in the Vercel
-  dashboard, else redeploy manually with `vercel --prod`.
+  full coverage; (4) ~~connect Vercel↔GitHub~~ **DONE** — the Vercel project is now
+  connected to the GitHub repo, so pushes auto-deploy.
 
 ## How to run / see it locally
 ```
@@ -60,6 +70,23 @@ pnpm build:site          # prod build (prepare-web-data + vite) -> web/dist
 - Gated `sanctum-api.ironforge.network` is NOT used (its key isn't self-serve).
 
 ## Features live (all on real data)
+- **Native-staking baseline** (`dataset.nativeStaking`, built in `run.ts` from
+  `inflationRewards` + `jitoTips`): network gross ~4.40% × (1 − median on-chain
+  validator commission, ~4%) = base ~4.23%, **+ median measured MEV** ~0.09% =
+  **total ~4.32%**. MEV is included on purpose — an LST's realized APY already
+  contains it, so an inflation-only baseline would flatter every LST. Shown as a
+  metric card, a non-ranked reference row at the top of the table, a per-row
+  "+X.XX pts vs native" delta, and a line in RowDetail. 31 of the 33 LSTs with a
+  measured realized APY beat it.
+- **Compare tray**: star up to 4 rows → side-by-side panel over every measured
+  metric, with the better value marked only where better is unambiguous (ties and
+  preferences like type/issuer stay unmarked). Persists to localStorage and to
+  `#compare=A,B,C`, so a comparison is a shareable link (`web/src/lib/hash.ts`
+  merges it with the existing `#lst=` deep link).
+- **History charts** (`components/Chart.tsx`): 30D/90D/1Y/All range toggle, value
+  gridlines, date axis, and a crosshair that reports the value for the day you
+  point at. Replaces the sparklines in RowDetail (`Sparkline.tsx` is retained but
+  now unused, per the no-delete rule).
 - Realized APY (measured; basis-labeled measured/recent/lifetime), **Net take-home**
   (realized − exit drag), **30d yield trend** arrow, Advertised+Gap (manual-curation
   only — columns hidden until curated).
@@ -119,13 +146,39 @@ yield trend + net + broadened realized · `6fca4bf` single-validator decentraliz
 - Deps beyond React/Vite: `smol-toml` (registry), `bs58` (validator votes),
   `@solana/web3.js` (pipeline-only, PDA derivation).
 
+## Competitive read (2026-07-31)
+Benchmarked against the two tools people actually use for this:
+- **helius.dev/staking/rewards** — `Native | LST` toggle; columns are only Rank,
+  Name, Total APY, Commission, Active Stake (Weight), Actions; 57 pages; "last
+  updated 14m ago"; a rewards calculator; FAQ. Their embedded LST records carry
+  just `apy, commission, activeStake, stakeWeight, voteAddress, symbol, website`
+  — thinner than ours on every axis except **freshness**. Their table also
+  renders commission **basis points as percent** ("Figment 700.00%"), which is
+  exactly the class of error this dashboard exists to catch.
+- **orb.helius.dev** (Orb, Helius's explorer; `orbmarkets.io` is the same app and
+  both sit behind a Vercel bot checkpoint — plain fetches 429, headless Chrome
+  gets through). Token pages show price + 24h change, APY, volume, supply,
+  liquidity, market cap, FDV, creator; a price chart with 1H/24H/7D/1M/1Y; tabs
+  Markets/History/Holders/Metadata/Social; a **per-venue markets table** (venue,
+  rate, liquidity, 24h volume/trades/uniques); an AI assistant; FAQ. Orb is
+  market-data-driven, so an LST with little DEX liquidity renders **empty** there
+  (BNSOL — our largest pool by TVL — has no chart, no holders, no market data).
+  Our stake-pool-based view sees it fine.
+- **Where we're still behind:** liquidity/depth (their per-venue market table),
+  and freshness (they're minutes old, we're a daily cron).
+- **Next accuracy step, still not built:** *exit cost at size* — quote 100 / 1k /
+  10k SOL through Jupiter instead of one 1000-SOL nominal quote, turning "Exit"
+  into a real depth/slippage curve. This is the one thing Orb has that we don't,
+  it's keyless, and it was explicitly deferred this session.
+
 ## Known limitations / TODO
 - **Advertised/Gap** = manual only (no keyless marketed-APY source). Curate top LSTs
   in `data/manual/advertised-apy.json` to light up the gap; columns hide until then.
 - **MEV coverage** is now FULL/fast via Alchemy (`SOLANA_RPC_URL`); only partial on
   bare public RPC (rate-limited → heavy pools like JitoSOL under-counted).
-- **Holders** = null (no public source). **3 LSTs ungraded** (Marinade/Lido/SPool use
-  different account layouts). **Launch date** = Jupiter "first seen" (exact for LSTs
+- **Holders** = null (no public source). **4 LSTs ungraded** — INF, stSOL, mSOL,
+  rkuSOL (Marinade/Lido/SPool + rkuSOL use account layouts the validator-set reader
+  doesn't parse; the "3" here previously was wrong, 72/76 graded ⇒ 4 ungraded). **Launch date** = Jupiter "first seen" (exact for LSTs
   listed since ~2024, lags for older). **Realized-APY charts** sparse — deepen as the
   daily cron accrues history (no historical-rate endpoint to backfill).
 - Priority fees (the other chunk of "Other") not separated — possible future dig.
@@ -135,19 +188,18 @@ yield trend + net + broadened realized · `6fca4bf` single-validator decentraliz
 ## Deployment — Vercel (LIVE)
 - **Production:** https://solana-lst-lens.vercel.app · project `sidharth004s-projects/
   solana-lst-lens` · `vercel.json` at repo root (build `pnpm build:site`, output
-  `web/dist`, pnpm install, vite). Deployed via CLI (`vercel --prod`), authed as
-  sidharth004. `.vercel/` is gitignored. Redeploy manually: `vercel --prod`.
-- **Auto-deploy NOT wired:** `vercel link`'s GitHub auto-connect FAILED (Vercel GitHub
-  app not installed on the repo). Install it in the Vercel dashboard (Project →
-  Settings → Git → Connect), or `vercel git connect`, to get push-to-deploy. Until
-  then the live data only updates when you redeploy after the cron commits.
+  `web/dist`, pnpm install, vite). `.vercel/` is gitignored. Manual redeploy is
+  still `vercel --prod` (authed as sidharth004).
+- **Auto-deploy IS wired** (2026-07-31): the Vercel project is connected to the
+  GitHub repo, so pushes — including the daily cron's data commits — redeploy the
+  site on their own.
 
 ## To finish shipping (operational)
 1. Merge `data-refresh-alchemy` + `deploy` → `main`.
 2. GitHub → Settings → Actions → General → Workflow permissions → **Read and write**
    (for the daily cron's commits). Repo secrets `SOLANA_RPC_URL` + `HELIUS_RPC_URL`
    already set via `gh secret set`.
-3. Connect Vercel↔GitHub (above) so cron data commits auto-redeploy the site.
+3. ~~Connect Vercel↔GitHub~~ — done; pushes now auto-deploy.
 
 ## Gotchas
 - **node/icu4c:** if `node` errors with missing `libicui18n.*.dylib`, `brew reinstall node`.
