@@ -23,6 +23,7 @@ import type {
   Lst,
   LstType,
   Meta,
+  NativeStaking,
   Overrides,
   SourceStatus,
   Taxonomy,
@@ -35,8 +36,11 @@ import { fetchDefiDeployment, type ProtocolDeployment } from "./sources/defillam
 import { fetchDefiLlamaYields, type YieldsResult } from "./sources/defillamaYields.js";
 import { fetchValidatorSets, type RpcValidator } from "./sources/validatorLists.js";
 import { fetchPoolFees } from "./sources/poolAccounts.js";
-import { fetchJitoTips } from "./sources/jitoTips.js";
-import { fetchInflationRewards } from "./sources/inflationRewards.js";
+import { fetchJitoTips, type JitoTipsResult } from "./sources/jitoTips.js";
+import {
+  fetchInflationRewards,
+  type InflationRewardsResult,
+} from "./sources/inflationRewards.js";
 import { fetchJupiterMeta, type JupiterMetaInfo } from "./sources/jupiterMeta.js";
 import { quoteExitCost } from "./sources/jupiter.js";
 import { deriveApy, type RatePoint } from "./derive/realizedApy.js";
@@ -97,6 +101,52 @@ function typeFromProgram(program: string | null): LstType {
     default:
       return "other";
   }
+}
+
+function median(values: number[]): number | null {
+  const nums = values.filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+  if (nums.length === 0) return null;
+  const mid = Math.floor(nums.length / 2);
+  return nums.length % 2 === 0 ? (nums[mid - 1]! + nums[mid]!) / 2 : nums[mid]!;
+}
+
+/**
+ * The native-staking reference point: what delegating SOL directly to a typical
+ * validator pays, so every LST row can be read against "just stake it yourself".
+ *
+ * base  = measured network gross x (1 - median on-chain validator commission)
+ * total = base + median measured MEV APY
+ *
+ * MEV is included because an LST's realized APY already contains it — comparing
+ * a realized total against an inflation-only baseline would flatter every LST.
+ * The MEV median comes from the validators we measured Jito tips for, which is
+ * the LST-delegated set; it is a proxy, and the note says so.
+ */
+function buildNativeStaking(
+  inflation: InflationRewardsResult,
+  jitoTips: JitoTipsResult,
+): NativeStaking | null {
+  const gross = inflation.networkGrossApy;
+  if (gross === null) return null;
+
+  const comm = inflation.medianCommissionPct;
+  const netBaseApy = comm === null ? gross : gross * (1 - Math.min(Math.max(comm, 0), 100) / 100);
+  const medianMevApy = median([...jitoTips.mevApyByVote.values()]);
+  const totalApy = netBaseApy + (medianMevApy ?? 0);
+
+  return {
+    grossApy: round(gross, 3),
+    medianCommissionPct: round(comm, 2),
+    netBaseApy: round(netBaseApy, 3),
+    medianMevApy: round(medianMevApy, 3),
+    totalApy: round(totalApy, 3),
+    validatorSample: inflation.commissionSample,
+    note:
+      `Gross ${gross.toFixed(2)}% measured on-chain; median commission ` +
+      `${comm === null ? "n/a" : `${comm.toFixed(1)}%`} over ${inflation.commissionSample ?? 0} ` +
+      `high-stake validators; MEV median over ${jitoTips.mevApyByVote.size} measured validators` +
+      `${medianMevApy === null ? " (none — MEV excluded)" : ""}.`,
+  };
 }
 
 // --- build ------------------------------------------------------------------
@@ -499,7 +549,12 @@ async function main(): Promise<void> {
   const epoch: number | null = null;
   const updatedAt = new Date().toISOString();
 
-  const dataset: Dataset = { updatedAt, epoch, lsts };
+  const dataset: Dataset = {
+    updatedAt,
+    epoch,
+    lsts,
+    nativeStaking: buildNativeStaking(inflation, jitoTips),
+  };
 
   const status: Meta["status"] = sanctum.ok
     ? "ok"

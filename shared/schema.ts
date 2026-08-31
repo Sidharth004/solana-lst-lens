@@ -96,10 +96,33 @@ export interface Lst {
   website: string | null; // project website (from Jupiter token metadata)
 }
 
+/**
+ * The native-staking baseline: what you'd earn delegating SOL directly to a
+ * validator, with no LST in between. It is the honest reference every LST row
+ * should be read against — measured, like everything else here.
+ *
+ * All figures are percent. `grossApy` is the network inflation rate before any
+ * validator commission (recovered on-chain, see sources/inflationRewards.ts);
+ * `netBaseApy` applies the median validator commission; `totalApy` adds the
+ * median measured MEV so it is comparable to an LST's realized APY, which is
+ * already net of both.
+ */
+export interface NativeStaking {
+  grossApy: number | null; // network inflation, before commission
+  medianCommissionPct: number | null; // median on-chain validator commission
+  netBaseApy: number | null; // gross x (1 - median commission)
+  medianMevApy: number | null; // median measured MEV APY across validators
+  totalApy: number | null; // netBaseApy + medianMevApy (comparable to realized)
+  validatorSample: number | null; // validators the medians are drawn from
+  note: string;
+}
+
 export interface Dataset {
   updatedAt: string; // ISO
   epoch: number | null;
   lsts: Lst[];
+  /** Native-staking reference point; null when the on-chain read degraded. */
+  nativeStaking?: NativeStaking | null;
 }
 
 /** Run status + provenance written to data/meta.json each pipeline run. */

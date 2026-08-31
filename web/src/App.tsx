@@ -10,13 +10,36 @@ import {
   type SortKey,
   type SortState,
 } from "./lib/sort";
-import { fmtDate } from "./lib/format";
+import { fmtDate, fmtRelative } from "./lib/format";
+import { getHashParam, setHashParam } from "./lib/hash";
 import { MetricCards } from "./components/MetricCards";
 import { IntentRouter } from "./components/IntentRouter";
 import { Table } from "./components/Table";
+import { CompareTray } from "./components/CompareTray";
 
 // Neutral default: largest pools first. Sort — not a hard-coded pin — decides order.
 const DEFAULT_SORT: SortState = { key: "tvlSol", dir: "desc" };
+
+// Beyond four columns the comparison stops being readable on a laptop.
+const MAX_COMPARE = 4;
+const COMPARE_KEY = "lst-lens:compare";
+
+/**
+ * Pinned symbols come from the URL first so a shared comparison link opens the
+ * comparison the sender saw, and fall back to whatever this browser had pinned.
+ */
+function loadCompare(): string[] {
+  if (typeof window === "undefined") return [];
+  const fromUrl = getHashParam("compare");
+  if (fromUrl) return fromUrl.split(",").filter(Boolean).slice(0, MAX_COMPARE);
+  try {
+    const raw = window.localStorage.getItem(COMPARE_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter((s): s is string => typeof s === "string") : [];
+  } catch {
+    return []; // a corrupt or blocked store just means no pins
+  }
+}
 
 export default function App() {
   const [dataset, setDataset] = useState<Dataset | null>(null);
@@ -24,6 +47,12 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<SortState>(DEFAULT_SORT);
   const [query, setQuery] = useState("");
+  // Rows with no realized APY are still real LSTs, so they stay visible by
+  // default — the toggle is for readers who only want measured rows.
+  const [hideNoData, setHideNoData] = useState(false);
+  const [compare, setCompare] = useState<string[]>(loadCompare);
+  // Captured once, before the effect below rewrites the hash from state.
+  const [sharedCompare] = useState(() => getHashParam("compare") !== null);
 
   useEffect(() => {
     loadDataset()
@@ -32,6 +61,15 @@ export default function App() {
     loadHistory().then(setHistory).catch(() => setHistory(EMPTY_HISTORY));
   }, []);
 
+  useEffect(() => {
+    setHashParam("compare", compare.length > 0 ? compare.join(",") : null);
+    try {
+      window.localStorage.setItem(COMPARE_KEY, JSON.stringify(compare));
+    } catch {
+      /* storage blocked (private mode) — pins just won't survive a reload */
+    }
+  }, [compare]);
+
   const sorted = useMemo(
     () => (dataset ? sortLsts(dataset.lsts, sort) : []),
     [dataset, sort],
@@ -39,14 +77,39 @@ export default function App() {
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return sorted;
-    return sorted.filter(
+    const base = hideNoData ? sorted.filter((l) => l.realizedApy !== null) : sorted;
+    if (!q) return base;
+    return base.filter(
       (l) =>
         l.symbol.toLowerCase().includes(q) ||
         l.name.toLowerCase().includes(q) ||
         (l.issuer ?? "").toLowerCase().includes(q),
     );
-  }, [sorted, query]);
+  }, [sorted, query, hideNoData]);
+
+  const noDataCount = useMemo(
+    () => sorted.filter((l) => l.realizedApy === null).length,
+    [sorted],
+  );
+
+  // Pinned LSTs in pin order, dropping any symbol no longer in the dataset.
+  const compared = useMemo(() => {
+    if (!dataset) return [];
+    const bySymbol = new Map(dataset.lsts.map((l) => [l.symbol, l]));
+    return compare.map((s) => bySymbol.get(s)).filter((l): l is NonNullable<typeof l> => !!l);
+  }, [dataset, compare]);
+
+  const compareSet = useMemo(() => new Set(compare), [compare]);
+
+  function toggleCompare(symbol: string) {
+    setCompare((cur) =>
+      cur.includes(symbol)
+        ? cur.filter((s) => s !== symbol)
+        : cur.length >= MAX_COMPARE
+          ? cur // at the limit: unpin something first rather than silently evicting
+          : [...cur, symbol],
+    );
+  }
 
   function handleSort(key: SortKey) {
     setSort((prev) =>
@@ -72,9 +135,9 @@ export default function App() {
             </p>
           </div>
           {dataset && (
-            <div className="updated">
+            <div className="updated" title={`Last pipeline run: ${fmtDate(dataset.updatedAt)}`}>
               <span className="updated-dot" />
-              Updated {fmtDate(dataset.updatedAt)}
+              Updated {fmtRelative(dataset.updatedAt)}
               {dataset.epoch !== null && <> · epoch {dataset.epoch}</>}
             </div>
           )}
@@ -94,7 +157,7 @@ export default function App() {
 
         {dataset && (
           <>
-            <MetricCards lsts={dataset.lsts} />
+            <MetricCards lsts={dataset.lsts} native={dataset.nativeStaking} />
             <div className="controls">
               <IntentRouter activeSort={sort} onPick={handleIntent} />
               <div className="sort-by">
@@ -135,8 +198,26 @@ export default function App() {
                   </span>
                 )}
               </div>
+              {noDataCount > 0 && (
+                <label className="toggle" title="Hide LSTs we have no measured realized APY for yet">
+                  <input
+                    type="checkbox"
+                    checked={hideNoData}
+                    onChange={(e) => setHideNoData(e.target.checked)}
+                  />
+                  Hide {noDataCount} without yield data
+                </label>
+              )}
             </div>
-            <Table lsts={visible} sort={sort} onSort={handleSort} history={history} />
+            <Table
+              lsts={visible}
+              sort={sort}
+              onSort={handleSort}
+              history={history}
+              native={dataset.nativeStaking}
+              compare={compareSet}
+              onToggleCompare={toggleCompare}
+            />
             <footer className="app-footer">
               <p>
                 Realized APY is measured from each LST’s on-chain exchange rate.
@@ -148,6 +229,17 @@ export default function App() {
           </>
         )}
       </main>
+
+      {dataset && (
+        <CompareTray
+          lsts={compared}
+          native={dataset.nativeStaking}
+          history={history}
+          onRemove={toggleCompare}
+          onClear={() => setCompare([])}
+          defaultOpen={sharedCompare}
+        />
+      )}
     </div>
   );
 }

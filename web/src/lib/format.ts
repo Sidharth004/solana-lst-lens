@@ -56,6 +56,26 @@ export function fmtTrend(v: number | null | undefined): { text: string; dir: "up
   return { text: `${arrow} ${Math.abs(v).toFixed(1)}%`, dir };
 }
 
+/**
+ * Age of a timestamp in plain words ("3 hours ago", "5 days ago"). Staleness is
+ * a fact about the data, so it's shown up front rather than buried in a date
+ * the reader has to subtract from today.
+ */
+export function fmtRelative(iso: string | null | undefined, now = Date.now()): string {
+  if (!iso) return DASH;
+  const t = new Date(iso).getTime();
+  if (Number.isNaN(t)) return DASH;
+  const mins = Math.round((now - t) / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins} min${mins === 1 ? "" : "s"} ago`;
+  const hours = Math.round(mins / 60);
+  if (hours < 24) return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  const days = Math.round(hours / 24);
+  if (days < 30) return `${days} day${days === 1 ? "" : "s"} ago`;
+  const months = Math.round(days / 30);
+  return `${months} month${months === 1 ? "" : "s"} ago`;
+}
+
 export function fmtDate(iso: string | null | undefined): string {
   if (!iso) return DASH;
   const d = new Date(iso);

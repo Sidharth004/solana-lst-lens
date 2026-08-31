@@ -3,10 +3,12 @@
 // Clicking a row expands a detail panel (RowDetail).
 
 import { Fragment, useState } from "react";
-import type { Lst } from "@shared/schema";
+import type { Lst, NativeStaking } from "@shared/schema";
 import { LST_TYPE_LABELS } from "@shared/schema";
 import type { SortKey, SortState } from "../lib/sort";
 import { fmtPct, fmtSol, fmtTrend } from "../lib/format";
+import { fmtPoints, nativeTip, vsNative } from "../lib/native";
+import { getHashParam, setHashParam } from "../lib/hash";
 import { deriveRiskFlags, highestSeverity, seriesFor, type HistoryData } from "../lib/history";
 import { ApyGap } from "./ApyGap";
 import { YieldBar, YieldLegend } from "./YieldBar";
@@ -76,6 +78,70 @@ interface Props {
   sort: SortState;
   onSort: (key: SortKey) => void;
   history: HistoryData;
+  /** Native-staking reference point, rendered as a non-ranked baseline row. */
+  native?: NativeStaking | null;
+  /** Symbols currently pinned to the compare tray. */
+  compare: ReadonlySet<string>;
+  onToggleCompare: (symbol: string) => void;
+}
+
+/**
+ * The native-staking baseline as a table row. It is a reference, not a ranked
+ * entry: it never moves with the sort and is styled apart from the data rows,
+ * so "no token is ever pinned" still holds — nothing here is an LST.
+ */
+function NativeRow({ native, columns }: { native: NativeStaking; columns: Column[] }) {
+  return (
+    <tr className="native-row" title={nativeTip(native)}>
+      {columns.map((col, i) => {
+        const key = `${col.key}-${i}`;
+        switch (col.label) {
+          case "LST":
+            return (
+              <td key={key} className="col-left">
+                <div className="lst-cell">
+                  <span className="lst-symbol">Native staking</span>
+                  <span className="lst-name">Delegate SOL directly — no LST</span>
+                </div>
+              </td>
+            );
+          case "Type":
+            return (
+              <td key={key} className="col-left">
+                <span className="type-badge type-reference">Baseline</span>
+              </td>
+            );
+          case "Realized":
+            return (
+              <td key={key} className="col-right num strong">
+                {fmtPct(native.totalApy)}
+              </td>
+            );
+          case "Net":
+            // Native staking has no swap out of a token, so nothing is lost to
+            // exit price impact (the cost is the unstake delay, not slippage).
+            return (
+              <td key={key} className="col-right num">
+                {fmtPct(native.totalApy)}
+              </td>
+            );
+          case "Yield split":
+            return (
+              <td key={key} className="col-left native-split">
+                {fmtPct(native.netBaseApy)} base
+                {native.medianMevApy !== null && <> + {fmtPct(native.medianMevApy)} MEV</>}
+              </td>
+            );
+          default:
+            return (
+              <td key={key} className={`col-${col.align}`}>
+                <span className="muted">—</span>
+              </td>
+            );
+        }
+      })}
+    </tr>
+  );
 }
 
 function basisTitle(basis: Lst["realizedApyBasis"]): string {
@@ -100,12 +166,18 @@ function SortIndicator({ active, dir }: { active: boolean; dir: "asc" | "desc" }
 }
 
 function initialExpanded(): string | null {
-  if (typeof window === "undefined") return null;
-  const m = /(?:^|#|&)lst=([^&]+)/.exec(window.location.hash);
-  return m?.[1] ? decodeURIComponent(m[1]) : null;
+  return getHashParam("lst");
 }
 
-export function Table({ lsts, sort, onSort, history }: Props) {
+export function Table({
+  lsts,
+  sort,
+  onSort,
+  history,
+  native,
+  compare,
+  onToggleCompare,
+}: Props) {
   // The Yield-split and Score columns aren't independently sortable; they share
   // a sort key with a numeric column but render custom cells.
   // Expansion is keyed by symbol so a row is deep-linkable via #lst=SYMBOL.
@@ -121,9 +193,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
   function toggle(symbol: string) {
     setExpanded((cur) => {
       const next = cur === symbol ? null : symbol;
-      if (typeof window !== "undefined") {
-        window.history.replaceState(null, "", next ? `#lst=${encodeURIComponent(next)}` : " ");
-      }
+      setHashParam("lst", next);
       return next;
     });
   }
@@ -153,15 +223,20 @@ export function Table({ lsts, sort, onSort, history }: Props) {
             </tr>
           </thead>
           <tbody>
+            {native?.totalApy != null && <NativeRow native={native} columns={columns} />}
             {lsts.map((lst) => {
               const isOpen = expanded === lst.symbol;
               const risk = highestSeverity(
                 deriveRiskFlags(lst, seriesFor(history.exchangeRates, lst.symbol)),
               );
+              const delta = vsNative(lst, native);
+              const pinned = compare.has(lst.symbol);
               return (
                 <Fragment key={lst.mint}>
                   <tr
-                    className={`data-row${isOpen ? " open" : ""}`}
+                    className={`data-row${isOpen ? " open" : ""}${
+                      lst.realizedApy === null ? " no-data" : ""
+                    }`}
                     onClick={() => toggle(lst.symbol)}
                     aria-expanded={isOpen}
                   >
@@ -178,6 +253,18 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                               ⚠
                             </span>
                           )}
+                          <button
+                            type="button"
+                            className={`pin-btn${pinned ? " pinned" : ""}`}
+                            aria-pressed={pinned}
+                            title={pinned ? "Remove from comparison" : "Add to comparison"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onToggleCompare(lst.symbol);
+                            }}
+                          >
+                            {pinned ? "★" : "☆"}
+                          </button>
                         </span>
                         <span className="lst-name">{lst.name}</span>
                       </div>
@@ -207,6 +294,16 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                           );
                         })()}
                       </span>
+                      {delta !== null && (
+                        <span
+                          className={`vs-native ${delta >= 0 ? "vs-up" : "vs-down"}`}
+                          title={`This LST delivers ${fmtPoints(delta)} ${
+                            delta >= 0 ? "more" : "less"
+                          } than staking SOL natively (${fmtPct(native?.totalApy)}).`}
+                        >
+                          {fmtPoints(delta)} vs native
+                        </span>
+                      )}
                     </td>
                     {showAdvertised && (
                       <td className="col-right">
@@ -241,7 +338,7 @@ export function Table({ lsts, sort, onSort, history }: Props) {
                   {isOpen && (
                     <tr className="detail-row">
                       <td colSpan={columns.length}>
-                        <RowDetail lst={lst} history={history} />
+                        <RowDetail lst={lst} history={history} native={native} />
                       </td>
                     </tr>
                   )}

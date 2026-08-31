@@ -1,11 +1,18 @@
 // Summary tiles: tracked LSTs, total SOL staked, and a headline yield/quality
 // metric. Cards only surface populated data (no empty "—" headline tiles).
 
-import type { Lst } from "@shared/schema";
+import type { Lst, NativeStaking } from "@shared/schema";
 import { fmtInt, fmtSol, fmtPct, fmtPctSigned, median } from "../lib/format";
+import { nativeTip } from "../lib/native";
 import { InfoTip } from "./InfoTip";
 
-export function MetricCards({ lsts }: { lsts: Lst[] }) {
+export function MetricCards({
+  lsts,
+  native,
+}: {
+  lsts: Lst[];
+  native?: NativeStaking | null;
+}) {
   const count = lsts.length;
   const totalSol = lsts.reduce((sum, l) => sum + (l.tvlSol ?? 0), 0);
 
@@ -30,6 +37,16 @@ export function MetricCards({ lsts }: { lsts: Lst[] }) {
     { label: "Median realized APY", value: fmtPct(medRealized), tip: "Median APY actually delivered (measured from on-chain exchange rates), not the marketed number." },
     third,
   ];
+
+  // The native baseline is the reference every LST should be read against, so it
+  // sits with the headline metrics rather than inside a row detail.
+  if (native?.totalApy != null) {
+    cards.splice(3, 0, {
+      label: "Native staking baseline",
+      value: fmtPct(native.totalApy),
+      tip: nativeTip(native),
+    });
+  }
 
   return (
     <div className="metric-cards">

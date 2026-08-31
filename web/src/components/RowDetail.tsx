@@ -2,14 +2,15 @@
 // and the raw decentralization inputs behind the grade (so the composite is
 // auditable). History charts and deployment/exit detail layer in later phases.
 
-import type { ReactNode } from "react";
-import type { Lst } from "@shared/schema";
+import { useState, type ReactNode } from "react";
+import type { Lst, NativeStaking } from "@shared/schema";
 import { fmtPct, fmtRate, fmtInt, fmtDate, fmtSol } from "../lib/format";
 import { deriveRiskFlags, seriesFor, type HistoryData } from "../lib/history";
+import { fmtPoints, nativeTip, vsNative } from "../lib/native";
 import { lstLinks } from "../lib/links";
 import { YieldBar } from "./YieldBar";
 import { ScoreBadge } from "./ScoreBadge";
-import { Sparkline } from "./Sparkline";
+import { Chart, RangeToggle, windowPoints, type RangeId } from "./Chart";
 import { InfoTip } from "./InfoTip";
 
 function Field({ label, value, hint }: { label: string; value: ReactNode; hint?: string }) {
@@ -23,11 +24,21 @@ function Field({ label, value, hint }: { label: string; value: ReactNode; hint?:
   );
 }
 
-export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) {
+export function RowDetail({
+  lst,
+  history,
+  native,
+}: {
+  lst: Lst;
+  history: HistoryData;
+  native?: NativeStaking | null;
+}) {
   const { yieldSplit: y, decentralization: d } = lst;
+  const [range, setRange] = useState<RangeId>("90d");
   const rateSeries = seriesFor(history.exchangeRates, lst.symbol);
   const apySeries = seriesFor(history.apy, lst.symbol);
   const risks = deriveRiskFlags(lst, rateSeries);
+  const delta = vsNative(lst, native);
   return (
     <div className="row-detail">
       <section className="detail-section">
@@ -42,6 +53,21 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
           <Field label="Other" value={fmtPct(y.otherApy)} hint="MEV + fee-sharing + residual" />
           <Field label="Realized total" value={fmtPct(lst.realizedApy)} />
         </div>
+        {native?.totalApy != null && (
+          <p className="detail-note">
+            Native staking pays {fmtPct(native.totalApy)} —{" "}
+            {delta === null ? (
+              <>no realized APY for this LST yet, so there's nothing to compare</>
+            ) : (
+              <>
+                this LST is{" "}
+                <strong className={delta >= 0 ? "vs-up" : "vs-down"}>{fmtPoints(delta)}</strong>{" "}
+                {delta >= 0 ? "ahead of" : "behind"} delegating SOL directly
+              </>
+            )}
+            . <InfoTip text={nativeTip(native)} />
+          </p>
+        )}
       </section>
 
       <section className="detail-section">
@@ -123,14 +149,25 @@ export function RowDetail({ lst, history }: { lst: Lst; history: HistoryData }) 
         </div>
       </section>
 
-      <section className="detail-section">
+      <section className="detail-section detail-history">
         <h4>
           History
           <InfoTip text="Exchange rate and realized APY over time, built from the daily snapshots this project commits to git (git is the time-series database). It deepens every day the pipeline runs." />
+          <RangeToggle value={range} onChange={setRange} />
         </h4>
-        <div className="spark-row">
-          <Sparkline points={rateSeries} label="Exchange rate (SOL)" format={(v) => fmtRate(v)} color="#6366f1" />
-          <Sparkline points={apySeries} label="Realized APY" format={(v) => fmtPct(v)} color="#0ea5e9" />
+        <div className="chart-row">
+          <Chart
+            points={windowPoints(rateSeries, range)}
+            label="Exchange rate (SOL)"
+            format={(v) => fmtRate(v)}
+            color="#6366f1"
+          />
+          <Chart
+            points={windowPoints(apySeries, range)}
+            label="Realized APY"
+            format={(v) => fmtPct(v)}
+            color="#0ea5e9"
+          />
         </div>
       </section>
 

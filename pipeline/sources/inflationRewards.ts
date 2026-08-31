@@ -117,6 +117,11 @@ export interface InflationRewardsResult {
   baseApyByVote: Map<string, number>;
   /** measured network gross base rate (percent). */
   networkGrossApy: number | null;
+  /** Median on-chain commission (percent) across the high-stake gauge set —
+   *  what a typical native delegation actually pays. */
+  medianCommissionPct: number | null;
+  /** How many gauge validators the commission median is drawn from. */
+  commissionSample: number | null;
   note: string;
 }
 
@@ -129,6 +134,8 @@ export async function fetchInflationRewards(
     ok: false,
     baseApyByVote: empty,
     networkGrossApy: null,
+    medianCommissionPct: null,
+    commissionSample: null,
     note,
   });
 
@@ -205,10 +212,20 @@ export async function fetchInflationRewards(
     }
   }
 
+  // 3) Typical native-staking commission: the median across the high-stake gauge
+  //    set (the validators a native delegator realistically picks from). LSTs
+  //    delegate to 0%-commission validators, so the LST set would understate it.
+  const gaugeCommissions = gauge
+    .map((vote) => commByVote.get(vote))
+    .filter((c): c is number => typeof c === "number" && c >= 0 && c <= 100);
+  const medianCommissionPct = median(gaugeCommissions);
+
   return {
     ok: baseApyByVote.size > 0,
     baseApyByVote,
     networkGrossApy: Math.round(networkGross * 1000) / 1000,
+    medianCommissionPct,
+    commissionSample: gaugeCommissions.length || null,
     note: `${baseApyByVote.size} validators, gross ${networkGross.toFixed(2)}% from ${grossSamples.length} gauges, epoch ${epoch}`,
   };
 }
