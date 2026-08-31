@@ -28,11 +28,11 @@
   staking, MEV, commission, and every column this dashboard measures.
 - **Previous session:** exact on-chain base staking APY (replaced the hardcoded
   4.5%), full MEV coverage via Alchemy, and the Vercel deploy.
-- **Operational TODO:** (1) merge `data-refresh-alchemy`/`deploy` → `main`; (2) GitHub
-  Actions → repo **Read and write permissions** for the cron; (3) add `SOLANA_RPC_URL`
-  + `HELIUS_RPC_URL` as **repo secrets** (done via `gh secret set`) so the cron gets
-  full coverage; (4) ~~connect Vercel↔GitHub~~ **DONE** — the Vercel project is now
-  connected to the GitHub repo, so pushes auto-deploy.
+- **Operational TODO:** (1) **merge `deploy` → `main` — still the big one**, see the
+  cron caveat below; (2) ~~Read and write permissions~~ **DONE 2026-08-31** (via
+  `gh api -X PUT .../actions/permissions/workflow`); (3) repo secrets
+  `SOLANA_RPC_URL` + `HELIUS_RPC_URL` — done via `gh secret set`; (4) **Vercel
+  auto-deploy is NOT actually working** — see "Deployment" below.
 
 ## How to run / see it locally
 ```
@@ -190,16 +190,43 @@ Benchmarked against the two tools people actually use for this:
   solana-lst-lens` · `vercel.json` at repo root (build `pnpm build:site`, output
   `web/dist`, pnpm install, vite). `.vercel/` is gitignored. Manual redeploy is
   still `vercel --prod` (authed as sidharth004).
-- **Auto-deploy IS wired** (2026-07-31): the Vercel project is connected to the
-  GitHub repo, so pushes — including the daily cron's data commits — redeploy the
-  site on their own.
+- **Auto-deploy is NOT working** (corrected 2026-08-31). The 2026-07-31 note here
+  claimed it was wired; measurement says otherwise. Two pushes to `main` that day —
+  `464fb0e` (CI fix) and the bot's `4a0fad6` (data) — produced no redeploy: prod
+  still served `updatedAt` 2026-07-24 six minutes later, polled every 30s. Until
+  this is fixed **the daily cron refreshes the repo but not the site**, which is
+  the whole point of the cron. Diagnosing needs the Vercel dashboard or CLI; the
+  local CLI token is EXPIRED (`vercel ls` → "The specified token is not valid"),
+  so step one is `vercel login`.
+
+## Daily data cron (fixed 2026-08-31 — it had NEVER run)
+- `.github/workflows/update-data.yml`, 06:00 UTC, commits only `data/**` back to `main`.
+- **It failed all 47 runs from its first (2026-07-16) through 2026-08-30** — not one
+  success, so the "daily time-series" was never accruing and prod sat 38 days stale.
+  Each run died in ~10s before installing anything, which is why nothing downstream
+  ever complained. **Lesson: a green-looking dashboard says nothing about the cron —
+  check `gh run list` explicitly.**
+- Cause: `pnpm/action-setup@v4` aborts with "Multiple versions of pnpm specified" when
+  the workflow sets `version:` AND `package.json` has `packageManager`. Fixed in
+  `464fb0e` by deleting the `version:` input (packageManager is the source of truth);
+  `node-version` also 20 → 22 since the runners now force Node 20 actions onto 24.
+- Second, independent blocker, fixed the same day: the repo's
+  `default_workflow_permissions` was `read`, so the workflow's `git push` would have
+  failed even with pnpm working. The in-workflow `permissions: contents: write` block
+  did NOT save it — the repo-level default is the cap.
+- First green run: `33428940457` (workflow_dispatch), 32s, all 10 sources ok, bot
+  commit `4a0fad6`. Epochs jumped 1007→1023 — 16 epochs of drift, all real data.
 
 ## To finish shipping (operational)
-1. Merge `data-refresh-alchemy` + `deploy` → `main`.
-2. GitHub → Settings → Actions → General → Workflow permissions → **Read and write**
-   (for the daily cron's commits). Repo secrets `SOLANA_RPC_URL` + `HELIUS_RPC_URL`
-   already set via `gh secret set`.
-3. ~~Connect Vercel↔GitHub~~ — done; pushes now auto-deploy.
+1. **Merge `deploy` → `main`** (clean fast-forward, 7 commits; `data-refresh-alchemy`
+   is an ancestor so one merge covers both). **This is now urgent, not cosmetic:**
+   the cron is green again and commits to `main` daily, but `main`'s pipeline has no
+   `inflationRewards.ts` at all — so every cron run overwrites `data/` with
+   **fallback 4.5% base staking and no `nativeStaking` baseline**. The exact-base
+   work and the whole native-baseline/compare-tray/charts UI live only on `deploy`.
+2. ~~Workflow permissions~~ **DONE 2026-08-31** — `default_workflow_permissions` is
+   now `write`; verified, and the bot's first push succeeded.
+3. **Fix Vercel auto-deploy** — believed wired, measured broken. See "Deployment".
 
 ## Gotchas
 - **node/icu4c:** if `node` errors with missing `libicui18n.*.dylib`, `brew reinstall node`.
