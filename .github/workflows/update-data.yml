@@ -28,15 +28,16 @@ jobs:
           # Fetch full history so the append-only data commit lands cleanly.
           fetch-depth: 0
 
+      # NOTE: do NOT set `version:` here. package.json's "packageManager"
+      # (pnpm@10.8.0) is the single source of truth; specifying both makes
+      # action-setup abort with "Multiple versions of pnpm specified".
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
