@@ -125,6 +125,17 @@ a:hover {
   border-radius: 50%;
   background: var(--green);
 }
+/* Absolute clock time beside the relative age. Dimmed and separated by a
+   middot so "2 hours ago" stays the thing the eye lands on first. */
+.updated-at {
+  color: var(--text-tertiary, var(--text-secondary));
+  opacity: 0.75;
+}
+.updated-at::before {
+  content: "·";
+  margin: 0 6px 0 0;
+  opacity: 0.8;
+}
 
 .app-main {
   padding-top: 24px;
@@ -1261,6 +1272,13 @@ td.empty {
 @media (max-width: 680px) {
   .app-header .wrap {
     flex-direction: column;
+  }
+  /* The label carries relative age + clock time + epoch; on a narrow phone that
+     overruns 320px, and .updated is nowrap — which is how the page-wide
+     horizontal scroll got introduced last time. Let it wrap instead. */
+  .updated {
+    white-space: normal;
+    flex-wrap: wrap;
   }
   .wrap {
     padding: 0 16px;

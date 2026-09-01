@@ -76,6 +76,39 @@ export function fmtRelative(iso: string | null | undefined, now = Date.now()): s
   return `${months} month${months === 1 ? "" : "s"} ago`;
 }
 
+/**
+ * Clock time for a timestamp, in the reader's own timezone ("Aug 31, 7:20 PM").
+ * Pairs with fmtRelative: "2 hours ago" answers how stale, this answers as of
+ * when — which is what you need to line the snapshot up against an epoch
+ * boundary or someone else's dashboard.
+ */
+export function fmtDateTime(iso: string | null | undefined): string {
+  if (!iso) return DASH;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return DASH;
+  return d.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+/** Same instant, fully qualified with timezone — for tooltips, not the label. */
+export function fmtDateTimeFull(iso: string | null | undefined): string {
+  if (!iso) return DASH;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return DASH;
+  return d.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+}
+
 export function fmtDate(iso: string | null | undefined): string {
   if (!iso) return DASH;
   const d = new Date(iso);

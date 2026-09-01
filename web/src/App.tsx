@@ -10,7 +10,7 @@ import {
   type SortKey,
   type SortState,
 } from "./lib/sort";
-import { fmtDate, fmtRelative } from "./lib/format";
+import { fmtDateTime, fmtDateTimeFull, fmtRelative } from "./lib/format";
 import { getHashParam, setHashParam } from "./lib/hash";
 import { MetricCards } from "./components/MetricCards";
 import { IntentRouter } from "./components/IntentRouter";
@@ -135,9 +135,10 @@ export default function App() {
             </p>
           </div>
           {dataset && (
-            <div className="updated" title={`Last pipeline run: ${fmtDate(dataset.updatedAt)}`}>
+            <div className="updated" title={`Last pipeline run: ${fmtDateTimeFull(dataset.updatedAt)}`}>
               <span className="updated-dot" />
               Updated {fmtRelative(dataset.updatedAt)}
+              <span className="updated-at">{fmtDateTime(dataset.updatedAt)}</span>
               {dataset.epoch !== null && <> · epoch {dataset.epoch}</>}
             </div>
           )}

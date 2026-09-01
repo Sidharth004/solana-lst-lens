@@ -7,7 +7,10 @@ name: Update data
 
 on:
   schedule:
-    - cron: "0 6 * * *" # 06:00 UTC daily
+    # 3x/day at 00:00, 08:00, 16:00 UTC. GitHub's scheduler is best-effort and
+    # has run this workflow anywhere from 35 min to 12 h late, so three shots a
+    # day is as much about surviving a missed slot as about freshness.
+    - cron: "0 */8 * * *"
   workflow_dispatch: {}
 
 # Allow the job to push the data commit back to the default branch.
