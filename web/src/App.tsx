@@ -16,6 +16,7 @@ import { MetricCards } from "./components/MetricCards";
 import { IntentRouter } from "./components/IntentRouter";
 import { Table } from "./components/Table";
 import { CompareTray } from "./components/CompareTray";
+import { WelcomeModal } from "./components/WelcomeModal";
 
 // Neutral default: largest pools first. Sort — not a hard-coded pin — decides order.
 const DEFAULT_SORT: SortState = { key: "tvlSol", dir: "desc" };
@@ -51,6 +52,8 @@ export default function App() {
   // default — the toggle is for readers who only want measured rows.
   const [hideNoData, setHideNoData] = useState(false);
   const [compare, setCompare] = useState<string[]>(loadCompare);
+  // Shown on every visit, deliberately — nothing is persisted to suppress it.
+  const [showWelcome, setShowWelcome] = useState(true);
   // Captured once, before the effect below rewrites the hash from state.
   const [sharedCompare] = useState(() => getHashParam("compare") !== null);
 
@@ -125,6 +128,7 @@ export default function App() {
 
   return (
     <div className="app">
+      {showWelcome && <WelcomeModal onClose={() => setShowWelcome(false)} />}
       <header className="app-header">
         <div className="wrap">
           <div className="brand">
