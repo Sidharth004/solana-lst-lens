@@ -28,9 +28,9 @@ const DIFFS: Diff[] = [
   { lead: "Yield split", how: "base, MEV, other", them: "One blended number" },
   { lead: "Exact base", how: "per epoch, real commission", them: "A flat assumed rate" },
   { lead: "Real MEV", how: "from Jito's on-chain accounts", them: "Estimated, or omitted" },
-  { lead: "Native baseline", how: "beats staking it yourself?", them: "No comparison point" },
+  { lead: "Native baseline", how: "every LST scored against plain SOL staking", them: "No comparison point" },
   { lead: "Decentralization grade", how: "A–F from the validator set", them: "“Decentralized” as a claim" },
-  { lead: "Net take-home", how: "after real exit cost", them: "Yield before costs" },
+  { lead: "Net take-home", how: "realized yield minus the cost of swapping back to SOL", them: "Yield quoted before costs" },
 ];
 
 export function WelcomeModal({ onClose }: Props) {
