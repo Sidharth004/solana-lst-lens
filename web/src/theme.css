@@ -1358,37 +1358,53 @@ td.empty {
   line-height: 1.5;
   color: var(--text-secondary);
 }
-.diff-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--border);
-}
-/* Two-column contrast: the claim you'd normally get, then what's measured
-   here. The arrow carries the comparison, so no header row is needed. */
-.diff-row {
-  display: grid;
-  grid-template-columns: 1fr 18px 1.35fr;
-  align-items: baseline;
-  gap: 8px;
-  padding: 11px 2px;
-  border-bottom: 1px solid var(--border);
+/* Two columns: what we measure, against the usual alternative. Colour is the
+   only thing separating them — a faint green wash on our side, muted grey on
+   theirs — so the contrast reads before a single word is parsed. */
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.4;
 }
-.diff-typical {
+.diff-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0 10px 7px;
+  border-bottom: 1px solid var(--border-strong);
+}
+.diff-h-ours {
+  color: var(--green);
+  width: 54%;
+}
+.diff-h-them {
   color: var(--text-muted);
 }
-.diff-arrow {
-  color: var(--border-strong);
-  text-align: center;
+.diff-table td {
+  padding: 9px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
 }
 .diff-ours {
-  color: var(--text-secondary);
+  background: var(--green-soft);
 }
 .diff-ours strong {
   color: var(--text);
   font-weight: 620;
+}
+/* The "how" sits under the claim: skimmers read the bold line only, and the
+   method is there for anyone who stops. */
+.diff-how {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.diff-them {
+  color: var(--text-muted);
 }
 .modal-foot {
   margin: 16px 0 0;
@@ -1413,20 +1429,33 @@ td.empty {
   .modal-title {
     font-size: 18px;
   }
-  /* Stack the contrast: the "typical" line sits above the measured one, with
-     the arrow rotated to point down the column instead of across it. */
-  .diff-row {
-    grid-template-columns: 1fr;
-    gap: 3px;
-    padding: 12px 2px;
+  /* Stack the two columns. The header row can't span a stacked layout, so the
+     "vs" prefix carries the comparison on each row instead. */
+  .diff-table,
+  .diff-table tbody,
+  .diff-table tr,
+  .diff-table td {
+    display: block;
+    width: auto;
   }
-  .diff-arrow {
+  .diff-table thead {
     display: none;
   }
-  .diff-typical {
+  .diff-table tr {
+    border-bottom: 1px solid var(--border);
+    padding: 9px 0;
+  }
+  .diff-table td {
+    border: 0;
+    padding: 0 10px;
+  }
+  .diff-them::before {
+    content: "vs ";
+    color: var(--border-strong);
+  }
+  .diff-them {
+    margin-top: 3px;
     font-size: 12px;
-    text-decoration: line-through;
-    text-decoration-color: var(--border-strong);
   }
 }
 
