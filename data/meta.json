@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T18:55:08.146Z",
+  "updatedAt": "2026-09-10T01:56:54.938Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -22,7 +22,7 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "40 APY bootstraps"
+      "note": "39 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -38,7 +38,7 @@
     },
     "inflation": {
       "ok": true,
-      "note": "636 validators, gross 3.18% from 289 gauges, epoch 1029"
+      "note": "419 validators, gross 3.18% from 216 gauges, epoch 1029"
     },
     "jupiterMeta": {
       "ok": true,
@@ -46,7 +46,7 @@
     },
     "jupiter": {
       "ok": true,
-      "note": "75/76 exit quotes"
+      "note": "73/76 exit quotes"
     }
   }
 }
