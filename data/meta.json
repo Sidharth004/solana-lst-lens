@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T11:47:20.616Z",
+  "updatedAt": "2026-09-12T17:57:58.912Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -13,8 +13,8 @@
       "note": "extra-lsts: 1/1 resolved"
     },
     "stakewiz": {
-      "ok": true,
-      "note": "1214 validators"
+      "ok": false,
+      "note": "fetch failed"
     },
     "defillama": {
       "ok": true,
@@ -33,12 +33,12 @@
       "note": "69/72 pool fees"
     },
     "jitoTips": {
-      "ok": true,
-      "note": "572 validators, epochs 1031/1030/1029"
+      "ok": false,
+      "note": "0 validators, epochs 1031/1030/1029"
     },
     "inflation": {
-      "ok": true,
-      "note": "553 validators, gross 3.16% from 180 gauges, epoch 1031"
+      "ok": false,
+      "note": "could not measure gross base rate"
     },
     "jupiterMeta": {
       "ok": true,
