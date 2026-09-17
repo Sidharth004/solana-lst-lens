@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-17T02:15:22.769Z",
+  "updatedAt": "2026-09-17T12:52:05.114Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -38,7 +38,7 @@
     },
     "inflation": {
       "ok": true,
-      "note": "360 validators, gross 3.13% from 199 gauges, epoch 1034"
+      "note": "285 validators, gross 3.13% from 152 gauges, epoch 1034"
     },
     "jupiterMeta": {
       "ok": true,
