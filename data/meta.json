@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-22T12:55:04.930Z",
+  "updatedAt": "2026-09-22T19:21:38.285Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -22,7 +22,7 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "41 APY bootstraps"
+      "note": "42 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -38,7 +38,7 @@
     },
     "inflation": {
       "ok": true,
-      "note": "382 validators, gross 2.62% from 220 gauges, epoch 1038"
+      "note": "516 validators, gross 2.62% from 262 gauges, epoch 1038"
     },
     "jupiterMeta": {
       "ok": true,
