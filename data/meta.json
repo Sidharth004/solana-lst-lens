@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T16:12:15.341Z",
+  "updatedAt": "2026-09-29T03:08:41.203Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -34,11 +34,11 @@
     },
     "jitoTips": {
       "ok": true,
-      "note": "569 validators, epochs 1042/1041/1040"
+      "note": "571 validators, epochs 1043/1042/1041"
     },
     "inflation": {
       "ok": true,
-      "note": "458 validators, gross 2.61% from 194 gauges, epoch 1042"
+      "note": "445 validators, gross 2.60% from 189 gauges, epoch 1043"
     },
     "jupiterMeta": {
       "ok": true,
