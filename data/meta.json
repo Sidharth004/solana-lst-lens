@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T20:23:51.819Z",
+  "updatedAt": "2026-10-01T02:56:54.557Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,7 +14,7 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "1215 validators"
+      "note": "1214 validators"
     },
     "defillama": {
       "ok": true,
@@ -37,8 +37,8 @@
       "note": "570 validators, epochs 1044/1043/1042"
     },
     "inflation": {
-      "ok": false,
-      "note": "could not measure gross base rate"
+      "ok": true,
+      "note": "546 validators, gross 2.59% from 266 gauges, epoch 1044"
     },
     "jupiterMeta": {
       "ok": true,
