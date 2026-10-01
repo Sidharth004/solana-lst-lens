@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T02:56:54.557Z",
+  "updatedAt": "2026-10-01T14:54:44.177Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,7 +14,7 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "1214 validators"
+      "note": "1215 validators"
     },
     "defillama": {
       "ok": true,
@@ -34,11 +34,11 @@
     },
     "jitoTips": {
       "ok": true,
-      "note": "570 validators, epochs 1044/1043/1042"
+      "note": "567 validators, epochs 1045/1044/1043"
     },
     "inflation": {
       "ok": true,
-      "note": "546 validators, gross 2.59% from 266 gauges, epoch 1044"
+      "note": "334 validators, gross 2.59% from 173 gauges, epoch 1045"
     },
     "jupiterMeta": {
       "ok": true,
