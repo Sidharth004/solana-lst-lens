@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T02:25:08.416Z",
+  "updatedAt": "2026-10-21T13:19:24.255Z",
   "epoch": null,
   "lsts": [
     {
@@ -28,7 +28,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 424,
+        "avgValidatorRank": 435,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -37,7 +37,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.635,
+        "priceImpactPct": 0,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -70,7 +70,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 348,
+        "avgValidatorRank": 360,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -79,7 +79,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.118,
+        "priceImpactPct": 0,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -112,7 +112,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 424,
+        "avgValidatorRank": 435,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -154,14 +154,18 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 313,
+        "avgValidatorRank": 70,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "single"
       },
       "deployment": null,
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
       "auditCount": null,
       "launchDate": "2025-08-21",
       "website": null
@@ -192,7 +196,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 124,
+        "avgValidatorRank": 133,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -234,7 +238,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 544,
+        "avgValidatorRank": 547,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -247,11 +251,7 @@
         "totalDeployed": 55280.05,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0.229,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2025-03-26",
       "website": null
@@ -320,7 +320,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 283,
+        "avgValidatorRank": 295,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -358,7 +358,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 424,
+        "avgValidatorRank": 435,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -396,7 +396,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 186,
+        "avgValidatorRank": 198,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -434,7 +434,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 351,
+        "avgValidatorRank": 371,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -472,7 +472,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 530,
+        "avgValidatorRank": 531,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -510,7 +510,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 545,
+        "avgValidatorRank": 486,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -548,7 +548,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 410,
+        "avgValidatorRank": 421,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -586,7 +586,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 72,
+        "avgValidatorRank": 80,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -624,7 +624,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 424,
+        "avgValidatorRank": 435,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -662,7 +662,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 511,
+        "avgValidatorRank": 520,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -697,16 +697,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.22,
       "yieldSplit": {
-        "baseStakingApy": 1.976,
+        "baseStakingApy": 1.977,
         "mevApy": 0.026,
-        "otherApy": 3.235,
+        "otherApy": 3.234,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 7,
         "stakeConcentration": 0.77,
-        "avgValidatorRank": 458,
+        "avgValidatorRank": 466,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -714,10 +714,10 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 459550.47,
+          "Kamino": 459555.58,
           "Save": 17620.03
         },
-        "totalDeployed": 477170.5,
+        "totalDeployed": 477175.61,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -751,7 +751,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 89,
+        "avgValidatorRank": 100,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -775,21 +775,21 @@
       "feePct": 2.5,
       "exchangeRate": 1.104989,
       "advertisedApy": null,
-      "realizedApy": 4.094,
+      "realizedApy": 4.092,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.032,
-        "otherApy": 2.084,
+        "otherApy": 2.081,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 296,
+        "avgValidatorRank": 317,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -827,18 +827,14 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 541,
+        "avgValidatorRank": 544,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-07-30",
       "website": null
@@ -869,7 +865,7 @@
       "decentralization": {
         "validatorCount": 38,
         "stakeConcentration": 0.064,
-        "avgValidatorRank": 229,
+        "avgValidatorRank": 235,
         "delinquentValidatorCount": 0,
         "grade": "C",
         "isEstimate": true,
@@ -911,7 +907,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 424,
+        "avgValidatorRank": 435,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -991,7 +987,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 81,
+        "avgValidatorRank": 83,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1000,7 +996,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.46,
+        "priceImpactPct": 0.021,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -1024,16 +1020,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.14,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.084,
         "mevApy": 0.04,
-        "otherApy": 3.401,
+        "otherApy": 3.4,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 81,
+        "avgValidatorRank": 83,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1042,8 +1038,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.713,
-        "netApyAfterExit": 4.811
+        "priceImpactPct": 0,
+        "netApyAfterExit": 5.524
       },
       "auditCount": null,
       "launchDate": "2025-07-25",
@@ -1061,28 +1057,32 @@
       "feePct": 5,
       "exchangeRate": 1.185469,
       "advertisedApy": null,
-      "realizedApy": 6.388,
+      "realizedApy": 6.385,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.006,
-        "otherApy": 4.404,
+        "otherApy": 4.4,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 135,
+        "avgValidatorRank": 145,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "single"
       },
       "deployment": null,
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": 6.385
+      },
       "auditCount": null,
       "launchDate": "2024-05-28",
       "website": null
@@ -1149,16 +1149,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.19,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 4.5,
         "mevApy": 0.021,
-        "otherApy": 2.861,
+        "otherApy": 0.444,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 479,
+        "avgValidatorRank": 492,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1188,21 +1188,21 @@
       "feePct": 2.5,
       "exchangeRate": 1.178746,
       "advertisedApy": null,
-      "realizedApy": 6.258,
+      "realizedApy": 6.256,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.084,
         "mevApy": 0.069,
-        "otherApy": 4.106,
+        "otherApy": 4.103,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 278,
+        "avgValidatorRank": 289,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1231,16 +1231,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.15,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.04,
-        "otherApy": 2.867,
+        "otherApy": 2.866,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 476,
+        "avgValidatorRank": 482,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1270,21 +1270,21 @@
       "feePct": 2.5,
       "exchangeRate": 1.211477,
       "advertisedApy": null,
-      "realizedApy": 7.647,
+      "realizedApy": 7.643,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.084,
         "mevApy": 0.019,
-        "otherApy": 5.545,
+        "otherApy": 5.54,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 79,
+        "avgValidatorRank": 81,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1308,21 +1308,21 @@
       "feePct": 2.5,
       "exchangeRate": 1.171934,
       "advertisedApy": null,
-      "realizedApy": 6.283,
+      "realizedApy": 6.28,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.049,
-        "otherApy": 4.256,
+        "otherApy": 4.252,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 136,
+        "avgValidatorRank": 158,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1351,16 +1351,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.08,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.083,
-        "otherApy": 2.812,
+        "otherApy": 2.811,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 124,
+        "avgValidatorRank": 133,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1395,16 +1395,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.15,
       "yieldSplit": {
-        "baseStakingApy": 1.999,
+        "baseStakingApy": 4.5,
         "mevApy": 0.046,
-        "otherApy": 3.486,
+        "otherApy": 0.985,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 105,
+        "avgValidatorRank": 113,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1428,21 +1428,21 @@
       "feePct": 2.5,
       "exchangeRate": 1.180262,
       "advertisedApy": null,
-      "realizedApy": 6.799,
+      "realizedApy": 6.795,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.084,
         "mevApy": 0.047,
-        "otherApy": 4.669,
+        "otherApy": 4.664,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 102,
+        "avgValidatorRank": 107,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1480,7 +1480,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 537,
+        "avgValidatorRank": 540,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1525,7 +1525,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 131,
+        "avgValidatorRank": 141,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1563,7 +1563,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 265,
+        "avgValidatorRank": 278,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1601,7 +1601,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 143,
+        "avgValidatorRank": 155,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1646,11 +1646,7 @@
         "source": "single"
       },
       "deployment": null,
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 12.056,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-06-06",
       "website": null
@@ -1681,7 +1677,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 401,
+        "avgValidatorRank": 373,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1694,11 +1690,7 @@
         "totalDeployed": 7622.84,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-06-06",
       "website": null
@@ -1729,7 +1721,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 334,
+        "avgValidatorRank": 305,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1762,16 +1754,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.08,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 4.5,
         "mevApy": 0.067,
-        "otherApy": 2.957,
+        "otherApy": 0.54,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 7,
+        "avgValidatorRank": 6,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1780,8 +1772,8 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 0.102,
-        "netApyAfterExit": 5.005
+        "priceImpactPct": 0,
+        "netApyAfterExit": 5.107
       },
       "auditCount": null,
       "launchDate": "2024-06-06",
@@ -1813,7 +1805,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 267,
+        "avgValidatorRank": 284,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1884,16 +1876,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.12,
       "yieldSplit": {
-        "baseStakingApy": 4.5,
+        "baseStakingApy": 1.979,
         "mevApy": 0.097,
-        "otherApy": 0.073,
+        "otherApy": 2.594,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 481,
+        "avgValidatorRank": 489,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1907,7 +1899,11 @@
         "totalDeployed": 298.97,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": 4.67
+      },
       "auditCount": null,
       "launchDate": "2024-08-22",
       "website": null
@@ -1938,7 +1934,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 539,
+        "avgValidatorRank": 542,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -1951,7 +1947,11 @@
         "totalDeployed": 79.56,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
       "auditCount": null,
       "launchDate": "2025-01-07",
       "website": null
@@ -1982,7 +1982,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 224,
+        "avgValidatorRank": 241,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2020,7 +2020,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 18,
+        "avgValidatorRank": 20,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2058,7 +2058,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 115,
+        "avgValidatorRank": 123,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2082,21 +2082,21 @@
       "feePct": 0.04,
       "exchangeRate": 1.271551,
       "advertisedApy": null,
-      "realizedApy": 6.595,
+      "realizedApy": 6.593,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 2.02,
+        "baseStakingApy": 2.021,
         "mevApy": 0.017,
-        "otherApy": 4.558,
+        "otherApy": 4.555,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 459,
+        "avgValidatorRank": 468,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2120,21 +2120,21 @@
       "feePct": 0,
       "exchangeRate": 1.310727,
       "advertisedApy": null,
-      "realizedApy": 6.997,
+      "realizedApy": 6.995,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 1.978,
+        "baseStakingApy": 1.979,
         "mevApy": 0.096,
-        "otherApy": 4.923,
+        "otherApy": 4.92,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 487,
+        "avgValidatorRank": 499,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2163,16 +2163,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.07,
       "yieldSplit": {
-        "baseStakingApy": 2.034,
+        "baseStakingApy": 2.033,
         "mevApy": 0.065,
-        "otherApy": 2.705,
+        "otherApy": 2.706,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 150,
         "stakeConcentration": 0.014,
-        "avgValidatorRank": 233,
+        "avgValidatorRank": 228,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2180,9 +2180,9 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 147375.6
+          "Kamino": 147365.66
         },
-        "totalDeployed": 147375.6,
+        "totalDeployed": 147365.66,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -2207,16 +2207,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.18,
       "yieldSplit": {
-        "baseStakingApy": 1.99,
+        "baseStakingApy": 1.991,
         "mevApy": 0.035,
-        "otherApy": 2.484,
+        "otherApy": 2.483,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 333,
         "stakeConcentration": 0.054,
-        "avgValidatorRank": 279,
+        "avgValidatorRank": 281,
         "delinquentValidatorCount": 1,
         "grade": "B",
         "isEstimate": true,
@@ -2245,9 +2245,9 @@
       "apyGap": null,
       "yieldTrend30d": -0.11,
       "yieldSplit": {
-        "baseStakingApy": 2.014,
-        "mevApy": 0.111,
-        "otherApy": 2.627,
+        "baseStakingApy": 2.019,
+        "mevApy": 0.11,
+        "otherApy": 2.623,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -2255,17 +2255,17 @@
         "validatorCount": 678,
         "stakeConcentration": 0.091,
         "avgValidatorRank": 378,
-        "delinquentValidatorCount": 38,
+        "delinquentValidatorCount": 39,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 138051.63,
-          "Save": 221710.94
+          "Kamino": 138051.8,
+          "Save": 221710.49
         },
-        "totalDeployed": 359762.57,
+        "totalDeployed": 359762.29,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -2290,27 +2290,27 @@
       "apyGap": null,
       "yieldTrend30d": -0.01,
       "yieldSplit": {
-        "baseStakingApy": 2.032,
+        "baseStakingApy": 2.042,
         "mevApy": 0.065,
-        "otherApy": 2.743,
+        "otherApy": 2.733,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 667,
-        "stakeConcentration": 0.024,
+        "stakeConcentration": 0.025,
         "avgValidatorRank": 391,
-        "delinquentValidatorCount": 4,
+        "delinquentValidatorCount": 6,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 1108845.46,
-          "Save": 88613.28
+          "Kamino": 1109071.24,
+          "Save": 88613.33
         },
-        "totalDeployed": 1197458.74,
+        "totalDeployed": 1197684.57,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -2335,16 +2335,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.06,
       "yieldSplit": {
-        "baseStakingApy": 2.029,
+        "baseStakingApy": 2.03,
         "mevApy": 0.07,
-        "otherApy": 2.784,
+        "otherApy": 2.783,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 232,
         "stakeConcentration": 0.022,
-        "avgValidatorRank": 206,
+        "avgValidatorRank": 203,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2375,14 +2375,14 @@
       "feePct": 0,
       "exchangeRate": 1.511993,
       "advertisedApy": null,
-      "realizedApy": 6.57,
+      "realizedApy": 6.567,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.038,
         "mevApy": 0.016,
-        "otherApy": 4.471,
+        "otherApy": 4.513,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -2390,7 +2390,7 @@
         "validatorCount": 2026,
         "stakeConcentration": 0.993,
         "avgValidatorRank": 690,
-        "delinquentValidatorCount": 396,
+        "delinquentValidatorCount": 397,
         "grade": "D",
         "isEstimate": true,
         "source": "rpc"
@@ -2413,14 +2413,14 @@
       "feePct": null,
       "exchangeRate": 1.276092,
       "advertisedApy": null,
-      "realizedApy": 9.46,
+      "realizedApy": 9.456,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": 0.035,
-        "otherApy": 4.925,
+        "otherApy": 4.921,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -2471,18 +2471,14 @@
       "decentralization": {
         "validatorCount": 2,
         "stakeConcentration": 1,
-        "avgValidatorRank": 69,
+        "avgValidatorRank": 71,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-06-01",
       "website": null
@@ -2513,18 +2509,14 @@
       "decentralization": {
         "validatorCount": 110,
         "stakeConcentration": 0.01,
-        "avgValidatorRank": 302,
+        "avgValidatorRank": 303,
         "delinquentValidatorCount": 3,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0,
-        "netApyAfterExit": null
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-06-09",
       "website": null
@@ -2546,16 +2538,16 @@
       "apyGap": null,
       "yieldTrend30d": -0.01,
       "yieldSplit": {
-        "baseStakingApy": 2.083,
+        "baseStakingApy": 2.084,
         "mevApy": 0.094,
-        "otherApy": 2.351,
+        "otherApy": 2.35,
         "blockspaceApy": null,
         "isEstimate": true
       },
       "decentralization": {
         "validatorCount": 5,
         "stakeConcentration": 0.65,
-        "avgValidatorRank": 307,
+        "avgValidatorRank": 322,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2569,11 +2561,7 @@
         "totalDeployed": 11084.25,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0.221,
-        "netApyAfterExit": 4.307
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-08-26",
       "website": null
@@ -2604,7 +2592,7 @@
       "decentralization": {
         "validatorCount": 4,
         "stakeConcentration": 0.276,
-        "avgValidatorRank": 120,
+        "avgValidatorRank": 128,
         "delinquentValidatorCount": 0,
         "grade": "D",
         "isEstimate": true,
@@ -2613,7 +2601,7 @@
       "deployment": null,
       "exitCost": {
         "sampleSizeSol": 1000,
-        "priceImpactPct": 12.143,
+        "priceImpactPct": 11.177,
         "netApyAfterExit": null
       },
       "auditCount": null,
@@ -2646,14 +2634,18 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 107,
+        "avgValidatorRank": 109,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
       "auditCount": null,
       "launchDate": "2024-06-26",
       "website": null
@@ -2684,18 +2676,14 @@
       "decentralization": {
         "validatorCount": 72,
         "stakeConcentration": 0.034,
-        "avgValidatorRank": 241,
+        "avgValidatorRank": 246,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": {
-        "sampleSizeSol": 1000,
-        "priceImpactPct": 0.187,
-        "netApyAfterExit": 4.308
-      },
+      "exitCost": null,
       "auditCount": null,
       "launchDate": "2024-11-24",
       "website": "https://www.jagpool.xyz/"
@@ -2726,14 +2714,18 @@
       "decentralization": {
         "validatorCount": 67,
         "stakeConcentration": 0.017,
-        "avgValidatorRank": 260,
+        "avgValidatorRank": 251,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
       "auditCount": null,
       "launchDate": "2024-05-28",
       "website": null
@@ -2764,14 +2756,18 @@
       "decentralization": {
         "validatorCount": 3,
         "stakeConcentration": 1,
-        "avgValidatorRank": 641,
+        "avgValidatorRank": 644,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
         "source": "rpc"
       },
       "deployment": null,
-      "exitCost": null,
+      "exitCost": {
+        "sampleSizeSol": 1000,
+        "priceImpactPct": 0,
+        "netApyAfterExit": null
+      },
       "auditCount": null,
       "launchDate": "2024-05-31",
       "website": null
@@ -2801,8 +2797,8 @@
       },
       "decentralization": {
         "validatorCount": 4,
-        "stakeConcentration": 0.262,
-        "avgValidatorRank": 555,
+        "stakeConcentration": 0.267,
+        "avgValidatorRank": 561,
         "delinquentValidatorCount": 0,
         "grade": "C",
         "isEstimate": true,
@@ -2840,7 +2836,7 @@
       "decentralization": {
         "validatorCount": 73,
         "stakeConcentration": 0.054,
-        "avgValidatorRank": 245,
+        "avgValidatorRank": 241,
         "delinquentValidatorCount": 0,
         "grade": "B",
         "isEstimate": true,
@@ -2916,7 +2912,7 @@
       "decentralization": {
         "validatorCount": 1,
         "stakeConcentration": 1,
-        "avgValidatorRank": 89,
+        "avgValidatorRank": 100,
         "delinquentValidatorCount": 0,
         "grade": "F",
         "isEstimate": true,
@@ -2940,14 +2936,14 @@
       "feePct": null,
       "exchangeRate": 1.407837,
       "advertisedApy": null,
-      "realizedApy": 6.874,
+      "realizedApy": 6.871,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 2.374,
+        "otherApy": 2.371,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -2962,10 +2958,10 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 18104.44,
+          "Kamino": 18107.62,
           "Save": 927.01
         },
-        "totalDeployed": 19031.45,
+        "totalDeployed": 19034.63,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -2985,12 +2981,12 @@
       "feePct": null,
       "exchangeRate": 1.219142,
       "advertisedApy": null,
-      "realizedApy": 3.891,
+      "realizedApy": 3.89,
       "realizedApyBasis": "lifetime",
       "apyGap": null,
       "yieldTrend30d": null,
       "yieldSplit": {
-        "baseStakingApy": 3.891,
+        "baseStakingApy": 3.89,
         "mevApy": null,
         "otherApy": 0,
         "blockspaceApy": null,
@@ -3007,9 +3003,9 @@
       },
       "deployment": {
         "byProtocol": {
-          "Save": 3540.78
+          "Save": 3519.43
         },
-        "totalDeployed": 3540.78,
+        "totalDeployed": 3519.43,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -3029,14 +3025,14 @@
       "feePct": null,
       "exchangeRate": 1.376648,
       "advertisedApy": null,
-      "realizedApy": 4.588,
+      "realizedApy": 4.585,
       "realizedApyBasis": "recent",
       "apyGap": null,
       "yieldTrend30d": -0.81,
       "yieldSplit": {
         "baseStakingApy": 4.5,
         "mevApy": null,
-        "otherApy": 0.088,
+        "otherApy": 0.085,
         "blockspaceApy": null,
         "isEstimate": true
       },
@@ -3051,10 +3047,10 @@
       },
       "deployment": {
         "byProtocol": {
-          "Kamino": 177917.06,
-          "Save": 254384.47
+          "Kamino": 177904.19,
+          "Save": 254373.59
         },
-        "totalDeployed": 432301.53,
+        "totalDeployed": 432277.78,
         "note": "Source: DeFiLlama. LSTs can be double-counted (once as SOL, once as the LST in a lending market); treat as an upper bound."
       },
       "exitCost": null,
@@ -3069,7 +3065,7 @@
       "logoUri": "https://arweave.net/0y-faXJ7pArc83FnXv8bNf_0wjloZcTrUBNnbEMJ9Cg",
       "type": "blockspace-yield",
       "issuer": "Raiku",
-      "tvlSol": 180240.57,
+      "tvlSol": 180260.46,
       "holders": null,
       "feePct": null,
       "exchangeRate": 1.020473,
@@ -3108,12 +3104,12 @@
     }
   ],
   "nativeStaking": {
-    "grossApy": 2.083,
+    "grossApy": 2.084,
     "medianCommissionPct": 5,
-    "netBaseApy": 1.979,
+    "netBaseApy": 1.98,
     "medianMevApy": 0.046,
-    "totalApy": 2.025,
-    "validatorSample": 126,
-    "note": "Gross 2.08% measured on-chain; median commission 5.0% over 126 high-stake validators; MEV median over 560 measured validators."
+    "totalApy": 2.026,
+    "validatorSample": 132,
+    "note": "Gross 2.08% measured on-chain; median commission 5.0% over 132 high-stake validators; MEV median over 560 measured validators."
   }
 }
