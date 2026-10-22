@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T02:19:58.463Z",
+  "updatedAt": "2026-10-22T13:17:57.284Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,7 +14,7 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "1315 validators"
+      "note": "1316 validators"
     },
     "defillama": {
       "ok": true,
@@ -22,7 +22,7 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "37 APY bootstraps"
+      "note": "36 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -38,7 +38,7 @@
     },
     "inflation": {
       "ok": true,
-      "note": "456 validators, gross 2.08% from 249 gauges, epoch 1062"
+      "note": "378 validators, gross 2.08% from 198 gauges, epoch 1062"
     },
     "jupiterMeta": {
       "ok": true,
