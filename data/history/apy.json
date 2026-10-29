@@ -2553,5 +2553,44 @@
       "mSOL": 4.659,
       "rkuSOL": 4.977
     }
+  },
+  {
+    "date": "2026-10-29",
+    "epoch": null,
+    "bySymbol": {
+      "dfdvSOL": 4.867,
+      "JupSOL": 5.086,
+      "iceSOL": 4.057,
+      "pathSOL": 0.544,
+      "hyloSOL": 5.39,
+      "proSOL": 6.336,
+      "bonkSOL": 4.836,
+      "dSOL": 4.87,
+      "compassSOL": 6.206,
+      "picoSOL": 4.758,
+      "clockSOL": 7.581,
+      "hubSOL": 6.229,
+      "strongSOL": 4.66,
+      "lanternSOL": 5.25,
+      "pumpkinSOL": 6.738,
+      "hSOL": 4.932,
+      "rkSOL": 5.151,
+      "bbSOL": 4.47,
+      "cgntSOL": 6.555,
+      "laineSOL": 6.957,
+      "vSOL": 4.629,
+      "dzSOL": 4.36,
+      "bSOL": 4.62,
+      "JitoSOL": 4.86,
+      "JSOL": 4.671,
+      "LST": 6.52,
+      "edgeSOL": 9.38,
+      "BNSOL": 4.544,
+      "jagSOL": 4.543,
+      "INF": 6.815,
+      "stSOL": 3.875,
+      "mSOL": 5.415,
+      "rkuSOL": 4.98
+    }
   }
 ]
