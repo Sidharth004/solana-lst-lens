@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T20:44:27.669Z",
+  "updatedAt": "2026-10-30T03:23:24.957Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -22,7 +22,7 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "37 APY bootstraps"
+      "note": "36 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -34,11 +34,11 @@
     },
     "jitoTips": {
       "ok": true,
-      "note": "556 validators, epochs 1069/1068/1067"
+      "note": "557 validators, epochs 1070/1069/1068"
     },
     "inflation": {
       "ok": true,
-      "note": "709 validators, gross 2.07% from 346 gauges, epoch 1069"
+      "note": "797 validators, gross 2.09% from 349 gauges, epoch 1070"
     },
     "jupiterMeta": {
       "ok": true,
