@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T15:42:04.784Z",
+  "updatedAt": "2026-11-11T22:22:35.520Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -9,8 +9,8 @@
       "note": "75/245 LSTs above 1000 SOL TVL"
     },
     "extra": {
-      "ok": true,
-      "note": "extra-lsts: 1/1 resolved"
+      "ok": false,
+      "note": "extra-lsts: 0/1 resolved"
     },
     "stakewiz": {
       "ok": true,
@@ -34,11 +34,11 @@
     },
     "jitoTips": {
       "ok": true,
-      "note": "551 validators, epochs 1081/1080/1079"
+      "note": "553 validators, epochs 1082/1081/1080"
     },
     "inflation": {
       "ok": true,
-      "note": "415 validators, gross 2.10% from 249 gauges, epoch 1081"
+      "note": "310 validators, gross 2.05% from 113 gauges, epoch 1082"
     },
     "jupiterMeta": {
       "ok": true,
@@ -46,7 +46,7 @@
     },
     "jupiter": {
       "ok": true,
-      "note": "19/76 exit quotes"
+      "note": "6/76 exit quotes"
     }
   }
 }
