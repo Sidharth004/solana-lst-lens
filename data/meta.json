@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T17:57:45.882Z",
+  "updatedAt": "2026-11-27T05:44:19.757Z",
   "epoch": null,
   "lstCount": 76,
   "status": "ok",
@@ -14,7 +14,7 @@
     },
     "stakewiz": {
       "ok": true,
-      "note": "670 validators"
+      "note": "0 validators"
     },
     "defillama": {
       "ok": true,
@@ -22,7 +22,7 @@
     },
     "defillamaYields": {
       "ok": true,
-      "note": "37 APY bootstraps"
+      "note": "40 APY bootstraps"
     },
     "rpc": {
       "ok": true,
@@ -33,12 +33,12 @@
       "note": "68/72 pool fees"
     },
     "jitoTips": {
-      "ok": true,
-      "note": "544 validators, epochs 1095/1094/1093"
+      "ok": false,
+      "note": "0 validators, epochs 1096/1095/1094"
     },
     "inflation": {
-      "ok": true,
-      "note": "428 validators, gross 2.13% from 243 gauges, epoch 1095"
+      "ok": false,
+      "note": "could not measure gross base rate"
     },
     "jupiterMeta": {
       "ok": true,
